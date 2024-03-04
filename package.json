@@ -1,0 +1,21 @@
+{
+  "name": "moviesverse---balram-dhakad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon Moviesverse-Backend/server.js",
+    "start": "node Moviesverse-Backend/server.js",
+    "build": "npm install && npm install --prefix Moviesverse-frontend && npm run build --prefix Moviesverse-frontend"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  }
+}

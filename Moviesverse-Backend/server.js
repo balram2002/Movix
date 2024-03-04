@@ -1,7 +1,11 @@
-const express = require("express");
-const cors = require("cors");
-const userRoutes = require("./routes/UserRoutes");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import cors from "cors";
+import path from "path";
+import userRoutes from "./routes/UserRoutes.js"
+import express from "express";
+import dotenv from "dotenv";
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -20,7 +24,16 @@ mongoose
         console.log(err.message);
     });
 
+dotenv.config();
+
+
 app.use("/api/user", userRoutes);
+
+app.use(express.static(path.join(__dirname, "/Moviesverse-frontend/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "Moviesverse-frontend", "dist", "index.html"));
+});
 
 app.listen(5000, () => {
     console.log("server started on port 5000 .....");

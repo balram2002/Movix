@@ -1,7 +1,7 @@
-const User = require("../models/UserModel");
+import User from "../models/UserModel.js";
 
 
-module.exports.addUserDetails = async (req, res) => {
+export const addUserDetails = async (req, res) => {
     try {
         const { email, username, name, dob, language, genre, job, country, profile } = req.body;
         const user = await User.findOne({ email });
@@ -28,7 +28,7 @@ module.exports.addUserDetails = async (req, res) => {
     }
 };
 
-module.exports.getDetails = async (req, res) => {
+export const getDetails = async (req, res) => {
     try {
         const { email } = req.body;
         const user = await User.findOne({ email });

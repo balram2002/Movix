@@ -1,0 +1,320 @@
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth .logbg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    filter: brightness(70%);
+}
+
+.forgotclickspan {
+    margin-top: 25px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: white;
+    /* margin-left: 2px; */
+}
+
+#authwrapperbd {
+    position: relative;
+    width: 750px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid #0ef;
+    overflow: hidden;
+    box-shadow: 0 0 25px #0ef;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+#authwrapperbd .auth-form-box {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#authwrapperbd .auth-form-box.login {
+    left: 0;
+    padding: 0 60px 0 40px;
+}
+
+#authwrapperbd .auth-form-box.login .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+
+#authwrapperbd.active .auth-form-box.login .animation {
+    transform: translateX(-120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition-delay: calc(.1s * var(--i));
+}
+
+
+#authwrapperbd .auth-form-box.register {
+    right: 0;
+    padding: 0 40px 0 60px;
+    pointer-events: none;
+}
+
+#authwrapperbd.active .auth-form-box.register {
+    pointer-events: auto;
+}
+
+
+#authwrapperbd .auth-form-box.register .animation {
+    transform: translateX(120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+
+#authwrapperbd.active .auth-form-box.register .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
+
+}
+
+.auth-form-box h2 {
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+}
+
+.auth-form-box .auth-input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 25px 0;
+}
+
+.auth-input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    transition: .5s;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    padding-right: 23px;
+}
+
+.auth-input-box input:focus,
+.auth-input-box input:valid {
+    border-bottom-color: #0ef;
+}
+
+.auth-input-box label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.auth-input-box input:focus~label,
+.auth-input-box input:valid~label {
+    top: -5px;
+    color: #0ef;
+}
+
+.auth-input-box .icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+}
+
+.auth-input-box input:focus~.icon,
+.auth-input-box input:valid~.icon {
+    color: #0ef;
+}
+
+.btn {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: 2px solid #0ef;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    transition: .5s;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    z-index: -1;
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+}
+
+.btn:hover::before {
+    top: 0;
+}
+
+.auth-form-box .logreg-link {
+    font-size: 14.5px;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.logreg-link p a {
+    color: #0ef;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.logreg-link p a:hover {
+    text-decoration: underline;
+}
+
+
+
+#authwrapperbd .auth-info-text {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#authwrapperbd .auth-info-text.login {
+    right: 0;
+    text-align: right;
+    padding: 0 40px 60px 150px;
+}
+
+#authwrapperbd .auth-info-text.login .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+
+#authwrapperbd.active .auth-info-text.login .animation {
+    transform: translateX(120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition-delay: calc(.1s * var(--i));
+}
+
+#authwrapperbd .auth-info-text.register {
+    left: 0;
+    text-align: left;
+    padding: 0 150px 60px 40px;
+    pointer-events: none;
+}
+
+#authwrapperbd .auth-info-text.register .animation {
+    transform: translateX(-120%);
+    opacity: 0;
+    filter: blur(10);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+
+#authwrapperbd.active .auth-info-text.register .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
+
+}
+
+
+.auth-info-text h2 {
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.3;
+    text-decoration: uppercase;
+}
+
+.auth-info-text p {
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.3;
+    margin-top: 8px;
+}
+
+#authwrapperbd .bg-animate {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 850px;
+    height: 600px;
+    background: linear-gradient(45deg, #081b29, #0ef);
+    border-bottom: 3px solid #0ef;
+    transform: rotate(10deg) skewY(40deg);
+    transform-origin: bottom right;
+    transition: 1.5s ease;
+    transition-delay: 1.6s;
+}
+
+#authwrapperbd.active .bg-animate {
+    transform: rotate(0) skewY(0);
+    transition-delay: .5s;
+}
+
+#authwrapperbd .bg-animate2 {
+    position: absolute;
+    top: 100%;
+    left: 250px;
+    width: 850px;
+    height: 700px;
+    background: #081b29;
+    border-top: 3px solid #0ef;
+    transform: rotate(0) skewY(0);
+    transform-origin: bottom left;
+    transition: 1.5s ease;
+    transition-delay: .5s;
+}
+
+#authwrapperbd.active .bg-animate2 {
+    transform: rotate(-11deg) skewY(-41deg);
+    transition-delay: 1.2s;
+}
