@@ -23,6 +23,14 @@
     animation: slide .5s linear;
 }
 
+.loaderstar34 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
 @keyframes slide {
     50% {
         left: 50px;

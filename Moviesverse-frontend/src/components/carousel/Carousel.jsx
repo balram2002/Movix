@@ -48,13 +48,14 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                     media_type: item.media_type || endpoint,
                 })
             })
-            const title = data?.title + data?.original_name || data?.name;
+            const title = data?.title || data?.name;
             const msgggg = title + " " + "added to liked list";
             // alert(title + " " + "added to liked list");
             toast.success(msgggg);
         } else {
+            const titlee = data?.title || data?.name;
             const end = item.media_type || endpoint;
-            const msgg = "Please Login to like a " + title;
+            const msgg = "Please Login to like a " + end + titlee;
             // alert("Please Login to like a " + end);
             toast.warn(msgg);
         }

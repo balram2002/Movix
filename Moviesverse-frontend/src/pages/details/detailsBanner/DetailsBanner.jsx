@@ -53,12 +53,12 @@ const DetailsBanner = ({ video, crew }) => {
                 })
             })
             setOneLiked(true);
-            const msgggg = data?.title || data?.original_name || data?.name + " " + "added to liked list";
-            // alert(data.title + " " + "added to liked list");
+            const title3476 = data.name || data.title;
+            const msgggg = title3476 + " " + "added to liked list";
             toast.success(msgggg);
         } else {
-            // alert("Please Login to like a movie!");
-            const msgg = "Please login to like a " + data?.title + data?.original_name || data?.name;
+            const title367476 = data.name || data.title;
+            const msgg = "Please login to like a " + title367476;
             toast.warn(msgg);
         }
     }
@@ -74,12 +74,12 @@ const DetailsBanner = ({ video, crew }) => {
                 })
             })
             setOneWatch(true);
-            // alert(data.title + " " + "added to Watch later list");
-            const msg1 = data?.title + data?.original_name || data?.name + " " + "added to watch list";
+            const title34 = data.name || data.title;
+            const msg1 = title34 + " " + "added to watch list";
             toast.success(msg1);
         } else {
-            // alert("Please Login to add a " + mediaType);
-            const msg2 = "Please login to add a " + data?.title + data?.original_name || data?.name;
+            const title346 = data.name || data.title;
+            const msg2 = "Please login to add a " + title346;
             toast.warn(msg2);
         }
     }

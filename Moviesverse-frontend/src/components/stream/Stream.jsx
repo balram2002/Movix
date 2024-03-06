@@ -13,7 +13,7 @@ function Stream({ EndPoint, id, title }) {
             <div className='stream-main'>
                 {/* <ContentWrapper> */}
                 <div className="stream-body">
-                    <iframe src={`https://vidsrc.me/embed/${EndPoint}?tmdb=${id}`} className='iframe-stream' frameborder="0" referrerpolicy="origin" allowfullscreen></iframe>
+                    <iframe src={`https://vidsrc.to/embed/${EndPoint}/${id}`} className='iframe-stream' frameborder="0" referrerpolicy="origin" allowfullscreen></iframe>
                     {/* <MdCancel className='canhide' /> */}
 
                 </div>

@@ -40,12 +40,12 @@ const DetailsBanner = () => {
                 })
             })
             setOneLiked(true);
-            // alert(data?.name + " " + "added to liked Person list");
-            const msg = data?.name + " " + "added to liked person list";
+            const title234 = data.name || data.title;
+            const msg = title234 + " " + "added to liked person list";
             toast.success(msg);
         } else {
-            // alert("Please Login to add a person to liked list!");
-            const msg2 = "Please login to add a person to liked list";
+            const title23764 = data.name || data.title;
+            const msg2 = "Please login to add a " + title23764 + " to liked list";
             toast.warn(msg2);
         }
     }
@@ -91,9 +91,7 @@ const DetailsBanner = () => {
                                         <div className="right">
                                             <div className="title">
                                                 {`${data.name || data.title
-                                                    } (${dayjs(
-                                                        data?.release_date
-                                                    ).format("YYYY")})`}
+                                                    }`}
                                             </div>
                                             <div className="subtitle">
                                                 {data.known_for_department}
@@ -112,7 +110,7 @@ const DetailsBanner = () => {
                                                 {data.gender && (
                                                     <div className="infoItem">
                                                         <span className="text bold">
-                                                            Runtime:{" "}
+                                                            Gender:{" "}
                                                         </span>
                                                         <span className="text">
                                                             {

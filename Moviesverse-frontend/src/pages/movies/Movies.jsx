@@ -18,6 +18,7 @@ import { UserAuth } from "../../context/AuthContext";
 import { db } from "../../firebase";
 import useFetch from "../../hooks/useFetch";
 import CustomLiked1 from "../home/usercustomliked1/CustomLiked1";
+import ScrollButton from "../../components/scrollbutton/ScrollButton";
 
 
 const Movies = () => {
@@ -26,6 +27,28 @@ const Movies = () => {
     const [likedMovies, setLikedMovies] = useState([]);
     const [watchMovies, setWatchMovies] = useState([]);
     const [showLiked, setShowLiked] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", controlScrollButton);
+        return () => {
+            window.removeEventListener("scroll", controlScrollButton);
+        };
+    }, [lastScrollY]);
+
+    const controlScrollButton = () => {
+        if (window.scrollY > 500) {
+            if (window.scrollY > lastScrollY) {
+                setShow(true);
+            } else {
+                setShow(false);
+            }
+        } else {
+            setShow(false);
+        }
+        setLastScrollY(window.scrollY);
+    };
 
     useEffect(() => {
         onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
@@ -49,22 +72,25 @@ const Movies = () => {
 
 
     return (
-        <main>
-            <div className="homePage">
-                <HeroBanner />
-                <Trending />
-                <Popular />
-                <TopRated />
-                {endpoint01 === "movie" && <CustomLiked1 data={data01} loading={loading01} endpoint={endpoint01} title={title1} />}
-                <Animation />
-                <InTheaters />
-                <Upcoming />
-                {endpoint03 === "movie" && <CustomLiked1 data={data03} loading={loading03} endpoint={endpoint03} title={title3} />}
-                <Country />
-                <ReleaseYear />
-                <Revenue />
-            </div>
-        </main>
+        <>
+            <main>
+                <div className="homePage">
+                    <HeroBanner />
+                    <Trending />
+                    <Popular />
+                    <TopRated />
+                    {endpoint01 === "movie" && <CustomLiked1 data={data01} loading={loading01} endpoint={endpoint01} title={title1} />}
+                    <Animation />
+                    <InTheaters />
+                    <Upcoming />
+                    {endpoint03 === "movie" && <CustomLiked1 data={data03} loading={loading03} endpoint={endpoint03} title={title3} />}
+                    <Country />
+                    <ReleaseYear />
+                    <Revenue />
+                </div>
+            </main>
+            {show && <ScrollButton />}
+        </>
     );
 };
 

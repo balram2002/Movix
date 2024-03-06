@@ -10,6 +10,7 @@ import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import MovieCard from "../../components/movieCard/MovieCard";
 import Spinner from "../../components/spinner/Spinner";
+import ScrollButton from "../../components/scrollbutton/ScrollButton";
 
 let filters = {};
 
@@ -32,9 +33,31 @@ const Explore = () => {
     const [loading, setLoading] = useState(false);
     const [genre, setGenre] = useState(null);
     const [sortby, setSortby] = useState(null);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [show, setShow] = useState(false);
     const { mediaType } = useParams();
 
     const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
+
+    useEffect(() => {
+        window.addEventListener("scroll", controlScrollButton);
+        return () => {
+            window.removeEventListener("scroll", controlScrollButton);
+        };
+    }, [lastScrollY]);
+
+    const controlScrollButton = () => {
+        if (window.scrollY > 500) {
+            if (window.scrollY > lastScrollY) {
+                setShow(true);
+            } else {
+                setShow(false);
+            }
+        } else {
+            setShow(false);
+        }
+        setLastScrollY(window.scrollY);
+    };
 
     const fetchInitialData = () => {
         setLoading(true);
@@ -97,71 +120,74 @@ const Explore = () => {
     };
 
     return (
-        <div className="explorePage">
-            <ContentWrapper>
-                <div className="pageHeader">
-                    <div className="pageTitle">
-                        {mediaType === "tv"
-                            ? "Explore TV Shows"
-                            : "Explore Movies"}
+        <>
+            <div className="explorePage">
+                <ContentWrapper>
+                    <div className="pageHeader">
+                        <div className="pageTitle">
+                            {mediaType === "tv"
+                                ? "Explore TV Shows"
+                                : "Explore Movies"}
+                        </div>
+                        <div className="filters">
+                            <Select
+                                isMulti
+                                name="genres"
+                                value={genre}
+                                closeMenuOnSelect={false}
+                                options={genresData?.genres}
+                                getOptionLabel={(option) => option.name}
+                                getOptionValue={(option) => option.id}
+                                onChange={onChange}
+                                placeholder="Select genres"
+                                className="react-select-container genresDD"
+                                classNamePrefix="react-select"
+                            />
+                            <Select
+                                name="sortby"
+                                value={sortby}
+                                options={sortbyData}
+                                onChange={onChange}
+                                isClearable={true}
+                                placeholder="Sort by"
+                                className="react-select-container sortbyDD"
+                                classNamePrefix="react-select"
+                            />
+                        </div>
                     </div>
-                    <div className="filters">
-                        <Select
-                            isMulti
-                            name="genres"
-                            value={genre}
-                            closeMenuOnSelect={false}
-                            options={genresData?.genres}
-                            getOptionLabel={(option) => option.name}
-                            getOptionValue={(option) => option.id}
-                            onChange={onChange}
-                            placeholder="Select genres"
-                            className="react-select-container genresDD"
-                            classNamePrefix="react-select"
-                        />
-                        <Select
-                            name="sortby"
-                            value={sortby}
-                            options={sortbyData}
-                            onChange={onChange}
-                            isClearable={true}
-                            placeholder="Sort by"
-                            className="react-select-container sortbyDD"
-                            classNamePrefix="react-select"
-                        />
-                    </div>
-                </div>
-                {loading && <Spinner initial={true} />}
-                {!loading && (
-                    <>
-                        {data?.results?.length > 0 ? (
-                            <InfiniteScroll
-                                className="content"
-                                dataLength={data?.results?.length || []}
-                                next={fetchNextPageData}
-                                hasMore={pageNum <= data?.total_pages}
-                                loader={<Spinner />}
-                            >
-                                {data?.results?.map((item, index) => {
-                                    if (item.media_type === "person") return;
-                                    return (
-                                        <MovieCard
-                                            key={index}
-                                            data={item}
-                                            mediaType={mediaType}
-                                        />
-                                    );
-                                })}
-                            </InfiniteScroll>
-                        ) : (
-                            <span className="resultNotFound">
-                                Sorry, Results not found!
-                            </span>
-                        )}
-                    </>
-                )}
-            </ContentWrapper>
-        </div>
+                    {loading && <Spinner initial={true} />}
+                    {!loading && (
+                        <>
+                            {data?.results?.length > 0 ? (
+                                <InfiniteScroll
+                                    className="content"
+                                    dataLength={data?.results?.length || []}
+                                    next={fetchNextPageData}
+                                    hasMore={pageNum <= data?.total_pages}
+                                    loader={<Spinner />}
+                                >
+                                    {data?.results?.map((item, index) => {
+                                        if (item.media_type === "person") return;
+                                        return (
+                                            <MovieCard
+                                                key={index}
+                                                data={item}
+                                                mediaType={mediaType}
+                                            />
+                                        );
+                                    })}
+                                </InfiniteScroll>
+                            ) : (
+                                <span className="resultNotFound">
+                                    Sorry, Results not found!
+                                </span>
+                            )}
+                        </>
+                    )}
+                </ContentWrapper>
+            </div>
+            {show && <ScrollButton />}
+        </>
     );
 };
 

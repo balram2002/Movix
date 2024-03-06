@@ -10,7 +10,6 @@ const CombinedCredits = ({ data, loading }) => {
                 title="Worked in Overall"
                 data={data}
                 loading={loading}
-                endpoint={data?.media_type}
             />
         </>
     );

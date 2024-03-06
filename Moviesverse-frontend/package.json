@@ -29,6 +29,7 @@
     "react-router-dom": "^6.6.2",
     "react-select": "^5.7.0",
     "react-share": "^5.1.0",
+    "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.4",
     "sass": "^1.57.1",
     "styled-components": "^6.1.8",

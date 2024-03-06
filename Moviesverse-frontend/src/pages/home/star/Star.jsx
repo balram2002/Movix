@@ -9,6 +9,8 @@ import { UserAuth } from "../../../context/AuthContext.jsx";
 import { db } from "../../../firebase.js";
 import './star.css';
 import { toast } from "react-toastify";
+import HashLoader from "react-spinners/HashLoader.js"
+
 
 
 function Star() {
@@ -26,12 +28,12 @@ function Star() {
                     media_type: movie.media_type,
                 })
             })
-            // alert(movie.title + " " + "added to Watch later list");
-            const msgg = movie?.title + " " + "added to Watch later list";
+            const title435 = movie?.title || movie?.name;
+            const msgg = title435 + " " + "added to Watch later list";
             toast.success(msgg);
         } else {
-            // alert("Please Login to add a " + mediaType);
-            const msggg = "Please Login to add a " + " " + movie?.mediaType;
+            const title234456 = data.name || data.title;
+            const msggg = "Please Login to add " + title234456;;
             toast.warn(msggg);
         }
     }
@@ -80,120 +82,111 @@ function Star() {
     }, [data]);
 
     return (
-        <div class="container-home-banner">
-            <div class="list">
-                <div class="item">
-                    {/* <img src={background} /> */}
-                    <Img src={background} />
-                    <div className="opacity-layer"></div>
+        <>
+            {!loading ? (
+                <div class="container-home-banner">
+                    <div class="list">
+                        <div class="item">
+                            {/* <img src={background} /> */}
+                            <Img src={background} />
+                            <div className="opacity-layer"></div>
 
-                    <div class="content">
-                        <div class="author">{movie?.media_type.toUpperCase()}</div>
-                        <div class="title">{movie?.title || movie?.name}</div>
-                        <div class="topic">{movie?.release_date}</div>
-                        <div class="des">{movie?.overview}
-                        </div>
-                        <div class="buttons">
-                            <button onClick={() => {
-                                navigate(`/${movie?.media_type}/${movie?.id}`)
-                            }}>See DetailsBD</button>
-                            <button onClick={() => saveWatchList(movie)}>Add to WatchList</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="thumbnail">
-                {/* {data?.map(item=>{
-                    const img= url.backdrop + data?.backdrop_path;
-                    return(
-                        <div className="item"  onClick={() => {
-                            setMovie(data);
-                            setBackground(img);
-                        }}>
-                            <img src={img} alt="" />
-                            <div className="content">
-                                <div className="title">
-                                    {data?.title || data?.name}
+                            <div class="content">
+                                <div class="author">{movie?.media_type.toUpperCase()}</div>
+                                <div class="title">{movie?.title || movie?.name}</div>
+                                <div class="topic">{movie?.release_date}</div>
+                                <div class="des">{movie?.overview}
                                 </div>
-                                <div className="description">
-                                    {data?.release_date}
+                                <div class="buttons">
+                                    <button onClick={() => {
+                                        navigate(`/${movie?.media_type}/${movie?.id}`)
+                                    }}>See Details</button>
+                                    <button onClick={() => saveWatchList(movie)}>Add to WatchList</button>
                                 </div>
                             </div>
-                        </div> 
-                    )
-                })} */}
-                <div class="item" onClick={() => {
-                    setMovie(movieTwo);
-                    setBackground(bgTwo);
-                }}>
-                    <img src={bgTwo} />
-                    <div class="content">
-                        <div class="title">
-                            {movieTwo?.title || movieTwo?.name}
                         </div>
-                        <div class="description">
-                            {movieTwo?.release_date}
+                    </div>
+                    <div class="thumbnail">
+                        <div class="item" onClick={() => {
+                            setMovie(movieTwo);
+                            setBackground(bgTwo);
+                        }}>
+                            <img src={bgTwo} />
+                            <div class="content">
+                                <div class="title">
+                                    {movieTwo?.title || movieTwo?.name}
+                                </div>
+                                <div class="description">
+                                    {movieTwo?.release_date}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" onClick={() => {
+                            setMovie(movieThree);
+                            setBackground(bgThree);
+                        }}>
+                            <img src={bgThree} />
+                            <div class="content">
+                                <div class="title">
+                                    {movieThree?.title || movieThree?.name}
+                                </div>
+                                <div class="description">
+                                    {movieThree?.release_date}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" onClick={() => {
+                            setMovie(movieFour);
+                            setBackground(bgFour);
+                        }}>
+                            <img src={bgFour} />
+                            <div class="content">
+                                <div class="title">
+                                    {movieFour?.title || movieFour?.name}
+                                </div>
+                                <div class="description">
+                                    {movieFour?.release_date}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" onClick={() => {
+                            setMovie(movieFive);
+                            setBackground(bgFive);
+                        }}>
+                            <img src={bgFive} />
+                            <div class="content">
+                                <div class="title">
+                                    {movieFive?.title || movieFive?.name}
+                                </div>
+                                <div class="description">
+                                    {movieFive?.release_date}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" onClick={() => {
+                            setMovie(movieSix);
+                            setBackground(bgSix);
+                        }}>
+                            <img src={bgSix} />
+                            <div class="content">
+                                <div class="title">
+                                    {movieSix?.title || movieSix?.name}
+                                </div>
+                                <div class="description">
+                                    {movieSix?.release_date}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="item" onClick={() => {
-                    setMovie(movieThree);
-                    setBackground(bgThree);
-                }}>
-                    <img src={bgThree} />
-                    <div class="content">
-                        <div class="title">
-                            {movieThree?.title || movieThree?.name}
-                        </div>
-                        <div class="description">
-                            {movieThree?.release_date}
-                        </div>
-                    </div>
-                </div>
-                <div class="item" onClick={() => {
-                    setMovie(movieFour);
-                    setBackground(bgFour);
-                }}>
-                    <img src={bgFour} />
-                    <div class="content">
-                        <div class="title">
-                            {movieFour?.title || movieFour?.name}
-                        </div>
-                        <div class="description">
-                            {movieFour?.release_date}
-                        </div>
-                    </div>
-                </div>
-                <div class="item" onClick={() => {
-                    setMovie(movieFive);
-                    setBackground(bgFive);
-                }}>
-                    <img src={bgFive} />
-                    <div class="content">
-                        <div class="title">
-                            {movieFive?.title || movieFive?.name}
-                        </div>
-                        <div class="description">
-                            {movieFive?.release_date}
-                        </div>
-                    </div>
-                </div>
-                <div class="item" onClick={() => {
-                    setMovie(movieSix);
-                    setBackground(bgSix);
-                }}>
-                    <img src={bgSix} />
-                    <div class="content">
-                        <div class="title">
-                            {movieSix?.title || movieSix?.name}
-                        </div>
-                        <div class="description">
-                            {movieSix?.release_date}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            ) : (<div className="loaderstar34">
+                <HashLoader
+                    color="#421202"
+                    size={100}
+                    aria-label="Loading Spinner"
+                />
+            </div>)}
+        </>
     )
 }
 

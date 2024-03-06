@@ -114,12 +114,6 @@ const Header = () => {
                     >
                         Explore
                     </li>
-                    <li
-                        className="menuItem"
-                        onClick={() => navigationHandler("about")}
-                    >
-                        About
-                    </li>
                     {user?.email && <li
                         className="menuItem"
                         onClick={handleLogout}

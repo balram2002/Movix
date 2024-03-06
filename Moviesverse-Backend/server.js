@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json({ limit: "15mb" }));
 
 mongoose
-    .connect("mongodb://localhost:27017/Moviesverse", {
+    .connect("mongodb+srv://bdhakad886:NdLZIRLtVpzGUHw9@cluster0.odfmqd4.mongodb.net/movix?retryWrites=true&w=majority&appName=Cluster0", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

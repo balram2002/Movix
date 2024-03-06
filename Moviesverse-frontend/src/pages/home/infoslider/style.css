@@ -1,86 +1,109 @@
-.container {
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
+
+.slider-container-hgytury {
+    width: 80vw;
+    /* height: 100; */
     display: flex;
-    width: 90vw;
-    margin-bottom: 60px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    margin-top: 10px;
 }
 
-.high {
+.slider-container-hgytury .slider-images {
+    display: flex;
+    align-items: center;
+    gap: 21px;
+}
+
+.slider-container-hgytury .slider-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    border: 1px solid var(--item-bg);
+}
+
+.slider-container-hgytury .slider-img {
+    width: 55px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.7s ease;
+    filter: brightness(30%);
+}
+
+.slider-container-hgytury .slider-images .slider-img:first-child,
+.slider-container-hgytury .slider-images .slider-img:last-child {
+    height: 180px;
+}
+
+.slider-container-hgytury .slider-images .slider-img:nth-child(2),
+.slider-container-hgytury .slider-images .slider-img:nth-child(6) {
+    height: 260px;
+}
+
+.slider-container-hgytury .slider-images .slider-img:nth-child(3),
+.slider-container-hgytury .slider-images .slider-img:nth-child(4),
+.slider-container-hgytury .slider-images .slider-img:nth-child(5) {
+    height: 365px;
+}
+
+.slider-container-hgytury .h1head21 {
+    font-family: "Jost", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    transform: rotate(270deg);
+    transition: 0.7s ease;
+}
+
+.high64576 {
     font-size: 40px;
     margin-bottom: 10px;
     font-weight: 800;
     color: var(--text-color);
 }
 
-.panel:nth-child(1) {
-    background-image: url("../../../../public/Welcome\ To\ MovieVerse1.gif");
-}
-
-.panel:nth-child(2) {
-    background-image: url("../../../../public/Welcome\ To\ MovieVerse.gif");
-}
-
-.panel:nth-child(3) {
-    background-image: url("../../../../public/Welcome\ To\ MovieVerse2.gif");
-}
-
-.panel:nth-child(4) {
-    background-image: url("../../../../public/Welcome\ To\ MovieVerse3.gif");
-}
-
-.panel {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 80vh;
-    border-radius: 50px;
-    color: #fff;
-    cursor: pointer;
-    flex: 0.5;
-    margin: 10px;
-    position: relative;
-    transition: all 700ms ease-in;
-    filter: brightness(8%);
-}
-
-.infoline {
-    height: 1px;
-    color: #162938;
-    width: 100%;
-    margin-top: 50px;
-    display: block;
-    margin-bottom: 20px;
-}
-
-.panel h1 {
-    font-size: 35px;
+.slider-container-hgytury .details {
     position: absolute;
-    bottom: 19px;
-    left: 26px;
-    margin: 0;
-    font-weight: 800;
-    stroke: 1px solid black;
-    opacity: 0;
+    bottom: 43px;
+    left: 43px;
 }
 
-.panel.active {
-    flex: 6;
+
+.slider-container-hgytury .details .p7676 {
+    font-family: "Jost", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    line-height: 33px;
+    text-align: left;
+    color: #fff;
+    padding: 10px;
+    background-color: rgb(49, 46, 46);
+    text-transform: uppercase;
+    transition: 0.7s ease;
+    display: none;
+}
+
+.slider-container-hgytury .slider-img.active {
+    width: 766px !important;
+    height: 475px !important;
     filter: brightness(100%);
-
 }
 
-.panel.active h1 {
-    /* opacity: 1; */
-    transition: opacity 0.3s ease-in 0.4s;
+.slider-container-hgytury .slider-img.active h1 {
+    display: none;
 }
 
-@media (max-width:480px) {
-    .container {
-        width: 100vw;
-        transition: opacity 0.3s ease-in 0.4s;
-    }
-
-    .panel:nth-of-type(4),
-    .panel:nth-of-type(5) {
-        display: none;
-    }
+.slider-container-hgytury .slider-img.active .details p,
+.slider-container-hgytury .slider-img.active .details h2 {
+    display: block;
 }

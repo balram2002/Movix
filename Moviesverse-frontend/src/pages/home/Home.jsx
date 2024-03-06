@@ -24,6 +24,7 @@ import { useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import FavourateGenre from './favourategenre/FavourateGenre';
 import Genres from './../../components/genres/Genres';
+import ScrollButton from '../../components/scrollbutton/ScrollButton';
 
 
 function Home() {
@@ -31,10 +32,32 @@ function Home() {
   const { user } = UserAuth();
   const [likedMovies, setLikedMovies] = useState([]);
   const [watchMovies, setWatchMovies] = useState([]);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [show, setShow] = useState(false);
   const [details, setDetails] = useState({});
   const [genres, setGenres] = useState('');
   const location = useLocation();
   const emailuser = user?.email;
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlScrollButton);
+    return () => {
+      window.removeEventListener("scroll", controlScrollButton);
+    };
+  }, [lastScrollY]);
+
+  const controlScrollButton = () => {
+    if (window.scrollY > 500) {
+      if (window.scrollY > lastScrollY) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
+    } else {
+      setShow(false);
+    }
+    setLastScrollY(window.scrollY);
+  };
 
   const genreslist = [
     {
@@ -188,6 +211,7 @@ function Home() {
           <VoteCount />
         </div>
       </div>
+      {show && <ScrollButton />}
     </>
   )
 }

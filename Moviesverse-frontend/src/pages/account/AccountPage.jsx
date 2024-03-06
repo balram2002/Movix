@@ -31,7 +31,6 @@ function AccountPage() {
         } else if (tab === "Watch Later") {
             setWatchList(true);
             setLikedList(false);
-            toast.success("Watch List");
             setAccountDetailsChange(false);
             setActiveList(`Watch Later List Of ${user?.email}`);
         } else if (tab === "Account") {
