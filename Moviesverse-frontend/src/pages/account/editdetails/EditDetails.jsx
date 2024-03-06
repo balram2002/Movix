@@ -42,7 +42,7 @@ function EditDetails() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:5000/api/user/addUserDetails", {
+        Axios.post(`${window.location.origin}/api/user/addUserDetails`, {
             email,
             username,
             name: fullname,

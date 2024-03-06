@@ -140,7 +140,7 @@ function Home() {
 
 
   useEffect(() => {
-    Axios.post("http://localhost:5000/api/user/getDetails", {
+    Axios.post(`${window.location.origin}/api/user/getDetails`, {
       email: emailuser,
     }).then(response => {
       console.log(response);
