@@ -8,7 +8,6 @@ import TopRated from "./topRated/TopRated";
 import InTheaters from "./theaters/InTheaters";
 import Upcoming from "./upcoming/Upcoming";
 import Animation from "./animation/Animation";
-import ReleaseYear from "./ReleaseYear/ReleaseYear";
 import Country from "./country/Country";
 import { UserAuth } from "../../context/AuthContext";
 import { db } from "../../firebase";
@@ -16,6 +15,7 @@ import CustomLiked1 from "../home/usercustomliked1/CustomLiked1";
 import { doc, onSnapshot } from 'firebase/firestore';
 import ScrollButton from "../../components/scrollbutton/ScrollButton";
 import { useLocation } from 'react-router-dom';
+import ReleaseYear from './releaseYear/ReleaseYear';
 
 // Component to handle recommendations for a single TV show
 const RecommendationSection = ({ tvShow, title }) => {
