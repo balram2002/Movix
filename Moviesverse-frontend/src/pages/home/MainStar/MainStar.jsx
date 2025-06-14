@@ -19,7 +19,7 @@ const MainStar = () => {
 
     useEffect(() => {
         const emailuser = user?.email;
-        axios.post(`http://localhost:5000/api/user/getDetails`, {
+        axios.post(`https://movix-api.vercel.app/api/user/getDetails`, {
             email: emailuser,
         }).then(response => {
             console.log(response);

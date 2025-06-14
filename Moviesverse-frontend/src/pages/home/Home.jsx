@@ -124,7 +124,7 @@ function Home() {
   // Fetch user details
   useEffect(() => {
     if (emailuser) {
-      Axios.post(`http://localhost:5000/api/user/getDetails`, { email: emailuser })
+      Axios.post(`https://movix-api.vercel.app/api/user/getDetails`, { email: emailuser })
         .then(response => setDetails(response.data))
         .catch(err => console.error('Error fetching user details:', err));
     }

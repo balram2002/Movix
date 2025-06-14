@@ -45,7 +45,7 @@ function Star() {
 
     useEffect(() => {
         const emailuser = user?.email;
-        Axios.post(`http://localhost:5000/api/user/getDetails`, {
+        Axios.post(`https://movix-api.vercel.app/api/user/getDetails`, {
             email: emailuser,
         }).then(response => {
             console.log(response);

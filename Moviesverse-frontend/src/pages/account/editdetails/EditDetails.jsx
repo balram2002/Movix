@@ -46,7 +46,7 @@ function EditDetails() {
         e.preventDefault();
         toast.info("Updating, Please Wait...");
         setCame("Updating On Progress...");
-        Axios.post(`http://localhost:5000/api/user/addUserDetails`, {
+        Axios.post(`https://movix-api.vercel.app/api/user/addUserDetails`, {
             email,
             username,
             name: fullname,
