@@ -11,12 +11,14 @@ const Recommendation = ({ mediaType, id, titlee }) => {
     const title = mediaType === "tv" ? `Recommended TV Shows For '${titlee}'` : `Recommended Movies For '${titlee}'`;
 
     return (
-        <Carousel
-            title={title}
-            data={data?.results}
-            loading={loading}
-            endpoint={mediaType}
-        />
+        <div>
+            {data && <Carousel
+                title={!data?.results[1] ? `No Recommendations found! for ${titlee}` : title}
+                data={data?.results}
+                loading={loading}
+                endpoint={mediaType}
+            />}
+        </div>
     );
 };
 

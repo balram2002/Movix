@@ -25,30 +25,35 @@ import Languages from "../../../components/Language/Languages.jsx";
 import Countrys from "../../../components/Country/Countrys.jsx";
 import Stream from "../../../components/stream/Stream.jsx";
 import ShareModal from "../../../components/sharemodal/ShareModal.jsx";
+import Overview from "../../../components/overview/Overview.jsx";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 
 const DetailsBanner = ({ video, crew }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
     const [stream, setStream] = useState(false);
+    const [openstream, setOpenstream] = useState(false);
 
     const [oneLiked, setOneLiked] = useState(false);
     const [oneWatch, setOneWatch] = useState(false);
 
     const [showModal, setShowModal] = useState(false);
     const [shareData, setShareData] = useState();
+    const { mediaType, id } = useParams();
 
     const { user } = UserAuth();
     const movieID = doc(db, 'users', `${user?.email}`);
 
     const saveLiked = async (data) => {
+        toast.info("Liking Post is in progress...");
         if (user?.email) {
             await updateDoc(movieID, {
                 savedLiked: arrayUnion({
                     id: data.id || id,
                     title: data.name || data.title,
-                    img: data.backdrop_path,
+                    img: data.poster_path,
                     media_type: data.media_type || mediaType,
                 })
             })
@@ -64,12 +69,13 @@ const DetailsBanner = ({ video, crew }) => {
     }
 
     const saveWatchList = async (data) => {
+        toast.info("Adding post is in progress...");
         if (user?.email) {
             await updateDoc(movieID, {
                 savedWatchLater: arrayUnion({
                     id: data.id || id,
                     title: data.name || data.title,
-                    img: data.backdrop_path,
+                    img: data.poster_path,
                     media_type: data.media_type || mediaType,
                 })
             })
@@ -84,7 +90,6 @@ const DetailsBanner = ({ video, crew }) => {
         }
     }
 
-    const { mediaType, id } = useParams();
     const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
     const { url } = useSelector((state) => state.home);
@@ -118,6 +123,10 @@ const DetailsBanner = ({ video, crew }) => {
 
     return (
         <>
+          <Helmet>
+                <title>{titleee + ' | MV'}</title>
+                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+            </Helmet>
             <div className="detailsBanner">
                 {!loading ? (
                     <>
@@ -130,7 +139,7 @@ const DetailsBanner = ({ video, crew }) => {
                                 <ContentWrapper>
                                     <div className="content">
                                         <span className="canhide"></span>
-                                        <div className="auth-icons">
+                                        <div className="auth-icons-details">
                                             <span onClick={() => {
                                                 saveLiked(data);
                                             }}>
@@ -140,7 +149,7 @@ const DetailsBanner = ({ video, crew }) => {
                                             }}>
                                                 <MdOutlineBookmarkAdd className="watch-icon" /></span>
                                         </div>
-                                        <div className="shareicon989">
+                                        <div className="shareicon989-details">
                                             <span onClick={() => {
                                                 setShowModal(true);
                                                 console.log("Modal clicked");
@@ -181,14 +190,14 @@ const DetailsBanner = ({ video, crew }) => {
 
                                             <Genres data={_genres} />
 
-                                            <div className="row">
+                                            <div className="row-real">
                                                 <CircleRating
-                                                    rating={data.vote_average.toFixed(
+                                                    rating={data?.vote_average?.toFixed(
                                                         1
                                                     )}
                                                 />
                                                 <div
-                                                    className="playbtn"
+                                                    className="playbtn-real"
                                                     onClick={() => {
                                                         setShow(true);
                                                         setVideoId(video.key);
@@ -196,30 +205,34 @@ const DetailsBanner = ({ video, crew }) => {
                                                 >
                                                     <PlayIcon />
                                                     <span className="text">
-                                                        Watch Trailer
+                                                        <b> Watch Trailer</b>
                                                     </span>
                                                 </div>
                                                 <div
-                                                    className="playbtn"
+                                                    className="playbtn-real"
                                                     onClick={() => {
-                                                        setStream(!stream)
-
-
+                                                        setOpenstream(!openstream);
+                                                        setStream(!stream);
+                                                        if (openstream) {
+                                                            toast.info("Video Space closed!")
+                                                        } else {
+                                                            toast.info("Scroll down to watch online!");
+                                                        }
                                                     }}
                                                 >
                                                     <PlayIcon />
                                                     <span className="text">
-                                                        Stream Online
+                                                        <b> Stream Online</b>
                                                     </span>
                                                 </div>
                                             </div>
 
                                             <div className="overview">
                                                 <div className="heading">
-                                                    Overview
+                                                    <b>  Overview</b>
                                                 </div>
                                                 <div className="description">
-                                                    {data.overview}
+                                                    <Overview overview={data?.overview} />
                                                 </div>
                                             </div>
 
@@ -257,17 +270,19 @@ const DetailsBanner = ({ video, crew }) => {
                                             </div>
 
                                             <div className="info">
-                                                {data.first_air_date && (
+                                                {data?.first_air_date && (
                                                     <div className="infoItem">
                                                         <span className="text bold">
                                                             First Air Date:{" "}
                                                         </span>
                                                         <span className="text">
-                                                            {data.first_air_date}
+                                                            {dayjs(
+                                                                data?.air_date
+                                                            ).format("MMM D, YYYY")}
                                                         </span>
                                                     </div>
                                                 )}
-                                                {data.original_language && (
+                                                {data?.original_language && (
                                                     <div className="infoItem">
                                                         <span className="text bold">
                                                             Original Language:{" "}
@@ -278,7 +293,16 @@ const DetailsBanner = ({ video, crew }) => {
                                                     </div>
                                                 )}
 
-                                                {data.origin_country && (
+                                                {!data?.origin_country && (<div className="infoItem">
+                                                    <span className="text bold">
+                                                        Content Type:{" "}
+                                                    </span>
+                                                    <span className="text">
+                                                        {mediaType}
+                                                    </span>
+                                                </div>)}
+
+                                                {data?.origin_country && (
                                                     <div className="infoItem">
                                                         <span className="text bold">
                                                             Origin Country:{" "}
@@ -288,7 +312,7 @@ const DetailsBanner = ({ video, crew }) => {
                                                         </span>
                                                     </div>
                                                 )}
-                                                {data.revenue && (
+                                                {data?.revenue && (
                                                     <div className="infoItem">
                                                         <span className="text bold">
                                                             Revenue:{" "}
@@ -356,7 +380,7 @@ const DetailsBanner = ({ video, crew }) => {
                                             )}
 
                                             {writer?.length > 0 && (
-                                                <div className="info">
+                                                <div className="info writer645">
                                                     <span className="text bold">
                                                         Writer:{" "}
                                                     </span>
@@ -374,7 +398,7 @@ const DetailsBanner = ({ video, crew }) => {
                                             )}
 
                                             {data?.created_by?.length > 0 && (
-                                                <div className="info">
+                                                <div className="info linecreator654">
                                                     <span className="text bold">
                                                         Creator:{" "}
                                                     </span>
@@ -405,7 +429,8 @@ const DetailsBanner = ({ video, crew }) => {
                                     <ShareModal
                                         show={showModal}
                                         setShow={setShowModal}
-                                        data={shareData}
+                                        data={data}
+                                        media={mediaType}
                                     />
                                 </ContentWrapper>
                             </React.Fragment>

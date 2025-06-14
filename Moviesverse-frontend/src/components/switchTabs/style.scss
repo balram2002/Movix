@@ -24,7 +24,12 @@
             transition: color ease 0.3s;
 
             &.active {
-                color: var(--text-color);
+                color: var(--line);
+            }
+
+            @media only screen and (max-width: 500px) {
+                width: 100%;
+                padding: 10px 15px;
             }
         }
 
@@ -36,6 +41,11 @@
             position: absolute;
             left: 0;
             transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+
+            @media only screen and (max-width: 500px) {
+                width: 70px;
+                background-image: none;
+            }
         }
     }
 }

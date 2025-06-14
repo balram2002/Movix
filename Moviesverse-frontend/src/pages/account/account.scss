@@ -22,8 +22,35 @@
             display: inline;
             color: var(--text-color);
             font-weight: var(--weight);
+
+            @media only screen and (max-width: 440px) {
+                font-size: 16px;
+                width: 130px;
+                margin-right: 5px;
+
+            }
         }
 
+    }
+
+    .alternateswipergfhf6677 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        /* height: 200px; */
+        width: 100%;
+        margin-bottom: 15px;
+
+        .alternateswipergfhf6677 .fhfhfhyf67576 {
+            color: var(--text-color);
+            width: 70%;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 400;
+            padding: 5px;
+        }
     }
 
 }

@@ -71,15 +71,36 @@
                 }
             }
 
-            .watch-icon {
-                font-size: 35px;
+            @media only screen and (max-width: 725px) {
+                left: 3px;
+                top: -36px;
+            }
+        }
+
+        .shareicon989-person {
+            position: absolute;
+            right: 6px;
+            top: 46px;
+
+            .shareicon98icon {
+                font-size: 30px;
                 color: var(--text-color);
+                cursor: pointer;
 
                 &:hover {
                     color: var(--pink);
-                    font-size: 33px;
-
+                    font-size: 28px;
                 }
+            }
+
+            @media only screen and (max-width: 1040px) {
+                top: -45px;
+                right: 15px;
+            }
+
+            @media only screen and (max-width: 760px) {
+                right: 15px;
+                top: -31px;
             }
         }
 
@@ -93,6 +114,12 @@
                 filter: var(--bg-img);
                 border: 1px solid var(--text-color);
 
+                &.real4535 {
+                    @media only screen and (max-width: 760px) {
+                        margin-top: 6px;
+                    }
+                }
+
                 @include md {
                     max-width: 350px;
                 }
@@ -105,6 +132,8 @@
             .title {
                 font-size: 28px;
                 line-height: 40px;
+                color: #f1683a;
+                font-weight: 550;
 
                 @include md {
                     font-size: 34px;
@@ -138,7 +167,7 @@
                     margin-bottom: 10px;
                 }
 
-                .description {
+                .description-person {
                     line-height: 24px;
 
                     @include md {

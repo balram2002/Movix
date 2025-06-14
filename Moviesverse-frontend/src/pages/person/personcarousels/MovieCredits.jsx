@@ -10,6 +10,7 @@ const MovieCredits = ({ data, loading }) => {
                 title="Worked In Movies"
                 data={data}
                 loading={loading}
+                endpoint="movie"
             />
         </>
     );

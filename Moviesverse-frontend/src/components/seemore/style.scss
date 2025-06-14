@@ -1,0 +1,284 @@
+@import "../../mixins.scss";
+
+.videoPopup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999999999999999999999999999999;
+
+    .opacityLayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(3.5px);
+        -webkit-backdrop-filter: blur(3.5px);
+        opacity: 0;
+        transition: opacity 400ms;
+    }
+
+    .seemoremain352762 {
+        position: relative;
+        width: 60%;
+        padding: 20px;
+        padding-top: 5px;
+        background-color: grey;
+        // transform: scale(0.2);
+        transition: transform 250ms;
+        border-radius: 15px;
+
+        @media only screen and (max-width: 860px) {
+            width: 90%;
+        }
+
+        .closeBtn {
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .seemoreheading4565 {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // margin-top: 10px;
+            margin-bottom: 10px;
+
+            .hesding665 {
+                color: var(--text-color);
+                font-weight: 400;
+                font-size: 35px;
+                text-align: center;
+
+                @media only screen and (max-width: 860px) {
+                    font-size: 28px;
+                }
+            }
+        }
+
+        .seemoremainitems321 {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 10px;
+            height: 400px;
+            overflow-y: scroll;
+
+            @media only screen and (max-width: 860px) {
+                height: 485px;
+                gap: 10px;
+            }
+
+            @include md {
+                gap: 20px;
+            }
+
+            .carouselItem {
+                width: 125px;
+                cursor: pointer;
+
+                @media only screen and (max-width: 860px) {
+                    width: 145px;
+                    margin-bottom: 5px;
+                }
+
+                @media only screen and (max-width: 450px) {
+                    width: calc(52% - 15px);
+                }
+
+                @include md {
+                    width: calc(35% - 18px);
+                }
+
+                @include lg {
+                    width: calc(24% - 8px);
+                }
+
+                flex-shrink: 0;
+
+                .posterBlock {
+                    position: relative;
+                    width: 100%;
+                    // aspect-ratio: 1 / 1.5;
+                    height: 240px;
+                    background-size: cover;
+                    background-position: center;
+                    border: 1px solid var(--text-color);
+                    margin-bottom: 30px;
+                    display: flex;
+                    border-radius: 12px;
+                    align-items: flex-end;
+                    justify-content: space-between;
+                    padding: 10px;
+
+                    @media only screen and (max-width: 860px) {
+                        height: 188px;
+                    }
+
+                    @media only screen and (max-width: 450px) {
+                        height: 227px;
+                    }
+
+                    @media only screen and (min-width: 1282px) {
+                        height: 280px;
+
+                    }
+
+                    @media only screen and (min-width: 1700px) {
+                        height: 300px;
+
+                    }
+
+
+                    // overflow: hidden;
+                    .lazy-load-image-background {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        transition: 0.2s;
+
+                        // &:hover {
+                        //     border: 3.5px solid #ffffff;
+
+                        // }
+
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: 0.3s;
+                            filter: var(--bg-img2);
+                            object-position: center;
+
+                            &:hover {
+                                scale: 1.1;
+                            }
+                        }
+                    }
+
+                    .addicon {
+                        color: white;
+                        z-index: 999999;
+                        height: 1.3em;
+                        width: 1.3em;
+                        top: 2%;
+                        right: 5%;
+                        opacity: 0.5;
+                        position: absolute;
+
+                        &:hover {
+                            filter: brightness(115%);
+                            color: red;
+                            opacity: 1;
+                        }
+                    }
+
+                    .clickedicon {
+                        color: red;
+                        z-index: 999999;
+                        height: 1.3em;
+                        width: 1.3em;
+                        top: 2%;
+                        right: 5%;
+                        position: absolute;
+                    }
+
+                    .circleRating {
+                        width: 40px;
+                        height: 40px;
+                        position: relative;
+                        top: 30px;
+                        background-color: var(--item-bg);
+                        flex-shrink: 0;
+                        color: var(--text-color);
+
+                        @include md {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+
+                    .genres {
+                        display: none;
+                        position: relative;
+
+                        @include md {
+                            display: flex;
+                            flex-flow: wrap;
+                            justify-content: flex-end;
+                        }
+                    }
+
+                    .mediatype09 {
+                        position: absolute;
+                        top: 6px;
+                        padding: 3px;
+                        font-size: 10px;
+                        right: 6px;
+                        background-color: var(--media);
+                        color: white;
+                        font-weight: 500;
+                        border-radius: 4px;
+                    }
+                }
+
+                .textBlock {
+                    color: var(--text-color);
+                    display: flex;
+                    flex-direction: column;
+
+                    .title {
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        line-height: 24px;
+                        @include ellipsis(1);
+
+                        @include md {
+                            font-size: 20px;
+                        }
+
+                        &:hover {
+                            color: var(--pink);
+                        }
+                    }
+
+                    .date {
+                        font-size: 14px;
+                        opacity: 0.5;
+                        color: var(--heading-color);
+                    }
+                }
+            }
+
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+
+        .opacityLayer {
+            opacity: 1;
+        }
+
+        .videoPlayer {
+            transform: scale(1);
+        }
+    }
+}

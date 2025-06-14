@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
-// import Axios from 'axios';
 import { FaUserTie } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import logbg from "../../../public/logbg.jpg";
 import { UserAuth } from '../../context/AuthContext';
 
-
+import { Helmet } from 'react-helmet';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { color } from 'framer-motion';
-// import { Response } from 'express';
 
 function Authentication() {
 
@@ -73,57 +70,12 @@ function Authentication() {
 
     const [Wrapper, setWrapper] = useState(false);
 
-
-    // const [usernamer, setUsernamer] = useState('');
-    // const [emailr, setEmailr] = useState('');
-    // const [passwordr, setPasswordr] = useState('');
-
-    // const [userRegistered, setUserRegistered] = useState("Welcome Back!");
-    // const [userRegistered2, setUserRegistered2] = useState("Create An account for Discover and Explore millions of movies and TV Shows.");
-
-    // const [userWrongPass, setUserWrongPass] = useState("Incorrect Password!");
-    // const [userWrongPass2, setUserWrongPass2] = useState("Try entering right password, or reset your your password by clicking on frogot password.");
-
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-
-    // const handleRegisterSubmit = (e) => {
-    //     e.preventDefault();
-    //     Axios.post('http://localhost:3000/auth/signup', {
-    //         usernamer, emailr, passwordr
-    //     }).then(response => {
-    //         console.log(response)
-    //         if (response.data.message === "Record Registered") {
-    //             setUserRegistered("Account Created Successfully!");
-    //             setUserRegistered2("Now, Click on login to login to your account and enjoy our services.");
-    //         } else if (response.data.message === "User already existed") {
-    //             setUserRegistered("User Already Exists!");
-    //         }
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // };
-
-    // Axios.defaults.withCredentials = true;
-    // const handleLoginSubmit = (e) => {
-    //     e.preventDefault();
-    //     Axios.post('http://localhost:3000/auth/login', {
-    //         email, password
-    //     }).then(response => {
-    //         console.log(response)
-    //         if (response.data.status) {
-    //             navigate('/');
-    //         }
-    //         //  else if (response.data.message === "User already existed") {
-    //         //     setUserRegistered("User Already Exists!");
-    //         // }
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // };
-
     return (
         <div className="auth">
+             <Helmet>
+                            <title>Welcome | MV</title>
+                            <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                        </Helmet>
             <img className="logbg" src={logbg} alt="" />
             <div id="authwrapperbd" className={`${Wrapper ? "active" : ""}`}>
                 <span className="bg-animate"></span>

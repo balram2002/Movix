@@ -6,9 +6,10 @@ import { useLocation } from 'react-router-dom';
 
 const ScrollButton = () => {
 
-    const handleup = () => {
-        window.scrollTo(0, 0);
-    };
+   const handleup = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 
     // useEffect(() => {
     //     window.scrollTo(0, 0);

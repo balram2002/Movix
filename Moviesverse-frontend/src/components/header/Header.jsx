@@ -32,6 +32,7 @@ const Header = () => {
 
     const handleLogout = async () => {
         setShowProfile(false);
+        setMobileMenu(false);
         try {
             await logout();
             navigate('/login');
@@ -76,23 +77,12 @@ const Header = () => {
 
     const openSearch = () => {
         setMobileMenu(false);
-        setShowSearch(true);
+        setShowSearch(!showSearch);
     };
 
     const openMobileMenu = () => {
         setMobileMenu(true);
         setShowSearch(false);
-    };
-
-    const navigationHandler = (type) => {
-        if (type === "explore") {
-            navigate("/explore/movie");
-        } else if (type === "home") {
-            navigate("/");
-        } else if (type === "about") {
-            navigate("/about");
-        }
-        setMobileMenu(false);
     };
 
     return (
@@ -105,41 +95,40 @@ const Header = () => {
                     <Toggle />
                 </div>
                 <ul className="menuItems">
-                    <li className="menuItem" onClick={() => navigationHandler("home")}>
+                    <NavLink to={"/"} className="menuItem" onClick={() => {
+                        setMobileMenu(false);
+                    }}>
                         Home
-                    </li>
-                    <li
+                    </NavLink>
+                    <NavLink
+                        to={"/explore/movie"}
                         className="menuItem"
-                        onClick={() => navigationHandler("explore")}
+                        onClick={() => {
+                            setMobileMenu(false);
+                        }}
                     >
                         Explore
-                    </li>
+                    </NavLink>
+                    {!user?.email ? <li className="menuItem">
+                        <button className="loginbutton" onClick={() => {
+                            navigate(`/login`);
+                            setMobileMenu(false);
+                        }}>
+                            Login
+                        </button>
+                    </li> : <NavLink to={"/account"} className="menuItem" id="person" >
+                        <BsPersonCircle onClick={() => {
+                            navigate('/account');
+                            setMobileMenu(false);
+                        }
+                        } />
+                    </NavLink>}
                     {user?.email && <li
                         className="menuItem"
                         onClick={handleLogout}
                     >
                         <button className="logbutton">Logout</button>
                     </li>}
-                    {!user?.email ? <li className="menuItem">
-                        <button className="loginbutton" onClick={() => {
-                            navigate(`/login`);
-                        }}>
-                            Login
-                        </button>
-                    </li> : <li className="menuItem" id="person" >
-                        <BsPersonCircle onClick={() =>
-                            // setShowProfile(true)
-                            navigate('./account')
-                        } />
-                    </li>}
-                    {/* <div className={`profileuser ${showProfile ? "active" : ""} `}>
-                        <ul>
-                            <li id="useremail">User Email : {user?.email}</li>
-                            <button id="userprofile" onClick={() => navigate('/account')}>Profile</button>
-                            <button id="userlogout" onClick={handleLogout}>Logout</button>
-                            <RxCross2 id="crossuser" onClick={() => setShowProfile(false)} />
-                        </ul>
-                    </div> */}
                     <li className="menuItem">
                         <HiOutlineSearch onClick={openSearch} />
                     </li>

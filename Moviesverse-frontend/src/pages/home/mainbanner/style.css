@@ -4,9 +4,36 @@
 
 }
 
+@media only screen and (max-width: 1200px) {
+    .bannerjjsxgty {
+        display: none;
+    }
+}
+
+.alternateswipergfhf6677 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    /* height: 200px; */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.alternateswipergfhf6677 .fhfhfhyf67576 {
+    color: var(--text-color);
+    width: 70%;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 400;
+    padding: 5px;
+}
+
 .swiper-slide {
     width: 400px;
     height: 280px;
+    object-fit: cover;
 }
 
 .gameSlider {
@@ -15,6 +42,7 @@
     width: 100%;
     background-position: center;
     background-size: cover;
+    object-fit: cover;
     padding: 30px;
     overflow: hidden;
 }
@@ -35,7 +63,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 280px;
     object-fit: cover;
     object-position: center;
     border-radius: 30px !important;

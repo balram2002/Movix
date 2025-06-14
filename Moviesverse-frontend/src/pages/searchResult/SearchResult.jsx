@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import "./style.scss";
-
+import { Helmet } from 'react-helmet';
 import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import MovieCard from "../../components/movieCard/MovieCard";
@@ -74,6 +74,10 @@ const SearchResult = () => {
 
     return (
         <>
+         <Helmet>
+                <title>Search for {query} | MV</title>
+                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+            </Helmet>
             <div className="searchResultsPage">
                 {loading && <Spinner initial={true} />}
                 {!loading && (

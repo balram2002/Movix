@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Select from "react-select";
-
+import { Helmet } from 'react-helmet';
 import "./style.scss";
 
 import useFetch from "../../hooks/useFetch";
@@ -121,6 +121,10 @@ const Explore = () => {
 
     return (
         <>
+         <Helmet>
+                <title>{mediaType === "tv"?"Explore TV Shows": "Explore Movies"} | MV</title>
+                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+            </Helmet>
             <div className="explorePage">
                 <ContentWrapper>
                     <div className="pageHeader">

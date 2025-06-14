@@ -20,7 +20,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        opacity: 0.5;
+        opacity: 0.4;
         overflow: hidden;
         object-fit: cover;
         object-position: center;
@@ -115,6 +115,10 @@
                     height: 60px;
                     font-size: 20px;
                     padding: 0 30px;
+                }
+
+                @media only screen and (max-width: 560px) {
+                    font-size: 11.5px;
                 }
             }
 

@@ -3,9 +3,11 @@ import { UserAuth } from '../../../context/AuthContext';
 import Axios from "axios"
 
 import "./style.css";
+import { toast } from 'react-toastify';
 function EditDetails() {
 
     const [username, setUsername] = useState('');
+    const [came, setCame] = useState("Update Profile");
     const [fullname, setFullname] = useState('');
     const [profile, setProfile] = useState();
     const [date, setDate] = useState('');
@@ -42,7 +44,9 @@ function EditDetails() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post(`${window.location.origin}/api/user/addUserDetails`, {
+        toast.info("Updating, Please Wait...");
+        setCame("Updating On Progress...");
+        Axios.post(`http://localhost:5000/api/user/addUserDetails`, {
             email,
             username,
             name: fullname,
@@ -56,9 +60,12 @@ function EditDetails() {
             console.log(response);
             if (response.data.msg === "Record Registered....") {
                 setRegistered(true);
+                setCame("Update Profile");
+                toast.success("Account Details Updated Successfully!");
             }
         }).catch(err => {
             console.log(err);
+            toast.error("Some Error Occured During Updating!");
         })
 
     };
@@ -79,7 +86,7 @@ function EditDetails() {
                                 <span>Full Name : </span>
                                 <input type="text" name="fullname" required class="box" placeholder="enter your fullname" onChange={(e) => setFullname(e.target.value)} />
                                 <span>Occupation : </span>
-                                <input type="text" name="ocupation" required class="box" placeholder="enter your fullname" onChange={(e) => setJob(e.target.value)} />
+                                <input type="text" name="ocupation" required class="box" placeholder="enter your occupation" onChange={(e) => setJob(e.target.value)} />
                                 <span>Profile pic : </span>
                                 <input type="hidden" name="old_image" />
                                 <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png" onChange={(e) => handleProfile(e)} />
@@ -87,17 +94,17 @@ function EditDetails() {
                             <div class="inputBox">
                                 <input type="hidden" name="old_pass" />
                                 <span>Date Of Birth :</span>
-                                <input type="date" class="box" name="dob" placeholder="Date of birth" onChange={(e) => setDate(e.target.value)} />
+                                <input type="date" class="box" name="dob" placeholder="Select birthdate" onChange={(e) => setDate(e.target.value)} />
                                 <span>Spoken Language :</span>
                                 <input type="text" class="box" name="language" placeholder="enter your language" onChange={(e) => setlanguage(e.target.value)} />
                                 <span>Nationality :</span>
-                                <input type="text" class="box" name="notinality" placeholder="enter your language" onChange={(e) => setCountry(e.target.value)} />
+                                <input type="text" class="box" name="notinality" placeholder="enter your country" onChange={(e) => setCountry(e.target.value)} />
                                 <span>Favourate Genre :</span>
                                 <input type="text" class="box" name="genre" placeholder="enter favourate genre" onChange={(e) => setGenre(e.target.value)} />
                             </div>
                         </div>
                         <div class="flex-btn">
-                            <input className='subtxt' type="submit" value="Update Profile" name="update" class="btn" />
+                            <input className='subtxt' type="submit" placeholder={came} name="update" class="btn" />
                             {registered && <h1 className='recordr'>Record Registered Successfully...</h1>}
                         </div>
                     </form>

@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import {
+    BsFillArrowLeftCircleFill,
+    BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 import "./style.scss";
 
@@ -12,6 +16,23 @@ const VideosSection = ({ data, loading }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
 
+    const carouselContainer = useRef();
+
+    const navigation = (dir) => {
+        const container = carouselContainer.current;
+        const conatainerHalfWidth = (container.offsetWidth / 2) + 50;
+
+        const scrollAmount =
+            dir === "left"
+                ? container.scrollLeft - (container.offsetWidth - conatainerHalfWidth)
+                : container.scrollLeft + (container.offsetWidth - conatainerHalfWidth);
+
+        container.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        });
+    };
+
     const loadingSkeleton = () => {
         return (
             <div className="skItem">
@@ -24,15 +45,24 @@ const VideosSection = ({ data, loading }) => {
 
     return (
         <>
+            <Line />
             <div className="videosSection">
                 <ContentWrapper>
                     <div className="sectionHeading">Official Videos</div>
+                    <BsFillArrowLeftCircleFill
+                        className="carouselLeftNavdetailsvideo arrow4554detailsvideo"
+                        onClick={() => navigation("left")}
+                    />
+                    <BsFillArrowRightCircleFill
+                        className="carouselRighttNavdetailsvideo arrow4554detailsvideo"
+                        onClick={() => navigation("right")}
+                    />
                     {!loading ? (
-                        <div className="videos">
+                        <div className="videos" ref={carouselContainer}>
                             {data?.results?.map((video) => (
                                 <div
                                     key={video.id}
-                                    className="videoItem"
+                                    className="videoItemvideo"
                                     onClick={() => {
                                         setVideoId(video.key);
                                         setShow(true);

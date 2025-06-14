@@ -55,6 +55,10 @@
             .shareicon0 {
                 font-size: 370px;
                 color: var(--text-color);
+
+                @media only screen and (max-width: 660px) {
+                    font-size: 246px;
+                }
             }
         }
     }

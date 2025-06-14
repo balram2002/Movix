@@ -26,7 +26,6 @@ import AccountPage from "./pages/account/AccountPage";
 import PersonDetails from "./pages/person/PersonDetails";
 import About from "./pages/about/About";
 import ResestPassword from "./components/resetpassword/ResestPassword";
-// import ProtectedRoute from "./components/protectedroute/ProtectedRoute"
 
 function App() {
     const dispatch = useDispatch();
@@ -52,7 +51,9 @@ function App() {
 
     const themelist = ["dark",
         "light",
-        "colored",]
+        "colored", "dark",
+        "light", "dark",
+        "light",]
 
     const genresCall = async () => {
         let promises = [];
@@ -77,7 +78,7 @@ function App() {
                 <BrowserRouter>
                     <Header />
                     <ToastContainer
-                        position="bottom-right"
+                        position="top-center"
                         autoClose={3000}
                         hideProgressBar={false}
                         newestOnTop={true}
@@ -85,6 +86,7 @@ function App() {
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover
+                        draggablePercent={60}
                         theme={themelist[(Math.floor(Math.random() * themelist.length))]}
                     />
                     <Routes>

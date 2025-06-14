@@ -1,5 +1,6 @@
 .ReviewsSection {
     margin-bottom: 25px;
+    overflow-x: hidden;
 
 
     h1 {
@@ -18,21 +19,48 @@
     }
 
     .reviews-container {
-        min-height: 545px;
         min-height: 175px;
+        max-height: 575px;
         padding-left: 15px;
         padding-right: 15px;
+        overflow-x: hidden;
         overflow-y: auto;
 
         .review-item {
 
+            .noreview8789 {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 15px;
+                font-size: 22px;
+                margin-top: 15px;
+                color: var(--text-color);
+                font-weight: 500;
+
+                .fsdasdfah564654 {
+                    background: orange;
+                    border-radius: 12px;
+                    width: 70%;
+                    padding: 10px;
+                }
+            }
+
             .review-Area {
                 display: flex;
                 padding-right: 10px;
+                // height: 170px;
                 margin-top: 20px;
                 margin-bottom: 30px;
                 // align-items: center;
                 border-radius: 15px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
                 box-shadow: -48px 55px 220px hsl(0deg 0% 0% / 0.31);
 
                 .reviewtArea-avatar {
@@ -47,11 +75,20 @@
                         margin-left: 10px;
                         border-radius: 100%;
                         border: solid 4px #070707;
+
+                        @media only screen and (max-width: 435px) {
+                            width: 80px;
+                            height: 80px;
+                        }
                     }
 
                     svg {
                         font-size: 141px;
                         color: var(--text-color);
+
+                        @media only screen and (max-width: 435px) {
+                            font-size: 85px;
+                        }
                     }
 
                     .reviewArea-avatar-wrapper {
@@ -67,13 +104,36 @@
                     margin-top: 34px;
                     margin-left: 10px;
 
+                    @media only screen and (max-width: 435px) {
+                        margin-top: 15px;
+                        margin-left: 0px;
+                    }
+
                     p {
                         color: var(--text-color);
                         margin: 0;
+                        line-height: 1.1;
                         margin-bottom: 10px;
+
+                        .parabold34576 {
+                            color: var(--heading-color);
+                            font-weight: 300;
+
+                        }
+
+                        .overviewmain23245 {
+                            @media only screen and (max-width: 560px) {
+                                width: 182px;
+                            }
+                        }
+                    }
+
+                    .pmaincon4565 {
+                        line-height: 1.1;
                     }
                 }
             }
         }
+
     }
 }

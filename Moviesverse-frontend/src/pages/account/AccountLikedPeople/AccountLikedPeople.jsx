@@ -12,6 +12,7 @@ import PosterFallback from "../../../assets/no-poster.png";
 
 
 import "./AccountLikedPeople.css";
+import { toast } from "react-toastify";
 
 const AccountLikedPeople = () => {
 
@@ -31,11 +32,13 @@ const AccountLikedPeople = () => {
     const deleteLiked = async (passedID) => {
         try {
             const result = movies?.filter((item => item.id !== passedID))
+            toast.success("Item Deleted From Liked People Section");
             await updateDoc(movieRef, {
                 savedLikedPeople: result,
             });
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            toast.error("Some Error occured, try again");
         }
     }
 
@@ -44,7 +47,7 @@ const AccountLikedPeople = () => {
             <ContentWrapper>
                 {!movies?.length <= 0 ? undefined : <div className="noresultsaccount67"><span>Like a People or Individual to Start Accesing Here!</span></div>}
             </ContentWrapper>
-            <div className="AccountLikedList-list">
+            <div className="AccountLikedList-list-main">
                 {movies?.map(item => {
                     const posterurl = item.img
                         ? url.profile + item.img
@@ -54,9 +57,10 @@ const AccountLikedPeople = () => {
                             key={item.id}
                             className="AccountLikedList-item"
                         >
-                            <div className="AccountLikedList-poster">
+                            <div className="AccountLikedList-poster people456">
                                 <Img src={url.profile + item.img} />
-                                <MdDeleteForever onClick={() => deleteLiked(item?.id)} className="AccountLikedList-delete" />
+                                <div className="medialikedlist6757">{item?.media_type}</div>
+                                <div className="deleteiconlists5435">  <MdDeleteForever onClick={() => deleteLiked(item?.id)} className="AccountLikedList-delete" /></div>
 
                             </div>
                             <div className="AccountLikedList-text" onClick={() =>

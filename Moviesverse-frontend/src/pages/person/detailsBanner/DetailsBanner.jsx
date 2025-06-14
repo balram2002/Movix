@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa6";
+import { FaShareSquare } from "react-icons/fa";
 
 import dayjs from "dayjs";
 import backdrop from "../../../../public/logbg.jpg";
@@ -9,6 +10,7 @@ import { useSelector } from "react-redux";
 
 
 import "./style.scss";
+import { Helmet } from 'react-helmet';
 
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import useFetch from "../../../hooks/useFetch";
@@ -19,9 +21,12 @@ import { UserAuth } from "../../../context/AuthContext.jsx";
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from "../../../firebase.js";
 import { toast } from "react-toastify";
+import ShareModal from "../../../components/sharemodal/ShareModal.jsx";
+import Overview from "../../../components/overview/Overview.jsx";
 
 const DetailsBanner = () => {
     const [oneLiked, setOneLiked] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const { url } = useSelector((state) => state.home);
 
 
@@ -30,6 +35,7 @@ const DetailsBanner = () => {
 
     const saveLiked = async (data) => {
         if (user?.email) {
+            toast.info("Liking Post is in progress...");
             await updateDoc(movieID, {
                 savedLikedPeople: arrayUnion({
                     id: data.id || id,
@@ -55,6 +61,11 @@ const DetailsBanner = () => {
 
     return (
         <>
+                    <Helmet>
+                <title>{data?.name || data?.title + ' | MV'}</title>
+                <meta name="description" content="aiconnect docs page containing all the information about site" />
+            </Helmet>
+
             <div className="detailsBanner">
                 {!loading ? (
                     <>
@@ -72,10 +83,16 @@ const DetailsBanner = () => {
                                             }}>
                                                 <FaRegHeart className="liked-icon" /></span>
                                         </div>
+                                        <div className="shareicon989-person">
+                                            <span onClick={() => {
+                                                setShowModal(true);
+
+                                            }}><FaShareSquare className="shareicon98icon" /></span>
+                                        </div>
                                         <div className="left">
                                             {data?.profile_path ? (
                                                 <Img
-                                                    className="posterImg"
+                                                    className="posterImg real4535"
                                                     src={
                                                         url.profile +
                                                         data?.profile_path
@@ -99,11 +116,12 @@ const DetailsBanner = () => {
 
                                             <div className="overview">
                                                 <div className="heading">
-                                                    Overview
+                                                    Biography :
                                                 </div>
-                                                <div className="description">
-                                                    {data?.biography}
+                                                <div className="description-person">
+                                                    <Overview overview={data?.biography} />
                                                 </div>
+
                                             </div>
 
                                             <div className="info">
@@ -168,6 +186,12 @@ const DetailsBanner = () => {
                                             )}
                                         </div>
                                     </div>
+                                    <ShareModal
+                                        show={showModal}
+                                        setShow={setShowModal}
+                                        data={data}
+                                        media="person"
+                                    />
                                 </ContentWrapper>
                             </React.Fragment>
                         )}

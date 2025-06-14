@@ -8,6 +8,7 @@ import "./AccountDetails.css";
 const AccountDetails = () => {
 
     const [get, setGet] = useState(false);
+    const [came, setCame] = useState("Load Details");
     const [details, setDetails] = useState({});
     const [load, setLoad] = useState(false);
 
@@ -18,7 +19,8 @@ const AccountDetails = () => {
     //   const [isUserUpdated, setisUserUpdated] = useState(false);
 
     useEffect(() => {
-        Axios.post(`${window.location.origin}/api/user/getDetails`, {
+        setCame("Loading...");
+        Axios.post(`http://localhost:5000/api/user/getDetails`, {
             email: emailuser,
         }).then(response => {
             console.log(response);
@@ -26,6 +28,7 @@ const AccountDetails = () => {
                 setGet(true);
             }
             setDetails(response.data);
+            setCame("Load Details");
         }).catch(err => {
             console.log(err);
         })

@@ -1,3 +1,9 @@
-.aboutPage01 {
-    height: 800px;
+.aboutmaincontainer45z {
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: var(--text-color);
+    font-weight: 500;
 }

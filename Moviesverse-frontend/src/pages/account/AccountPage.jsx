@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AccountDetails from './AccountDetails/AccountDetails';
+import { Helmet } from 'react-helmet';
 
 import "./account.scss";
 import AccountLikedList from './AccountLikedList/AccountLikedList';
@@ -10,6 +11,7 @@ import ContentWrapper from '../../components/contentWrapper/ContentWrapper';
 import { UserAuth } from '../../context/AuthContext';
 import EditDetails from './editdetails/EditDetails';
 import { toast } from 'react-toastify';
+import Line from './../../components/line/Line';
 
 function AccountPage() {
     const { user } = UserAuth();
@@ -19,7 +21,7 @@ function AccountPage() {
     const [likedPeople, setLikedPeople] = useState(false);
     const [watchList, setWatchList] = useState(false);
     const [AccountDetailsChange, setAccountDetailsChange] = useState(false);
-    const [activeList, setActiveList] = useState(`Liked Lists Of ${user?.email}`);
+    const [activeList, setActiveList] = useState(`Liked Lists`);
     const [activeLikedList, setActiveLikedList] = useState(`Liked Movies and TV Shows of ${user?.email}`);
 
     const onTabChange = (tab) => {
@@ -27,17 +29,17 @@ function AccountPage() {
             setLikedList(true);
             setWatchList(false);
             setAccountDetailsChange(false);
-            setActiveList(`Liked Lists Of ${user?.email}`);
+            setActiveList(`Liked Lists`);
         } else if (tab === "Watch Later") {
             setWatchList(true);
             setLikedList(false);
             setAccountDetailsChange(false);
-            setActiveList(`Watch Later List Of ${user?.email}`);
+            setActiveList(`Watch Later List`);
         } else if (tab === "Account") {
             setAccountDetailsChange(true);
             setWatchList(false);
             setLikedList(false);
-            setActiveList(`Set and update profile Of ${user?.email}`);
+            setActiveList(`Set and update profile`);
         }
     };
     const onTabChangeLiked = (tab) => {
@@ -54,6 +56,10 @@ function AccountPage() {
 
     return (
         <div className='Account-Main'>
+             <Helmet>
+                <title>Account | MV</title>
+                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+            </Helmet>
             <AccountDetails />
             <div className="switchAccountLists">
                 <ContentWrapper >
@@ -74,6 +80,11 @@ function AccountPage() {
             {watchList && <AccountWatchLaterList />
             }
             {AccountDetailsChange && <EditDetails />}
+            <Line />
+            <div className="alternateswipergfhf6677">
+                <span className='fhfhfhyf67576'>Use Desktop to experience more features.</span>
+                <span className='fhfhfhyf67576'>Make an account to like and add to watchlist content and get recommendations accordingly..</span>
+            </div>
         </div>
     )
 }

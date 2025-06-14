@@ -5,9 +5,11 @@ import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
 import useFetch from "../../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import SeeMore from "../../../components/seemore/SeeMore";
 
 const Comedy = () => {
     const [endpoint, setEndpoint] = useState("movie");
+    const [show, setShow] = useState(false);
     const [type, setType] = useState("comedy");
     const { data, loading } = useFetch(`/discover/${endpoint}?with_genres=35`);
 
@@ -17,24 +19,27 @@ const Comedy = () => {
         setEndpoint(tab === "Movie" ? "movie" : "tv");
     };
 
-    const handleSeeAll = () => {
-        console.log("comedy");
-        if (endpoint === "movie") {
-            navigate(`/movie/${type}`);
-        } else if (endpoint === "tv") {
-            navigate(`/tv/${type}`);
-        }
+    const title = "Comedy " + endpoint + " List";
 
-    }
 
     return (
-        <div className="carouselSection">
-            <ContentWrapper>
-                <span className="carouselTitle">Comedy </span>
-                <SwitchTabs data={["Movie", "TV Show"]} onTabChange={onTabChange} />
-            </ContentWrapper>
-            <Carousel data={data?.results} loading={loading} endpoint={endpoint} />
-        </div>
+        <>
+            <div className="carouselSection">
+                <ContentWrapper>
+                    <span className="carouselTitle" onClick={() => setShow(true)}>Comedy </span>
+                    <SwitchTabs data={["Movie", "TV"]} onTabChange={onTabChange} />
+                </ContentWrapper>
+                <Carousel data={data?.results} loading={loading} endpoint={endpoint} />
+            </div>
+            <SeeMore
+                show={show}
+                setShow={setShow}
+                title={title}
+                data={data?.results}
+                loading={loading}
+                endpoint={endpoint}
+            />
+        </>
     );
 };
 

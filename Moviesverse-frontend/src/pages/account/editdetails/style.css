@@ -26,12 +26,27 @@
     min-height: 100vh;
 }
 
+@media only screen and (max-width: 1180px) {
+
+    .update-profile-container {
+        padding: 0;
+    }
+}
+
 .update-profile-container form {
     width: 70rem;
     border-radius: .5rem;
     background-color: var(--black);
     padding: 1rem 2rem;
     text-align: center;
+}
+
+@media only screen and (max-width: 1180px) {
+
+    .update-profile-container form {
+        padding: 0;
+        width: 20rem;
+    }
 }
 
 .update-profile-container form .flex {
@@ -41,8 +56,22 @@
     justify-content: space-between;
 }
 
+@media only screen and (max-width: 1180px) {
+    .update-profile-container form .flex {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
 .update-profile-container form .flex .inputBox {
     width: 49%;
+}
+
+@media only screen and (max-width: 1180px) {
+    .update-profile-container form .flex .inputBox {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .update-profile-container form img {
@@ -69,10 +98,24 @@
     background-color: var(--bg-item);
 }
 
+@media only screen and (max-width: 1180px) {
+    .update-profile-container form .flex .inputBox .box {
+        width: 93%;
+        /* text-align: center; */
+    }
+}
+
 .update-profile-container .flex-btn {
     margin-top: 20px;
     margin-bottom: 10px;
     color: var(--text-color);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.update-profile-container .flex-btn .btn {
+    color: var(--text-color);
+    font-size: 18px;
 }
 
 .update-profile-container .flex-btn .subtxt {
@@ -108,10 +151,10 @@
 
 
 
-@media (max-width:768px) {
+/* @media (max-width:768px) {
 
     .update-profile-container form .flex .inputBox {
         width: 100%;
     }
 
-}
+} */

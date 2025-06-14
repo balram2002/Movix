@@ -21,6 +21,7 @@ function InfoSlider() {
     return (
         <center>
             <h1 className='high64576'><b>MoviesVerse</b> Highlights</h1>
+            <h4 className="secinfohead">To access this section, open in desktop.</h4>
             <section class="slider-container-hgytury">
                 <div className="slider-images">
                     <div className={`slider-img ${first ? "active" : ""}`} onClick={() => {

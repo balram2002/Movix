@@ -56,6 +56,7 @@ const Details = () => {
             <div className="details">
                 <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
                 <Cast data={credits?.cast} loading={creditsLoading} heading={"Top Cast"} />
+
                 {seasons?.seasons && <Season data={seasons?.seasons} loading={seasonloading} heading={"Available Seasons"} id={idd} title={title} mediaType={mediaType} />
                 }
                 {Collections && <Season2 id={Collections} heading={`Belongs To ${title} Collection`} />
@@ -64,6 +65,10 @@ const Details = () => {
                 <Similar mediaType={mediaType} id={id} titlee={title} />
                 <Recommendation mediaType={mediaType} id={id} titlee={title} />
                 <Reviews data={reviews} loading={reviewloading} title={title} />
+                <div className="alternateswipergfhf6677">
+                    <span className='fhfhfhyf67576'>Use Desktop to experience more features.</span>
+                    <span className='fhfhfhyf67576'>Make an account to like and add to watchlist content and get recommendations accordingly..</span>
+                </div>
             </div>
             {show && <ScrollButton />}
         </>

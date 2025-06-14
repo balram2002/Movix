@@ -16,8 +16,11 @@ import abg from "../../../../public/videos/applebg.mp4";
 
 import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
 import './style.css';
+import SeeMore from "../../../components/seemore/SeeMore";
 
 const Netflix = () => {
+    const [show, setShow] = useState(false);
+
 
 
     const [endpoint, setEndpoint] = useState("with_networks");
@@ -31,82 +34,94 @@ const Netflix = () => {
         setMedia(tab === "Movie" ? "movie" : "tv");
     };
 
+    const title = active + " " + media + " List";
+
 
     return (
-        <div className="contain">
-            <div className="headingt">
-                <center><h1><b>Streaming</b> Platforms</h1></center>
-            </div>
-            <div className="logos">
-                <div className="logo-item" onClick={() => {
-                    setEndpoint("with_networks");
-                    setNumber(213);
-                    setActive("Netflix Originals");
-                    setMarvel(false);
-                }}>
-                    <img className="img" src={nt} alt="" />
-                    <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
-                        <source src={nbg} type="video/mp4" />
-                    </video>
+        <>
+            <div className="contain">
+                <div className="headingt">
+                    <center><h1><b>Streaming</b> Platforms</h1></center>
                 </div>
-                <div className="logo-item" onClick={() => {
-                    setEndpoint("with_networks");
-                    setNumber(1028);
-                    setActive("Prime Video Originals");
-                    setMarvel(false);
-                }}>
-                    <img className="img" src={pvt} alt="" />
-                    <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
-                        <source src={pvbg} type="video/mp4" />
-                    </video>
+                <div className="logos-streaming">
+                    <div className="logo-item" onClick={() => {
+                        setEndpoint("with_networks");
+                        setNumber(213);
+                        setActive("Netflix Originals");
+                        setMarvel(false);
+                    }}>
+                        <img className="img" src={nt} alt="" />
+                        <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
+                            <source src={nbg} type="video/mp4" />
+                        </video>
+                    </div>
+                    <div className="logo-item" onClick={() => {
+                        setEndpoint("with_networks");
+                        setNumber(1028);
+                        setActive("Prime Video Originals");
+                        setMarvel(false);
+                    }}>
+                        <img className="img" src={pvt} alt="" />
+                        <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
+                            <source src={pvbg} type="video/mp4" />
+                        </video>
+                    </div>
+                    <div className="logo-item" onClick={() => {
+                        setEndpoint("with_companies");
+                        setNumber(420);
+                        setActive("Marvel Universe");
+                        setMarvel(true);
+                    }}>
+                        <img className="img" src={mt} alt="" />
+                        <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
+                            <source src={mbg} type="video/mp4" />
+                        </video>
+                    </div>
+                    <div className="logo-item" onClick={() => {
+                        setEndpoint("with_companies");
+                        setNumber(128064);
+                        setActive("DC Universe Originals");
+                        setMedia("movie");
+                        setMarvel(false);
+                    }}>
+                        <img className="img" id="d" src={dt} alt="" />
+                        <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
+                            <source src={dbg} type="video/mp4" />
+                        </video>
+                    </div>
+                    <div className="logo-item" onClick={() => {
+                        setEndpoint("with_companies");
+                        setNumber(2552);
+                        setActive("Apple TV Originals");
+                        setMedia("movie");
+                        setMarvel(false);
+                    }}>
+                        <img className="img" id="d" src={at} alt="" />
+                        <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
+                            <source src={abg} type="video/mp4" />
+                        </video>
+                    </div>
                 </div>
-                <div className="logo-item" onClick={() => {
-                    setEndpoint("with_companies");
-                    setNumber(420);
-                    setActive("Marvel Universe");
-                    setMarvel(true);
-                }}>
-                    <img className="img" src={mt} alt="" />
-                    <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
-                        <source src={mbg} type="video/mp4" />
-                    </video>
-                </div>
-                <div className="logo-item" onClick={() => {
-                    setEndpoint("with_companies");
-                    setNumber(128064);
-                    setActive("DC Universe Originals");
-                    setMedia("movie");
-                    setMarvel(false);
-                }}>
-                    <img className="img" id="d" src={dt} alt="" />
-                    <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
-                        <source src={dbg} type="video/mp4" />
-                    </video>
-                </div>
-                <div className="logo-item" onClick={() => {
-                    setEndpoint("with_companies");
-                    setNumber(2552);
-                    setActive("Apple TV Originals");
-                    setMedia("movie");
-                    setMarvel(false);
-                }}>
-                    <img className="img" id="d" src={at} alt="" />
-                    <video className="video" autoPlay={true} loop={true} playsInline={true} muted>
-                        <source src={abg} type="video/mp4" />
-                    </video>
-                </div>
-            </div>
-            <div className="carouselSection">
-                <ContentWrapper>
-                    <span className="carouselTitle">{active}</span>
-                    {
-                        marvel && <SwitchTabs data={["TV", "Movie"]} onTabChange={onTabChange} />
-                    }
+                <div className="carouselSection">
+                    <ContentWrapper>
+                        <span className="carouselTitle" onClick={() => setShow(true)}>{active}</span>
+                        {
+                            marvel && <SwitchTabs data={["TV", "Movie"]} onTabChange={onTabChange} />
+                        }
 
-                </ContentWrapper>
-                <Carousel data={data?.results} loading={loading} endpoint={media} />
+                    </ContentWrapper>
+                    <Carousel data={data?.results} loading={loading} endpoint={media} />
+                </div>
             </div>
-        </div>
+            <SeeMore
+                show={show}
+                setShow={setShow}
+                title={title}
+                data={data?.results}
+                loading={loading}
+                endpoint={media}
+            />
+        </>
     );
 };
 

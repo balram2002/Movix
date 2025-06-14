@@ -10,6 +10,7 @@ const TvCredits = ({ data, loading }) => {
                 title="Worked In TV Shows"
                 data={data}
                 loading={loading}
+                endpoint="tv"
             />
         </>
     );

@@ -1,9 +1,10 @@
 .scrollbtonn4525 {
     position: fixed;
     background: transparent;
-    top: 515px;
+    // top: 515px;
+    bottom: 5px;
     right: 18px;
-    z-index: 9999;
+    z-index: 999999999999;
     backdrop-filter: blur(10px);
     transition: 0.5s;
     opacity: 0.8;
@@ -23,5 +24,9 @@
             }
 
         }
+    }
+
+    @media only screen and (max-width: 440px) {
+        bottom: 85px;
     }
 }

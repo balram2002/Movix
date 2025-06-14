@@ -37,6 +37,13 @@
 
             .react-select__value-container {
 
+                .react-select__placeholder {
+                    @media only screen and (max-width: 440px) {
+                        font-size: 15px;
+                        padding: 6px;
+                    }
+                }
+
                 .react-select__placeholder,
                 .react-select__input-container {
                     color: white;

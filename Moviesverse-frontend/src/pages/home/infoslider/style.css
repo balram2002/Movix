@@ -10,6 +10,27 @@
     margin-top: 10px;
 }
 
+.secinfohead {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-align: center;
+    display: none;
+    color: var(--heading-color);
+}
+
+@media only screen and (max-width: 968px) {
+    .secinfohead {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 968px) {
+    .slider-container-hgytury {
+        display: none;
+    }
+}
+
 .slider-container-hgytury .slider-images {
     display: flex;
     align-items: center;

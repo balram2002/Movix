@@ -36,6 +36,24 @@
     backdrop-filter: blur(10px);
 }
 
+@media screen and (max-width: 460px) {
+    #authwrapperbd {
+        width: 387px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #authwrapperbd {
+        width: 334px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    #authwrapperbd {
+        width: 350px;
+    }
+}
+
 #authwrapperbd .auth-form-box {
     position: absolute;
     top: 0;
@@ -44,6 +62,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-form-box {
+        width: 100%;
+    }
 }
 
 #authwrapperbd .auth-form-box.login {
@@ -60,6 +84,18 @@
 
 }
 
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-form-box.login .animation {
+        transition-delay: 1s;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-form-box.register .animation {
+        transition-delay: 1s;
+    }
+}
+
 #authwrapperbd.active .auth-form-box.login .animation {
     transform: translateX(-120%);
     opacity: 0;
@@ -72,6 +108,18 @@
     right: 0;
     padding: 0 40px 0 60px;
     pointer-events: none;
+}
+
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-form-box.register {
+        padding: 0 40px 0 40px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-form-box.login {
+        padding: 0 40px 0 40px;
+    }
 }
 
 #authwrapperbd.active .auth-form-box.register {
@@ -220,6 +268,12 @@
     justify-content: center;
 }
 
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .auth-info-text {
+        display: none;
+    }
+}
+
 #authwrapperbd .auth-info-text.login {
     right: 0;
     text-align: right;
@@ -295,6 +349,12 @@
     transition-delay: 1.6s;
 }
 
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .bg-animate {
+        display: none;
+    }
+}
+
 #authwrapperbd.active .bg-animate {
     transform: rotate(0) skewY(0);
     transition-delay: .5s;
@@ -312,6 +372,12 @@
     transform-origin: bottom left;
     transition: 1.5s ease;
     transition-delay: .5s;
+}
+
+@media only screen and (max-width: 770px) {
+    #authwrapperbd .bg-animate2 {
+        display: none;
+    }
 }
 
 #authwrapperbd.active .bg-animate2 {

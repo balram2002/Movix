@@ -54,11 +54,35 @@
     display: grid;
     padding-left: 15px;
     padding-top: 10px;
-    /* grid-template-rows: 50px 50px 50px; */
     row-gap: 15px;
+    margin-left: 5px;
     column-gap: 5px;
     grid-template-columns: 400px 400px 400px;
 
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+    .AccountArea .AccountArea-body {
+        margin-top: 8px;
+        grid-template-columns: 400px 400px;
+        gap: 8px;
+        padding-left: 2px;
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .AccountArea .AccountArea-body {
+        margin-top: 8px;
+        grid-template-columns: 400px;
+        gap: 8px;
+        column-gap: 0;
+        margin-left: 0;
+        text-align: center;
+    }
 }
 
 .AccountArea .AccountArea-avatar .AccountArea-avatar-wrapper {

@@ -113,7 +113,7 @@ const Seasons = ({ data, loading, heading, id, title, mediaType }) => {
                 </ContentWrapper>
             </div>
             <Line />
-            <VideosSection2 data={episode} loading={episloading} title={`Episodes of ${title} Season ${number} `} />
+            <VideosSection2 data={episode} loading={episloading} title={`Episodes of ${title} Season ${number} `} mediaType={mediaType} id={id} name={title} />
         </>
     );
 };

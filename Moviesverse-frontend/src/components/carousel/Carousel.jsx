@@ -38,36 +38,36 @@ const Carousel = ({ data, loading, endpoint, title }) => {
 
     const saveLiked = async (item) => {
         if (user?.email) {
+            toast.info("Liking Post is in progress...");
             setLike(true);
             setSaved(true)
             await updateDoc(movieID, {
                 savedLiked: arrayUnion({
                     id: item.id,
                     title: item.title || item.name,
-                    img: item.backdrop_path,
+                    img: item.poster_path,
                     media_type: item.media_type || endpoint,
                 })
             })
-            const title = data?.title || data?.name;
-            const msgggg = title + " " + "added to liked list";
-            // alert(title + " " + "added to liked list");
+            const title64645 = item.name || item.title;
+            const msgggg = title64645 + " " + "added to liked list";
             toast.success(msgggg);
         } else {
-            const titlee = data?.title || data?.name;
+            const titlee424 = item.name || item.title;
             const end = item.media_type || endpoint;
-            const msgg = "Please Login to like a " + end + titlee;
-            // alert("Please Login to like a " + end);
+            const msgg = "Please Login to like a " + end + titlee424;
             toast.warn(msgg);
         }
     }
 
     const navigation = (dir) => {
         const container = carouselContainer.current;
+        const conatainerHalfWidth = (container.offsetWidth / 2) + 108;
 
         const scrollAmount =
             dir === "left"
-                ? container.scrollLeft - (container.offsetWidth + 20)
-                : container.scrollLeft + (container.offsetWidth + 20);
+                ? container.scrollLeft - (container.offsetWidth - conatainerHalfWidth)
+                : container.scrollLeft + (container.offsetWidth - conatainerHalfWidth);
 
         container.scrollTo({
             left: scrollAmount,
@@ -94,11 +94,11 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                 <ContentWrapper>
                     {title && <div className="carouselTitle">{title}</div>}
                     <BsFillArrowLeftCircleFill
-                        className="carouselLeftNav arrow"
+                        className="carouselLeftNav arrowcar535"
                         onClick={() => navigation("left")}
                     />
                     <BsFillArrowRightCircleFill
-                        className="carouselRighttNav arrow"
+                        className="carouselRighttNav arrowcar535"
                         onClick={() => navigation("right")}
                     />
                     {!loading ? (
@@ -119,10 +119,6 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                             )
                                         }>
                                             <Img src={posterUrl} />
-                                            {/* {!clicked ? <MdOutlineAddToPhotos className="addicon" onClick={() => {
-                                                setClicked(true);
-                                                console.log(item.id);
-                                            }} /> : <FaHeart className="clickedicon" />} */}
                                             <CircleRating
                                                 rating={item.vote_average.toFixed(
                                                     1
@@ -142,7 +138,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                                     "MMM D, YYYY"
                                                 )}
                                             </span>
-                                            <span className="liked" onClick={() => {
+                                            <span className="liked-maincar" onClick={() => {
                                                 saveLiked(item);
                                             }}>
                                                 <FaRegHeart className="addicon" />

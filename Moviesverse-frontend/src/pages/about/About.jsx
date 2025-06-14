@@ -4,7 +4,7 @@ import "./about.css";
 
 function About() {
     return (
-        <div className='aboutPage01'>About</div>
+        <div className='aboutmaincontainer45z'>About Page is still in development...</div>
     )
 }
 

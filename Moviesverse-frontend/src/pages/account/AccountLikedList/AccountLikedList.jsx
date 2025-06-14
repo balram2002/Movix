@@ -12,6 +12,7 @@ import PosterFallback from "../../../assets/no-poster.png";
 
 
 import "./AccountLikedList.css";
+import { toast } from "react-toastify";
 
 const AccountLikedList = () => {
 
@@ -31,11 +32,13 @@ const AccountLikedList = () => {
     const deleteLiked = async (passedID) => {
         try {
             const result = movies?.filter((item => item.id !== passedID))
+            toast.success("Item Deleted From Liked Section");
             await updateDoc(movieRef, {
                 savedLiked: result,
             });
         } catch (error) {
             console.log(error)
+            toast.error("Some Error occured, try again");
         }
     }
 
@@ -44,7 +47,7 @@ const AccountLikedList = () => {
             <ContentWrapper>
 
                 {!movies?.length <= 0 ? undefined : <div className="noresultsaccount67"><span>Like a Movie or TV Show to Start Accesing Here!</span></div>}</ContentWrapper>
-            <div className="AccountLikedList-list">
+            <div className="AccountLikedList-list-main">
                 {movies?.map(item => {
                     const posterurl = item.img
                         ? url.poster + item.img
@@ -56,7 +59,8 @@ const AccountLikedList = () => {
                         >
                             <div className="AccountLikedList-poster" >
                                 <Img src={posterurl} />
-                                <MdDeleteForever onClick={() => deleteLiked(item?.id)} className="AccountLikedList-delete" />
+                                <div className="medialikedlist6757">{item?.media_type}</div>
+                                <div className="deleteiconlists5435">  <MdDeleteForever onClick={() => deleteLiked(item?.id)} className="AccountLikedList-delete" /></div>
 
                             </div>
                             <div className="AccountLikedList-text" onClick={() =>

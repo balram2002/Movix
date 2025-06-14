@@ -1,9 +1,42 @@
 @import "../../mixins.scss";
 
 .castSection {
-    position: relative;
+    // position: relative;
     margin-bottom: 30px;
     margin-top: 30px;
+
+    .contentWrapper {
+        position: relative;
+    }
+
+    .arrow456castcar {
+        font-size: 30px;
+        color: var(--item-bg);
+        position: absolute;
+        top: 34%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        opacity: 0.6;
+        z-index: 1;
+        display: none;
+
+        @include md {
+            display: block;
+        }
+
+        &:hover {
+            opacity: 0.7;
+            color: black;
+        }
+    }
+
+    .carouselLeftNav456castcar {
+        left: -20px;
+    }
+
+    .carouselRighttNav456castcar {
+        right: -17px;
+    }
 
     .listItems {
         display: flex;
@@ -69,7 +102,7 @@
         }
     }
 
-    .castSkeleton {
+    .castSkeleton23 {
         display: flex;
         gap: 20px;
         overflow-y: hidden;

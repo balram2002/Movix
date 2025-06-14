@@ -19,7 +19,7 @@ function TrendingCast() {
                 <span className="carouselTitle">Trending People</span>
                 <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
             </ContentWrapper>
-            {data?.results && <CastCarousel data={data?.results} loading={loading} heading={"Trending People"} />}
+            {data?.results && <CastCarousel data={data?.results} loading={loading} />}
         </div>
     )
 }

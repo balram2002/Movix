@@ -1,8 +1,34 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# MERN Stack Project: Build a Movie/TV-Show Streaming Application
 
-Currently, two official plugins are available:
+Some Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   🌟 Tech stack: MERN + TMDB API
+-   🎃 Authentication && Authorization with Firebase
+-   🚀 Movies Page, TV Shows page, Explore Page (filter content), Home Page, Search Page
+-   👌 Global state management with Redux-Toolkit
+-   🎃 add/remove to liked/Watchlist
+-   👾 Get Dynamic Recommendations based on likes/Watchlist
+-   🚀 Stream 
+-   👌 Get Content Details
+-   🐞 Error handling both on the server and on the client
+-   ⏳ And much more!
+ 
+### Setup .env file
+
+```js
+VITE_APP_TMDB_TOKEN=...
+MONGO_DB_URL=...
+```
+
+### install the dependencies
+
+```shell
+npm install
+```
+
+### Start the app
+
+```shell
+npm run dev
+```

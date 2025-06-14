@@ -7,7 +7,7 @@ import { useTheme } from '../../theme-context';
 
 
 
-import './Toggle.css';
+import './toggle.css';
 
 function Toggle() {
 

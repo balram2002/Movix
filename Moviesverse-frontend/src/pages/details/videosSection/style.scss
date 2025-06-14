@@ -1,14 +1,45 @@
 @import "../../../mixins.scss";
 
 .videosSection {
-    position: relative;
     margin-bottom: 30px;
     margin-top: 30px;
+
+    .contentWrapper {
+        position: relative;
+    }
 
     .sectionHeading {
         font-size: 24px;
         color: var(--text-color);
         margin-bottom: 25px;
+    }
+
+    .arrow4554detailsvideo {
+        font-size: 30px;
+        color: var(--item-bg);
+        position: absolute;
+        top: 42%;
+        cursor: pointer;
+        opacity: 0.6;
+        z-index: 1;
+        display: none;
+
+        @include md {
+            display: block;
+        }
+
+        &:hover {
+            opacity: 0.7;
+            color: black;
+        }
+    }
+
+    .carouselLeftNavdetailsvideo {
+        left: -20px;
+    }
+
+    .carouselRighttNavdetailsvideo {
+        right: -20px;
     }
 
     .videos {
@@ -25,9 +56,15 @@
             padding: 0;
         }
 
-        .videoItem {
+        .videoItemvideo {
             width: 150px;
             flex-shrink: 0;
+            max-height: 180px;
+            overflow-y: hidden;
+
+            @media only screen and (min-width: 560px) {
+                max-height: 250px;
+            }
 
             @include md {
                 width: 25%;
@@ -40,12 +77,33 @@
                 position: relative;
                 border: 1px solid var(--text-color);
                 border-radius: 12px;
+                height: 167px;
+                width: 290px;
+                overflow: hidden;
 
-                img {
+                @media only screen and (max-width: 860px) {
+                    height: 100px;
+                    width: 150px;
+                }
+
+                .lazy-load-image-background {
                     width: 100%;
-                    display: block;
-                    border-radius: 12px;
-                    transition: all 0.7s ease-in-out;
+                    height: 100%;
+
+                    @media only screen and (max-width: 860px) {
+                        height: 100px;
+                        width: 150px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                        display: block;
+                        border-radius: 12px;
+                        transition: all 0.7s ease-in-out;
+                    }
                 }
 
                 svg {
@@ -95,6 +153,8 @@
                 color: var(--text-color);
                 font-size: 14px;
                 line-height: 20px;
+                text-overflow: ellipsis;
+                overflow: hidden;
 
                 @include md {
                     font-size: 16px;
