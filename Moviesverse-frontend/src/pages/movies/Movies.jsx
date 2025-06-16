@@ -18,6 +18,8 @@ import CustomLiked1 from "../home/usercustomliked1/CustomLiked1";
 import { doc, onSnapshot } from 'firebase/firestore';
 import ScrollButton from "../../components/scrollbutton/ScrollButton";
 import { useLocation } from 'react-router-dom';
+import { StarsBackground } from "../../components/ui/stars-background";
+import { ShootingStars } from "../../components/ui/shooting-stars";
 
 // Component to handle recommendations for a single movie
 const RecommendationSection = ({ movie, title }) => {
@@ -141,7 +143,9 @@ const Movies = () => {
         </div>
       </main>
       {show && <ScrollButton />}
-    </>
+   <ShootingStars />
+      <StarsBackground />  
+        </>
   );
 };
 

@@ -57,9 +57,16 @@ const MainStar = () => {
     const { data, loading } = useFetch("/trending/all/week");
     const [background, setBackground] = useState("");
     const [movie, setMovie] = useState();
-    const [showCarousel, setShowCarousel] = useState(false); // New state
+    const [showCarousel, setShowCarousel] = useState(false);
 
-    const [slidesOrder, setSlidesOrder] = useState(!loading ? [0, 1, 2, 3] : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
+    const [slidesOrder, setSlidesOrder] = useState([]);
+
+    useEffect(() => {
+        if (data?.results) {
+            setSlidesOrder(Array.from({length: data.results.length}, (_, i) => i));
+        }
+    }, [data]);
+
     const [transitionDirection, setTransitionDirection] = useState(null);
 
     const showSlider = (type) => {
@@ -83,15 +90,23 @@ const MainStar = () => {
         return () => clearTimeout(timer);
     }, [slidesOrder]);
 
-    // New effect for the 3-second delay
     useEffect(() => {
         if (!loading) {
             const timer = setTimeout(() => {
                 setShowCarousel(true);
-            }, 3000);
+                showSlider('next')
+            }, 1000);
             return () => clearTimeout(timer);
         }
     }, [loading]);
+
+    const handleThumbnailClick = (clickedIndex) => {
+        const n = data?.results?.length || 0;
+        if (n > 0) {
+            const newSlidesOrder = Array.from({length: n}, (_, i) => (clickedIndex + i) % n);
+            setSlidesOrder(newSlidesOrder);
+        }
+    };
 
     return (
         <>
@@ -114,12 +129,23 @@ const MainStar = () => {
                                             <div className="title">{slide?.title || slide?.name}</div>
                                             <div className="topic">{slide?.release_date}</div>
                                             <div className="des">{slide?.overview}</div>
-                                            <div className="buttons">
-                                                <button onClick={() => {
-                                                    navigate(`/${slide?.media_type}/${slide?.id}`);
-                                                }}>See Details</button>
-                                                <button onClick={() => saveWatchList(slide)}>Add to WatchList</button>
-                                            </div>
+                                           <div className="buttons relative z-50">
+    <button
+        className="relative z-50"
+        onClick={() => {
+            navigate(`/${slide?.media_type}/${slide?.id}`);
+        }}
+    >
+        See Details
+    </button>
+    <button
+        className="relative z-50"
+        onClick={() => saveWatchList(slide)}
+    >
+        Add to WatchList
+    </button>
+</div>
+
                                         </div>
                                     </div>
                                 );
@@ -132,7 +158,7 @@ const MainStar = () => {
                                     ? url?.poster + slide?.poster_path
                                     : PosterFallback;
                                 return (
-                                    <div key={slideIndex} className="item">
+                                    <div key={slideIndex} className="item" onClick={() => handleThumbnailClick(slideIndex)}>
                                         <img src={posterUrl} alt="" />
                                         <div className="content">
                                             <div className="title">{slide?.title || slide?.name}</div>

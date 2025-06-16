@@ -45,7 +45,6 @@ const VideosSection = ({ data, loading }) => {
 
     return (
         <>
-            <Line />
             <div className="videosSection">
                 <ContentWrapper>
                     <div className="sectionHeading">Official Videos</div>

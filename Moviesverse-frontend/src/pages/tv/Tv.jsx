@@ -16,6 +16,8 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import ScrollButton from "../../components/scrollbutton/ScrollButton";
 import { useLocation } from 'react-router-dom';
 import ReleaseYear from './releaseYear/ReleaseYear';
+import { StarsBackground } from "../../components/ui/stars-background";
+import { ShootingStars } from "../../components/ui/shooting-stars";
 
 // Component to handle recommendations for a single TV show
 const RecommendationSection = ({ tvShow, title }) => {
@@ -139,6 +141,8 @@ const Tv = () => {
                 </div>
             </main>
             {show && <ScrollButton />}
+               <ShootingStars />
+      <StarsBackground />
         </>
     );
 };

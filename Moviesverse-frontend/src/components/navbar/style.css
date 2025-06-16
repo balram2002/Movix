@@ -1,15 +1,14 @@
 .navbar {
-    position: fixed;
+      position: fixed;
     width: 400px;
     height: 68px;
-    background: var(--item-bg);
-    border-radius: 10px;
     left: 50%;
-    transition: all ease 0.5s;
     transform: translate(-50%);
     bottom: 1px;
-    z-index: 99999999999;
+    z-index: 2147483647;
     opacity: 0.6;
+    background: var(--item-bg);
+    border-radius: 10px;
     transition: 0.5s;
 }
 
@@ -20,7 +19,7 @@
 }
 
 .navbar ul {
-    display: flex;
+      display: flex;
     width: 350px;
 }
 
@@ -31,11 +30,13 @@
 } */
 
 .navbar ul .list {
-    position: relative;
-    list-style: none;
+      position: relative;
     width: 70px;
     height: 70px;
     z-index: 1;
+    list-style: none;
+    padding-top: 16px;
+    padding-left: 16px;
 }
 
 .navbar ul .list a {
@@ -48,13 +49,13 @@
 }
 
 .navbar ul .list a .icon {
-    position: relative;
+       position: relative;
     display: block;
     line-height: 75px;
     font-size: 1.5em;
     text-align: center;
+    color: rgb(34, 35, 39);
     transition: 0.5s;
-    color: #222327;
 }
 
 .navbar ul .list.active a .icon {
@@ -66,43 +67,63 @@
 }
 
 .navbar ul .list a .text {
-    position: absolute;
-    color: #222327;
+       position: absolute;
+    color: rgb(34, 35, 39);
     font-weight: 600;
     font-size: 0.75em;
     letter-spacing: 0.03em;
-    transition: 0.5s;
     top: 3px;
     opacity: 0;
     transform: translateY(10px);
+    transition: 0.5s;
 }
 
 #zero {
-    left: 10px;
+    left: -8px;
+      top: -12px;
 }
 
 #one {
-    left: 4px;
+    left: -12px;
+    top: -12px;
 }
 
 #two {
-    left: 23px;
+    left: 8px;
+    top: -12px;
 }
 
 #three {
-    left: 3px;
+    left: -22px;
+      top: -12px;
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
 }
 
 #four {
-    left: 5px;
+    left: -4px;
+      top: -12px;
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+#four svg{
+    font-weight: 500;
+    color: black;
 }
 
 #five {
     left: 1px;
+      top: -12px;
 }
 
 #six {
     left: 6px;
+      top: -12px;
 }
 
 /* 
@@ -158,15 +179,15 @@
 }
 
 .indicator {
-    position: absolute;
+       position: absolute;
     top: -50%;
     height: 70px;
     width: 70px;
-    background: #29fd53;
+    opacity: 0;
+    background: rgb(41, 253, 83);
     border-radius: 50%;
     border: 6px solid var(--black);
     transition: 0.5s;
-    opacity: 0;
 }
 
 .navbar ul .list.active~.indicator {

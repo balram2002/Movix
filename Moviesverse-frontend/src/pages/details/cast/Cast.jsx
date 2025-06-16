@@ -13,7 +13,6 @@ import avatar from "../../../assets/avatar.png";
 import Line from "../../../components/line/Line";
 import { useNavigate } from "react-router-dom";
 
-
 const Cast = ({ data, loading, heading }) => {
     const { url } = useSelector((state) => state.home);
     const navigate = useNavigate();
@@ -38,7 +37,7 @@ const Cast = ({ data, loading, heading }) => {
     const skeleton = () => {
         return (
             <div className="skItem">
-                <div className="circle skeleton"></div>
+                <div className="rectangle skeleton"></div>
                 <div className="row skeleton"></div>
                 <div className="row2 skeleton"></div>
             </div>
@@ -87,7 +86,6 @@ const Cast = ({ data, loading, heading }) => {
                         </div>
                     )}
                 </ContentWrapper>
-
             </div>
             <Line />
         </>

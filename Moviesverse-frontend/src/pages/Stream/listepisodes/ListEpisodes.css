@@ -1,0 +1,172 @@
+.stream-episodes-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 300px;
+  height: 80vh;
+  max-height: 600px;
+  background-color: #b99dec0c;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.stream-popover {
+  position: relative;
+}
+
+.stream-popover-button {
+  width: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  background-color: rgba(165, 180, 252, 0.1);
+  color: rgba(199, 210, 254, 0.9);
+  border-radius: 0.5rem;
+  outline: none;
+  border: 1px solid rgba(224, 231, 255, 0.1);
+}
+
+.stream-popover-panel {
+  position: absolute;
+  z-index: 10;
+  min-width: 128px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: #b0bcff;
+  font-weight: 500;
+  color: rgba(3, 7, 18, 0.7);
+  outline: none;
+  overflow-y: auto;
+  max-height: 13rem;
+}
+
+.stream-seasons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.stream-season-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.stream-season-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.stream-selected-season {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.stream-episodes-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e0d9e9de;
+  margin-top: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.stream-episodes-list {
+  display: flex;
+  height: 100%;
+  align-content: flex-start;
+  flex: 1 1 0%;
+  margin-top: 0.25rem;
+  overflow-y: auto;
+  background-color: #0f0e137e;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .stream-episodes-list {
+    width: auto;
+  }
+}
+
+.stream-episodes-col {
+  flex-direction: column;
+}
+
+.stream-episodes-wrap {
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.stream-episode-card {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.stream-episode-card:hover {
+  background-color: rgba(199, 210, 254, 0.1);
+}
+
+.stream-selected-episode {
+  background-color: rgba(199, 210, 254, 0.1);
+}
+
+.stream-episode-image-container {
+  width: 5rem;
+  height: 3rem;
+  position: relative;
+}
+
+.stream-episode-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.stream-episode-title {
+  color: #f5eeff;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+
+.stream-episode-info {
+  color: #e0d9e9de;
+  font-size: 0.75rem;
+}
+
+.stream-simple-episode-card {
+  display: flex;
+  width: fit-content;
+  flex: 1 1 0%;
+  height: fit-content;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  min-width: 60px;
+  justify-content: center;
+  background-color: rgba(199, 210, 254, 0.1);
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.stream-simple-episode-card:hover {
+  background-color: rgba(165, 180, 252, 0.25);
+}
+
+.stream-selected-simple-episode {
+  background-color: rgba(165, 180, 252, 0.25);
+  box-shadow: inset 0 0 0 2px rgba(165, 180, 252, 0.5);
+}

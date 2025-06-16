@@ -26,6 +26,7 @@ import AccountPage from "./pages/account/AccountPage";
 import PersonDetails from "./pages/person/PersonDetails";
 import About from "./pages/about/About";
 import ResestPassword from "./components/resetpassword/ResestPassword";
+// import StreamPage from "./pages/Stream/Stream";
 
 function App() {
     const dispatch = useDispatch();
@@ -96,6 +97,7 @@ function App() {
                         <Route path="/account" element={<AccountPage />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/:mediaType/:id" element={<Details />} />
+                        {/* <Route path="stream/:mediaType/:id/:season/:episode" element={<StreamPage />} /> */}
                         <Route path="/person/:id" element={<PersonDetails />} />
                         <Route path="/search/:endpoint/:query" element={<SearchResult />} />
                         <Route path="/explore/:mediaType" element={<Explore />} />

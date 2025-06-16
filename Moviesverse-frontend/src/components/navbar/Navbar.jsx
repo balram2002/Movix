@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { FaHome } from "react-icons/fa";
-import { BiMoviePlay } from "react-icons/bi";
+import { BiMoviePlay, BiSearch } from "react-icons/bi";
 import { RiSlideshow3Line } from "react-icons/ri";
-import { MdOutlineExplore, MdExplore, MdOutlineManageSearch, MdOpacity } from "react-icons/md";
+import { MdOutlineExplore, MdExplore} from "react-icons/md";
 import { GrCircleInformation } from "react-icons/gr";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -73,13 +73,13 @@ const Navbar = () => {
                         <NavLink className="list" to='/explore/movie' onClick={() => toast.info("Explore Movies Page")}>
                             <a href="">
                                 <span className="icon"><MdOutlineExplore /></span>
-                                <span className="text" id="three">Find M</span>
+                                <span className="text" id="three"><BiSearch /> Movies</span>
                             </a>
                         </NavLink>
                         <NavLink className="list" to='/explore/tv' onClick={() => toast.info("Explore TV Page")}>
                             <a href="">
                                 <span className="icon"><MdExplore /></span>
-                                <span className="text" id="four">Find T</span>
+                                <span className="text" id="four"><BiSearch /> TV</span>
                             </a>
                         </NavLink>
                         <div className="indicator"></div>

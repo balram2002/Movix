@@ -21,12 +21,11 @@ import { UserAuth } from "../../../context/AuthContext.jsx";
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from "../../../firebase.js";
 import { toast } from "react-toastify";
-import ShareModal from "../../../components/sharemodal/ShareModal.jsx";
 import Overview from "../../../components/overview/Overview.jsx";
+import { RWebShare } from "react-web-share";
 
 const DetailsBanner = () => {
     const [oneLiked, setOneLiked] = useState(false);
-    const [showModal, setShowModal] = useState(false);
     const { url } = useSelector((state) => state.home);
 
 
@@ -84,10 +83,15 @@ const DetailsBanner = () => {
                                                 <FaRegHeart className="liked-icon" /></span>
                                         </div>
                                         <div className="shareicon989-person">
-                                            <span onClick={() => {
-                                                setShowModal(true);
-
-                                            }}><FaShareSquare className="shareicon98icon" /></span>
+                                            <RWebShare
+                    data={{
+                      text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                      url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
+                      title: "Movix Share" + data?.name | data?.title,
+                    }}
+                  >
+                     <span><FaShareSquare className="shareicon98icon" /></span>
+                  </RWebShare>
                                         </div>
                                         <div className="left">
                                             {data?.profile_path ? (
@@ -186,12 +190,6 @@ const DetailsBanner = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <ShareModal
-                                        show={showModal}
-                                        setShow={setShowModal}
-                                        data={data}
-                                        media="person"
-                                    />
                                 </ContentWrapper>
                             </React.Fragment>
                         )}

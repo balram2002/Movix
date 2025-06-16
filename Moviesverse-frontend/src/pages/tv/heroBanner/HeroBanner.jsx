@@ -49,6 +49,7 @@ const HeroBanner = () => {
                     </span>
                     <div className="searchInput">
                         <input
+                        className="text-black"
                             type="text"
                             placeholder="Search for a tv show in tv shows..."
                             onChange={(e) => setQuery(e.target.value)}

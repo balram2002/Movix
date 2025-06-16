@@ -24,6 +24,9 @@ import FavourateGenre from './favourategenre/FavourateGenre';
 import ScrollButton from '../../components/scrollbutton/ScrollButton';
 import Banner from './mainbanner/Banner';
 import MainStar from './MainStar/MainStar';
+import { ShootingStars } from './../../components/ui/shooting-stars';
+import { StarsBackground } from './../../components/ui/stars-background';
+import BackgroundPaths from '../../components/ui/BackgroundPaths';
 
 // Component to handle recommendations for a single item (movie or TV show)
 const RecommendationSection = ({ item, title }) => {
@@ -207,7 +210,7 @@ function Home() {
 
       <MainStar />
       <HeroBanner />
-      <div className='homebanner'>
+      <div className='homebanner' id='bgbirds'>
         <div className="corousal">
           <Trending />
           {recommendationItems[0] && <RecommendationSection key={recommendationItems[0].item.id} item={recommendationItems[0].item} title={recommendationItems[0].title} />}
@@ -234,11 +237,12 @@ function Home() {
           <Comedy />
           {recommendationItems[7] && <RecommendationSection key={recommendationItems[7].item.id} item={recommendationItems[7].item} title={recommendationItems[7].title} />}
           <VoteCount />
-           {recommendationItems[4] && <RecommendationSection key={recommendationItems[4].item.id} item={recommendationItems[4].item} title={recommendationItems[4].title} />}
+          {recommendationItems[4] && <RecommendationSection key={recommendationItems[4].item.id} item={recommendationItems[4].item} title={recommendationItems[4].title} />}
           <Banner />
         </div>
       </div>
       {show && <ScrollButton />}
+      <StarsBackground />
     </>
   );
 }

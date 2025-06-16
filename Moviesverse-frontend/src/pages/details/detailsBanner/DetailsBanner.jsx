@@ -23,24 +23,18 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from "../../../firebase.js";
 import Languages from "../../../components/Language/Languages.jsx";
 import Countrys from "../../../components/Country/Countrys.jsx";
-import Stream from "../../../components/stream/Stream.jsx";
-import ShareModal from "../../../components/sharemodal/ShareModal.jsx";
 import Overview from "../../../components/overview/Overview.jsx";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
-
+import { RWebShare } from 'react-web-share';
 
 const DetailsBanner = ({ video, crew }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
-    const [stream, setStream] = useState(false);
-    const [openstream, setOpenstream] = useState(false);
 
     const [oneLiked, setOneLiked] = useState(false);
     const [oneWatch, setOneWatch] = useState(false);
 
-    const [showModal, setShowModal] = useState(false);
-    const [shareData, setShareData] = useState();
     const { mediaType, id } = useParams();
 
     const { user } = UserAuth();
@@ -117,10 +111,6 @@ const DetailsBanner = ({ video, crew }) => {
 
     const titleee = data?.name || data?.title;
 
-    const closeModal = () => setOpenModal(false);
-
-
-
     return (
         <>
           <Helmet>
@@ -150,16 +140,15 @@ const DetailsBanner = ({ video, crew }) => {
                                                 <MdOutlineBookmarkAdd className="watch-icon" /></span>
                                         </div>
                                         <div className="shareicon989-details">
-                                            <span onClick={() => {
-                                                setShowModal(true);
-                                                console.log("Modal clicked");
-                                                const title = data?.name || data?.title;
-                                                const Overview = data?.overview;
-                                                const date = data?.release_date;
-                                                const tagline = data?.tagline;
-                                                const endpoint = data?.endpoint || mediaType;
-                                                setShareData(title + "(" + endpoint + ")" + "\n" + tagline + "\n" + "Overview :" + Overview + "\n" + date);
-                                            }}><FaShareSquare className="shareicon98icon" /></span>
+                                            <RWebShare
+                    data={{
+                      text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                      url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
+                      title: "Movix Share" + data?.name | data?.title,
+                    }}
+                  >
+                     <span><FaShareSquare className="shareicon98icon" /></span>
+                  </RWebShare>
                                         </div>
                                         <div className="left">
                                             {data.poster_path ? (
@@ -211,18 +200,12 @@ const DetailsBanner = ({ video, crew }) => {
                                                 <div
                                                     className="playbtn-real"
                                                     onClick={() => {
-                                                        setOpenstream(!openstream);
-                                                        setStream(!stream);
-                                                        if (openstream) {
-                                                            toast.info("Video Space closed!")
-                                                        } else {
-                                                            toast.info("Scroll down to watch online!");
-                                                        }
+                                                       
                                                     }}
                                                 >
                                                     <PlayIcon />
                                                     <span className="text">
-                                                        <b> Stream Online</b>
+                                                        <b> Watch Now</b>
                                                     </span>
                                                 </div>
                                             </div>
@@ -426,12 +409,6 @@ const DetailsBanner = ({ video, crew }) => {
                                         videoId={videoId}
                                         setVideoId={setVideoId}
                                     />
-                                    <ShareModal
-                                        show={showModal}
-                                        setShow={setShowModal}
-                                        data={data}
-                                        media={mediaType}
-                                    />
                                 </ContentWrapper>
                             </React.Fragment>
                         )}
@@ -454,7 +431,6 @@ const DetailsBanner = ({ video, crew }) => {
                 )}
             </div>
             <Line />
-            {stream && <Stream EndPoint={mediaType} id={id} title={titleee} />}
         </>
     );
 };

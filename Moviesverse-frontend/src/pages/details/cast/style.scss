@@ -49,52 +49,62 @@
         overflow-y: hidden;
         margin-right: -20px;
         margin-left: -20px;
-        padding: 0 20px;
+        padding: 10px 20px;
 
         @include md {
             margin: 0;
-            padding: 0;
+            padding: 10px 0;
         }
 
         .listItem {
             text-align: center;
             color: var(--text-color);
             cursor: pointer;
+            width: 125px; /* Fixed width for all cards */
+
+            @include md {
+                width: 175px; /* Fixed width for medium screens */
+            }
 
             .profileImg {
                 width: 125px;
-                height: 125px;
-                border-radius: 50%;
-                border: 1px solid var(--text-color);
+                height: 187.5px; /* 2/3 aspect ratio for consistency */
+                border: 8px solid var(--border-color);
                 overflow: hidden;
                 margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--background-color, #f0f0f0); /* Fallback background for empty images */
 
                 @include md {
                     width: 175px;
-                    height: 175px;
-                    margin-bottom: 25px;
+                    height: 262.5px; /* 2/3 aspect ratio for medium screens */
+                    margin-bottom: 20px;
                 }
 
                 img {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
-                    object-position: center top;
+                    object-fit: contain;
+                    object-position: center;
                     display: block;
                 }
             }
 
             .name {
                 font-size: 14px;
-                line-height: 20px;
-                font-weight: 600;
-                width: 100%;
+                line-height: 16px;
+                font-weight: normal;
+                width: 125px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                white-space: nowrap;
 
                 @include md {
-                    font-size: 18px;
-                    line-height: 24px;
+                    font-size: 16px;
+                    line-height: 20px;
+                    width: 175px;
                 }
 
                 &:hover {
@@ -105,14 +115,16 @@
             .character {
                 font-size: 14px;
                 line-height: 20px;
-                opacity: 0.5;
-                width: 100%;
+                opacity: 0.6;
+                width: 125px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                white-space: nowrap;
 
                 @include md {
                     font-size: 16px;
-                    line-height: 24px;
+                    line-height: 20px;
+                    width: 175px;
                 }
             }
         }
@@ -124,38 +136,43 @@
         overflow-y: hidden;
         margin-right: -20px;
         margin-left: -20px;
-        padding: 0 20px;
+        padding: 10px 20px;
 
         @include md {
             margin: 0;
-            padding: 0;
+            padding: 10px 0;
         }
 
         .skItem {
-            .circle {
+            width: 125px; /* Match listItem width */
+
+            @include md {
+                width: 175px;
+            }
+
+            .rectangle {
                 width: 125px;
-                height: 125px;
-                border-radius: 50%;
+                height: 187.5px; /* 2/3 aspect ratio */
                 margin-bottom: 15px;
 
                 @include md {
                     width: 175px;
-                    height: 175px;
-                    margin-bottom: 25px;
+                    height: 262.5px;
+                    margin-bottom: 20px;
                 }
             }
 
             .row {
                 width: 100%;
                 height: 20px;
-                border-radius: 10px;
+                border-radius: 5px;
                 margin-bottom: 10px;
             }
 
             .row2 {
                 width: 75%;
                 height: 20px;
-                border-radius: 10px;
+                border-radius: 20px;
                 margin: 0 auto;
             }
         }

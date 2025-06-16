@@ -1,0 +1,83 @@
+.stream-w-full {
+  width: 100%;
+}
+
+.stream-max-w-screen-2xl {
+  max-width: 1536px;
+}
+
+.stream-md-py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .stream-md-py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.stream-py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.stream-flex {
+  display: flex;
+}
+
+.stream-flex-col {
+  flex-direction: column;
+}
+
+.stream-dynamic-style {
+  /* Add styles based on the dynamic style prop if needed */
+}
+
+.stream-md-text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .stream-md-text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.stream-md-ml-6 {
+  margin-left: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .stream-md-ml-6 {
+    margin-left: 1.5rem;
+  }
+}
+
+.stream-ml-2 {
+  margin-left: 0.5rem;
+}
+
+.stream-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.stream-font-bold {
+  font-weight: 700;
+}
+
+.stream-mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.stream-text-f5eeff {
+  color: #f5eeff;
+}
+
+.stream-opacity-90 {
+  opacity: 0.9;
+}

@@ -9,7 +9,6 @@ import {
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
-import Stream from "../stream/Stream";
 import { PlayIcon } from "../../pages/details/Playbtn";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
@@ -110,7 +109,6 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
                         </div>
                     )}
                 </ContentWrapper>
-                {stream && <Stream EndPoint={mediaType} id={id} title={titlestr} season={season} episode={episode} />}
             </div>
         </>
     );
