@@ -97,7 +97,7 @@ function App() {
                         <Route path="/account" element={<AccountPage />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/:mediaType/:id" element={<Details />} />
-                        {/* <Route path="stream/:mediaType/:id/:season/:episode" element={<StreamPage />} /> */}
+                        {/* <Route path="/stream/:type/:id/:season/:episode" element={<StreamPage />} /> */}
                         <Route path="/person/:id" element={<PersonDetails />} />
                         <Route path="/search/:endpoint/:query" element={<SearchResult />} />
                         <Route path="/explore/:mediaType" element={<Explore />} />

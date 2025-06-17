@@ -69,33 +69,36 @@
                     margin-right: 15px;
                     margin-bottom: 10px;
 
-                    img {
-                        width: 125px;
-                        height: 125px;
-                        margin-left: 10px;
-                        border-radius: 100%;
-                        border: solid 4px #070707;
-
-                        @media only screen and (max-width: 435px) {
-                            width: 80px;
-                            height: 80px;
-                        }
-                    }
-
-                    svg {
-                        font-size: 141px;
-                        color: var(--text-color);
-
-                        @media only screen and (max-width: 435px) {
-                            font-size: 85px;
-                        }
-                    }
-
                     .reviewArea-avatar-wrapper {
                         position: relative;
                         top: 6px;
 
+                        img {
+                            width: 125px !important;
+                            min-width: 125px !important;
+                            height: 125px !important;
+                            margin-left: 10px;
+                            border-radius: 100%;
+                            border: solid 4px #070707;
+
+                            @media only screen and (max-width: 435px) {
+                                width: 80px !important;
+                                min-width: 80px !important;
+                                height: 80px !important;
+                            }
+                        }
+
+                        svg {
+                            font-size: 141px;
+                            color: var(--text-color);
+
+                            @media only screen and (max-width: 435px) {
+                                font-size: 85px;
+                            }
+                        }
+
                     }
+
                 }
 
                 .reviewArea-body {

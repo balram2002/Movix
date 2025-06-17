@@ -58,12 +58,13 @@ const MainStar = () => {
     const [background, setBackground] = useState("");
     const [movie, setMovie] = useState();
     const [showCarousel, setShowCarousel] = useState(false);
+    const [isInitialized, setIsInitialized] = useState(false); // New state for proper initialization
 
     const [slidesOrder, setSlidesOrder] = useState([]);
 
     useEffect(() => {
         if (data?.results) {
-            setSlidesOrder(Array.from({length: data.results.length}, (_, i) => i));
+            setSlidesOrder(Array.from({ length: data.results.length }, (_, i) => i));
         }
     }, [data]);
 
@@ -84,43 +85,55 @@ const MainStar = () => {
     };
 
     useEffect(() => {
+        if (!isInitialized) return; // Don't start auto-rotation until properly initialized
+        
         const timer = setTimeout(() => {
             showSlider('next');
         }, 7000);
         return () => clearTimeout(timer);
-    }, [slidesOrder]);
+    }, [slidesOrder, isInitialized]);
 
     useEffect(() => {
-        if (!loading) {
+        if (!loading && data?.results?.length > 0) {
+            // Show carousel immediately but keep it in initializing state
+            setShowCarousel(true);
+            
+            // Small delay to ensure DOM is ready, then initialize
             const timer = setTimeout(() => {
-                setShowCarousel(true);
-                showSlider('next')
-            }, 1000);
+                setIsInitialized(true);
+            }, 50);
+            
             return () => clearTimeout(timer);
         }
-    }, [loading]);
+    }, [loading, data]);
 
     const handleThumbnailClick = (clickedIndex) => {
         const n = data?.results?.length || 0;
         if (n > 0) {
-            const newSlidesOrder = Array.from({length: n}, (_, i) => (clickedIndex + i) % n);
+            const newSlidesOrder = Array.from({ length: n }, (_, i) => (clickedIndex + i) % n);
             setSlidesOrder(newSlidesOrder);
         }
     };
 
     return (
         <>
-            {showCarousel ? (
+            {showCarousel && data?.results?.length > 0 ? (
                 <div className="container-home-banner">
-                    <div className={`carouselstar ${transitionDirection || ''}`}>
+                    <div className={`carouselstar ${transitionDirection || ''} ${!isInitialized ? 'initializing' : ''}`}>
                         <div className="list">
-                            {slidesOrder.map((slideIndex) => {
+                            {slidesOrder.map((slideIndex, index) => {
                                 const slide = data?.results[slideIndex];
                                 const backdrop_path = slide?.backdrop_path
                                     ? url.backdrop + slide?.backdrop_path
                                     : "";
                                 return (
-                                    <div key={slideIndex} className="item">
+                                    <div 
+                                        key={slideIndex} 
+                                        className="item"
+                                        style={{
+                                            display: !isInitialized && index !== 0 ? 'none' : 'block'
+                                        }}
+                                    >
                                         <img src={backdrop_path} alt="" />
                                         <div className="content">
                                             <div className="nameuserstar2345">Hi, </div>
@@ -129,23 +142,22 @@ const MainStar = () => {
                                             <div className="title">{slide?.title || slide?.name}</div>
                                             <div className="topic">{slide?.release_date}</div>
                                             <div className="des">{slide?.overview}</div>
-                                           <div className="buttons relative z-50">
-    <button
-        className="relative z-50"
-        onClick={() => {
-            navigate(`/${slide?.media_type}/${slide?.id}`);
-        }}
-    >
-        See Details
-    </button>
-    <button
-        className="relative z-50"
-        onClick={() => saveWatchList(slide)}
-    >
-        Add to WatchList
-    </button>
-</div>
-
+                                            <div className="buttons relative z-50">
+                                                <button
+                                                    className="relative z-50"
+                                                    onClick={() => {
+                                                        navigate(`/${slide?.media_type}/${slide?.id}`);
+                                                    }}
+                                                >
+                                                    See Details
+                                                </button>
+                                                <button
+                                                    className="relative z-50"
+                                                    onClick={() => saveWatchList(slide)}
+                                                >
+                                                    Add to WatchList
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 );

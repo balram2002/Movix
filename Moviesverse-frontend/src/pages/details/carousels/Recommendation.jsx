@@ -13,7 +13,7 @@ const Recommendation = ({ mediaType, id, titlee }) => {
     return (
         <div>
             {data && <Carousel
-                title={!data?.results[1] ? `No Recommendations found! for ${titlee}` : title}
+                title={!data?.results ? `No Recommendations found! for ${titlee}` : title}
                 data={data?.results}
                 loading={loading}
                 endpoint={mediaType}

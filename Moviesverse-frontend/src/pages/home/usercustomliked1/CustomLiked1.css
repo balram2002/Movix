@@ -1,7 +1,9 @@
 .CustomSection01 {
     position: relative;
     margin-bottom: 70px;
+    padding-top: 25px;
     background-color: var(--customliked);
+    border-radius: 24px;
 }
 
 .CustomSection01 .contentWrapper {

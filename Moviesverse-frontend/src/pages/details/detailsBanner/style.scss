@@ -58,7 +58,8 @@
         .auth-icons-details {
             position: absolute;
             right: 1px;
-            top: 1px;
+            top: -20px !important;
+            display: flex;
 
             .liked-icon {
                 font-size: 35px;
@@ -148,7 +149,7 @@
                 font-size: 28px;
                 line-height: 40px;
                 color: #f1683a;
-                width: 600px;
+                width: 400px !important;
                 font-weight: 550;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -156,6 +157,7 @@
                 @include md {
                     font-size: 34px;
                     line-height: 44px;
+                    width: 600px !important;
                 }
             }
 
@@ -221,6 +223,29 @@
 
                 @media only screen and (max-width: 535px) {
                     gap: 10px;
+                }
+
+                &.watchbtn{
+                   padding: 5px;
+                   border-radius: 12px;
+
+                   &:hover{
+                      .text {
+                        color: rgb(255, 94, 0);
+                    }
+
+                    .triangle {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                        stroke: rgb(255, 94, 0);
+                        animation: trailorPlay 0.7s ease-in-out;
+                    }
+
+                    .circle {
+                        stroke-dashoffset: 0;
+                        stroke: rgb(255, 94, 0);
+                    }
+                   }
                 }
 
                 svg {

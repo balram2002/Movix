@@ -64,13 +64,13 @@
 }
 
 .thumbnail {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    width: max-content;
-    z-index: 9999999;
-    display: flex;
-    gap: 20px;
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 640px !important;
+    width: max-content !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    gap: 20px !important;
 }
 
 .thumbnail .item {
@@ -345,4 +345,24 @@
     bottom: 0;
     left: 0;
     z-index: 9;
+}
+
+.carouselstar.initializing .list .item:not(:first-child) {
+    display: none !important;
+}
+
+/* Ensure the first slide is properly visible during initialization */
+.carouselstar.initializing .list .item:first-child {
+    display: block !important;
+    z-index: 1;
+}
+
+/* Override any conflicting styles during initialization */
+.carouselstar.initializing .list .item:first-child .content * {
+    animation-play-state: paused;
+}
+
+/* Resume animations after initialization */
+.carouselstar:not(.initializing) .list .item:first-child .content * {
+    animation-play-state: running;
 }

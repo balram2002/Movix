@@ -27,6 +27,7 @@ import Overview from "../../../components/overview/Overview.jsx";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import { RWebShare } from 'react-web-share';
+import StreamHere from "../../../components/stream/StreamHere.jsx";
 
 const DetailsBanner = ({ video, crew }) => {
     const [show, setShow] = useState(false);
@@ -34,6 +35,9 @@ const DetailsBanner = ({ video, crew }) => {
 
     const [oneLiked, setOneLiked] = useState(false);
     const [oneWatch, setOneWatch] = useState(false);
+    const [stream, setStream] = useState(false);
+    const [openstream, setOpenstream] = useState(false);
+
 
     const { mediaType, id } = useParams();
 
@@ -113,7 +117,7 @@ const DetailsBanner = ({ video, crew }) => {
 
     return (
         <>
-          <Helmet>
+            <Helmet>
                 <title>{titleee + ' | MV'}</title>
                 <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
             </Helmet>
@@ -141,14 +145,14 @@ const DetailsBanner = ({ video, crew }) => {
                                         </div>
                                         <div className="shareicon989-details">
                                             <RWebShare
-                    data={{
-                      text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
-                      url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
-                      title: "Movix Share" + data?.name | data?.title,
-                    }}
-                  >
-                     <span><FaShareSquare className="shareicon98icon" /></span>
-                  </RWebShare>
+                                                data={{
+                                                    text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                                                    url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
+                                                    title: "Movix Share" + data?.name | data?.title,
+                                                }}
+                                            >
+                                                <span><FaShareSquare className="shareicon98icon" /></span>
+                                            </RWebShare>
                                         </div>
                                         <div className="left">
                                             {data.poster_path ? (
@@ -198,9 +202,10 @@ const DetailsBanner = ({ video, crew }) => {
                                                     </span>
                                                 </div>
                                                 <div
-                                                    className="playbtn-real"
+                                                    className="playbtn-real watchbtn"
                                                     onClick={() => {
-                                                       
+                                                        setOpenstream(!openstream);
+                                                        setStream(!stream);
                                                     }}
                                                 >
                                                     <PlayIcon />
@@ -431,6 +436,7 @@ const DetailsBanner = ({ video, crew }) => {
                 )}
             </div>
             <Line />
+            {stream && <StreamHere EndPoint={mediaType} id={id} title={titleee} />}
         </>
     );
 };

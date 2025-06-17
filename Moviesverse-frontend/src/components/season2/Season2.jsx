@@ -15,6 +15,7 @@ import useFetch from "../../hooks/useFetch";
 
 import "./style.scss";
 import { useNavigate } from 'react-router-dom';
+import Line from "../line/Line";
 
 const Season2 = ({ id, heading }) => {
     const carouselContainer = useRef();
@@ -117,6 +118,7 @@ const Season2 = ({ id, heading }) => {
                     )}
                 </ContentWrapper>
             </div>
+            <Line />
         </>
     );
 };
