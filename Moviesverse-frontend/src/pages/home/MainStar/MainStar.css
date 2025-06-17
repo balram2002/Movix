@@ -67,7 +67,7 @@
     position: absolute !important;
     bottom: 10px !important;
     right: 640px !important;
-    width: max-content !important;
+    width: 100%;
     z-index: 9999999 !important;
     display: flex !important;
     gap: 20px !important;
