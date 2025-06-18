@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.container-home-banner .list .item {
+.container-home-banner .oldlist .olditem {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -13,7 +13,7 @@
     inset: 0 0 0 0;
 }
 
-.container-home-banner .list .item img {
+.container-home-banner .oldlist .olditem img {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
@@ -46,7 +46,7 @@
     }
 }
 
-.container-home-banner .list .item .content {
+.container-home-banner .oldlist .olditem .oldcontent {
     position: absolute;
     top: 10%;
     width: 1140px;
@@ -66,19 +66,19 @@
 }
 
 @media only screen and (min-width: 1650px) {
-    .container-home-banner .list .item .content {
+    .container-home-banner .oldlist .olditem .oldcontent {
         font-size: 18px;
     }
 }
 
 
-.list .item .content .author {
+.oldlist .olditem .oldcontent .oldauthor {
     font-weight: bold !important;
     letter-spacing: 5px !important;
     font-size: 1em !important;
 }
 
-.list .item .content .nameuserstar23 {
+.oldlist .olditem .oldcontent .oldnameuserstar23 {
     font-weight: bold !important;
     color: aqua !important;
     letter-spacing: 5px !important;
@@ -86,7 +86,7 @@
     margin-bottom: 17px !important;
 }
 
-.list .item .content .nameuserstar2345 {
+.oldlist .olditem .oldcontent .oldnameuserstar2345 {
     font-weight: bold !important;
     color: rgb(116, 220, 220) !important;
     letter-spacing: 5px !important;
@@ -94,7 +94,7 @@
 }
 
 
-.list .item .content .title {
+.oldlist .olditem .oldcontent .oldtitle {
     font-size: 4.2em !important;
     font-weight: bold !important;
     line-height: 1.3em !important;
@@ -102,18 +102,18 @@
     margin-bottom: 0 !important;
 }
 
-.list .item .content .topic {
+.oldlist .olditem .oldcontent .oldtopic {
     font-size: 1.4em !important;
     font-weight: bold !important;
     line-height: 2.3em !important;
     margin-top: 0 !important;
 }
 
-.list .item .content .topic {
+.oldlist .olditem .oldcontent .oldtopic {
     color: white !important;
 }
 
-.list .item .content .des {
+.oldlist .olditem .oldcontent .olddes {
     color: white !important;
     line-height: 1.5em !important;
     margin-top: 4px !important;
@@ -121,7 +121,7 @@
     overflow-y: scroll !important;
 }
 
-.container-home-banner .list .item .buttons {
+.container-home-banner .oldlist .olditem .oldbuttons {
     display: grid;
     grid-template-columns: repeat(2, 130px);
     grid-template-rows: 40px;
@@ -129,7 +129,7 @@
     margin-top: 20px;
 }
 
-.container-home-banner .list .item .buttons button {
+.container-home-banner .oldlist .olditem .oldbuttons button {
 
     background: #FF4742;
     border: 1px solid #FF4742;
@@ -157,26 +157,26 @@
 
 }
 
-.container-home-banner .list .item .buttons button:hover {
+.container-home-banner .oldlist .olditem .oldbuttons button:hover {
 
     background-color: initial;
     background-position: 0 0;
     color: #FF4742;
 }
 
-.container-home-banner .list .item .buttons button:nth-child(2) {
+.container-home-banner .oldlist .olditem .oldbuttons button:nth-child(2) {
     background-color: transparent;
     padding: 0;
     backdrop-filter: blur(30px);
 }
 
-.container-home-banner .list .item .buttons button:nth-child(2):hover {
+.container-home-banner .oldlist .olditem .oldbuttons button:nth-child(2):hover {
     background: #f1683a;
     color: white;
 }
 
 /* thumbail */
-.thumbnail {
+.oldthumbnail {
     position: absolute;
     bottom: 8px;
     left: 48%;
@@ -189,7 +189,7 @@
 }
 
 @media only screen and (min-width: 1282px) {
-    .thumbnail {
+    .oldthumbnail {
         width: 1040px;
         left: 50%;
         transform: translate(-50%);
@@ -227,13 +227,13 @@
     right: 5px;
 }
 
-.thumbnail .thumbnailitemsstar {
+.oldthumbnail .thumbnailitemsstar {
     display: flex;
     gap: 10px;
     overflow-y: hidden;
 }
 
-.thumbnail .item {
+.oldthumbnail .olditem {
     width: 150px;
     height: 220px;
     flex-shrink: 0;
@@ -242,13 +242,13 @@
     color: white;
 }
 
-.thumbnail .item:hover {
+.oldthumbnail .olditem:hover {
     border: 2px solid var(--text-color);
     transition: .7s;
 
 }
 
-.opacity-layer {
+.oldopacity-layer {
     width: 100%;
     height: 127px;
     background: var(--opacity-layer);
@@ -257,7 +257,7 @@
     left: 0;
 }
 
-.thumbnail .item img {
+.oldthumbnail .olditem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -267,7 +267,7 @@
     filter: var(--bg-img2);
 }
 
-.thumbnail .item img:hover {
+.oldthumbnail .olditem img:hover {
     scale: 1.1;
     border-radius: 20px;
 
@@ -276,7 +276,7 @@
 
 
 
-.thumbnail .item .content {
+.oldthumbnail .olditem .oldcontent {
     color: white;
     position: absolute;
     bottom: 10px;
@@ -284,16 +284,16 @@
     right: 10px;
 }
 
-.thumbnail .item .content .title {
+.oldthumbnail .olditem .oldcontent .oldtitle {
     font-weight: 500;
 }
 
-.thumbnail .item .content .description {
+.oldthumbnail .olditem .oldcontent .olddes {
     font-weight: 300;
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .list .item .des {
+    .container-home-banner .oldlist .olditem .olddes {
         line-height: 1.1em;
         padding: 5px;
         max-height: 120px;
@@ -303,42 +303,42 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .thumbnail {
+    .oldthumbnail {
         left: 2%;
         width: 590px;
     }
 }
 
 @media only screen and (max-width: 540px) {
-    .thumbnail {
+    .oldthumbnail {
         left: 2%;
         width: 530px;
     }
 }
 
 @media only screen and (max-width: 440px) {
-    .thumbnail {
+    .oldthumbnail {
         left: 2%;
         width: 390px;
     }
 }
 
 @media only screen and (max-width: 435px) {
-    .thumbnail {
+    .oldthumbnail {
         left: 2%;
         width: 420px;
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    .container-home-banner .list .item {
+    .container-home-banner .oldlist .olditem {
         height: 100%;
         width: 100%;
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    .container-home-banner .list .item img {
+    .container-home-banner .oldlist .olditem img {
         height: 100vh;
         width: 100vw;
     }
@@ -347,7 +347,7 @@
 
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .list .item .content {
+    .container-home-banner .oldlist .olditem .oldcontent {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -362,14 +362,14 @@
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .list .item .title {
+    .container-home-banner .oldlist .olditem .oldtitle {
         font-size: 10vw;
         width: 400px;
     }
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .list .item .title {
+    .container-home-banner .oldlist .olditem .oldtitle {
         font-size: 9vw;
         width: 500px;
     }
