@@ -201,6 +201,16 @@ function Home() {
     ...selectedWatchTv.map(m => ({ item: m, title: `Because You Added TV Show ${m.title} to Watch Later` }))
   ].slice(0, 8); // Ensure only up to 8 unique items
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth <= 768);
+
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -208,7 +218,7 @@ function Home() {
         <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
       </Helmet>
 
-      <MainStar />
+      {isMobile ? <Star /> : <MainStar />}
       <HeroBanner />
       <div className='homebanner' id='bgbirds'>
         <div className="corousal">

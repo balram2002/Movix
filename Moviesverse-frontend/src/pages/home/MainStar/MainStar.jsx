@@ -21,46 +21,26 @@ const showContent = keyframes`
 `;
 
 const showImage = keyframes`
-  from {
-    width: 150px;
-    height: 220px;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 30px;
-  }
-  to {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateX(0);
-    border-radius: 0;
-  }
+ to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 `;
 
 const showThumbnail = keyframes`
-  from {
-    width: 0;
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    width: 150px;
-    opacity: 1;
-    transform: scale(1);
-  }
+  from{
+        width: 0;
+        opacity: 0;
+    }
 `;
 
 const effectNext = keyframes`
-  from {
-    transform: translateX(150px);
-    opacity: 0.7;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+   from{
+        transform: translateX(150px);
+    }
 `;
 
 const runningTime = keyframes`
@@ -75,24 +55,13 @@ const runningTime = keyframes`
 `;
 
 const showImagePrev = keyframes`
-  from {
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    transform: translateX(0) scale(1);
-    border-radius: 0;
-    opacity: 1;
-  }
-  to {
-    width: 150px;
-    height: 220px;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.95);
-    border-radius: 20px;
-    opacity: 0.8;
-  }
+ to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+    }
 `;
 
 const contentOut = keyframes`
@@ -289,6 +258,7 @@ const CarouselStar = styled.div`
     font-family: monospace;
     font-weight: bold;
     transition: .5s;
+    cursor: pointer;
   }
 
   .list .item:nth-child(1) .content {
@@ -335,17 +305,22 @@ const CarouselStar = styled.div`
   }
 
 &.next .list .item:nth-child(1) img {
+      width: 150px;
+    height: 220px;
     position: absolute;
-    animation: ${showImage} 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: ${showImage} .5s linear 1 forwards;
   }
 
    &.next .thumbnail .item:nth-last-child(1) {
-    overflow: hidden;
-    animation: ${showThumbnail} 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+       overflow: hidden;
+    animation: ${showThumbnail} .5s linear 1 forwards;
   }
 
  &.next .thumbnail {
-    animation: ${effectNext} 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+    animation: ${effectNext} .5s linear 1 forwards;
   }
 
   .time {
@@ -367,14 +342,16 @@ const CarouselStar = styled.div`
 }
 
 &.prev .list .item:nth-child(2) img {
-  animation: ${showImagePrev} 0.6s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards;
-  position: absolute;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+     animation: ${showImagePrev} 0.5s linear 1 forwards;
 }
 
 &.prev .thumbnail .item:nth-child(1) {
-  overflow: hidden;
-  opacity: 0;
-  animation: ${showThumbnail} 0.8s cubic-bezier(0.23, 1, 0.32, 1) 1 forwards;
+   overflow: hidden;
+    opacity: 0;
+    animation: ${showThumbnail} .5s linear 1 forwards;
 }
 
   &.next .arrows button,
@@ -476,7 +453,7 @@ const MainStar = () => {
   });
   setTimeout(() => {
     setTransitionDirection(null);
-  }, type === 'prev' ? 800 : 600);
+  }, 500);
 };
 
   useEffect(() => {
