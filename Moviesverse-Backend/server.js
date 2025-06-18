@@ -1,21 +1,26 @@
 import mongoose from "mongoose";
 import cors from "cors";
-import path from "path";
 import userRoutes from "./routes/UserRoutes.js"
 import express from "express";
 import dotenv from "dotenv";
 
-const __dirname = path.resolve();
-
+dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:5000", "http://localhost:5173"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
+
 app.use(express.json({ limit: "15mb" }));
 
+const dbHOST = process.env.MONGO_DB_URL;
+
 mongoose
-    .connect("mongodb+srv://bdhakad886:NdLZIRLtVpzGUHw9@cluster0.odfmqd4.mongodb.net/movix?retryWrites=true&w=majority&appName=Cluster0", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+    .connect(dbHOST, {
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
     })
     .then(() => {
         console.log("DB Connetion Successfull .....");
@@ -24,16 +29,11 @@ mongoose
         console.log(err.message);
     });
 
-dotenv.config();
-
+app.get('/', (req, res) => {
+    res.send('products api running new deploy');
+});
 
 app.use("/api/user", userRoutes);
-
-app.use(express.static(path.join(__dirname, "/Moviesverse-frontend/dist")));
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "Moviesverse-frontend", "dist", "index.html"));
-});
 
 app.listen(5000, () => {
     console.log("server started on port 5000 .....");
