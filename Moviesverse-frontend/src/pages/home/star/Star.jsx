@@ -105,20 +105,20 @@ function Star() {
         <>
             {!loading ? (
                 <div class="container-home-banner">
-                    <div class="oldlist">
-                        <div class="olditem">
+                    <div class="list">
+                        <div class="item">
                             <Img src={background} />
-                            <div className="oldopacity-layer"></div>
+                            <div className="opacity-layer"></div>
 
-                            <div class="oldcontent">
-                                <div className="oldnameuserstar2345">Hi, </div>
-                                <div className="oldnameuserstar23">{details?.name || "Guest"}</div>
-                                <div class="oldauthor">{movie?.media_type?.toUpperCase()}</div>
-                                <div class="oldtitle">{movie?.title || movie?.name}</div>
-                                <div class="oldtopic">{movie?.release_date}</div>
-                                <div class="olddes">{movie?.overview}
+                            <div class="content">
+                                <div className="nameuserstar2345">Hi, </div>
+                                <div className="nameuserstar23">{details?.name || "Guest"}</div>
+                                <div class="author">{movie?.media_type?.toUpperCase()}</div>
+                                <div class="title">{movie?.title || movie?.name}</div>
+                                <div class="topic">{movie?.release_date}</div>
+                                <div class="des">{movie?.overview}
                                 </div>
-                                <div class="oldbuttons">
+                                <div class="buttons">
                                     <button onClick={() => {
                                         navigate(`/${movie?.media_type}/${movie?.id}`)
                                     }}>See Details</button>
@@ -127,7 +127,7 @@ function Star() {
                             </div>
                         </div>
                     </div>
-                    <div class="oldthumbnail">
+                    <div class="thumbnail">
                         <BsFillArrowLeftCircleFill
                             className="carouselLeftNav45623star arrow456453star"
                             onClick={() => navigation("left")}
@@ -165,7 +165,7 @@ function Star() {
                         </div>
                     </div>
                 </div>
-            ) : (<div className="oldloaderstar34">
+            ) : (<div className="loaderstar34">
                 <HashLoader
                     color="#421202"
                     size={100}

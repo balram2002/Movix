@@ -174,30 +174,30 @@ const CarouselStar = styled.div`
 
 .list .item .buttons button {
 
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-
-
+   background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;     
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;  
+  font-family: Nunito, Roboto, "Proxima Nova", sans-serif;
+  font-size: 1rem;           
+  line-height: 1.2;
+  font-weight: 800;
+  white-space: normal;
+  overflow-wrap: break-word;
+  min-height: 40px;
+  padding: 12px 16px;      
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  text-align: center;
+  text-transform: none;
+  outline: 0;
 }
 
 .list .item .buttons button:hover {

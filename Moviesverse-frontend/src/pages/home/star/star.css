@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.container-home-banner .oldlist .olditem {
+.container-home-banner .list .item {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -13,7 +13,7 @@
     inset: 0 0 0 0;
 }
 
-.container-home-banner .oldlist .olditem img {
+.container-home-banner .list .item img {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
@@ -46,7 +46,7 @@
     }
 }
 
-.container-home-banner .oldlist .olditem .oldcontent {
+.container-home-banner .list .item .content {
     position: absolute;
     top: 10%;
     width: 1140px;
@@ -66,19 +66,19 @@
 }
 
 @media only screen and (min-width: 1650px) {
-    .container-home-banner .oldlist .olditem .oldcontent {
+    .container-home-banner .list .item .content {
         font-size: 18px;
     }
 }
 
 
-.oldlist .olditem .oldcontent .oldauthor {
+.list .item .content .author {
     font-weight: bold !important;
     letter-spacing: 5px !important;
     font-size: 1em !important;
 }
 
-.oldlist .olditem .oldcontent .oldnameuserstar23 {
+.list .item .content .nameuserstar23 {
     font-weight: bold !important;
     color: aqua !important;
     letter-spacing: 5px !important;
@@ -86,7 +86,7 @@
     margin-bottom: 17px !important;
 }
 
-.oldlist .olditem .oldcontent .oldnameuserstar2345 {
+.list .item .content .nameuserstar2345 {
     font-weight: bold !important;
     color: rgb(116, 220, 220) !important;
     letter-spacing: 5px !important;
@@ -94,7 +94,7 @@
 }
 
 
-.oldlist .olditem .oldcontent .oldtitle {
+.list .item .content .title {
     font-size: 4.2em !important;
     font-weight: bold !important;
     line-height: 1.3em !important;
@@ -102,18 +102,18 @@
     margin-bottom: 0 !important;
 }
 
-.oldlist .olditem .oldcontent .oldtopic {
+.list .item .content .topic {
     font-size: 1.4em !important;
     font-weight: bold !important;
     line-height: 2.3em !important;
     margin-top: 0 !important;
 }
 
-.oldlist .olditem .oldcontent .oldtopic {
+.list .item .content .topic {
     color: white !important;
 }
 
-.oldlist .olditem .oldcontent .olddes {
+.list .item .content .des {
     color: white !important;
     line-height: 1.5em !important;
     margin-top: 4px !important;
@@ -121,7 +121,7 @@
     overflow-y: scroll !important;
 }
 
-.container-home-banner .oldlist .olditem .oldbuttons {
+.container-home-banner .list .item .buttons {
     display: grid;
     grid-template-columns: repeat(2, 130px);
     grid-template-rows: 40px;
@@ -129,54 +129,54 @@
     margin-top: 20px;
 }
 
-.container-home-banner .oldlist .olditem .oldbuttons button {
+.container-home-banner .list .item .buttons button {
 
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-
-
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;     
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;  
+  font-family: Nunito, Roboto, "Proxima Nova", sans-serif;
+  font-size: 1rem;           
+  line-height: 1.2;
+  font-weight: 800;
+  white-space: normal;
+  overflow-wrap: break-word;
+  min-height: 40px;
+  padding: 12px 16px;      
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  text-align: center;
+  text-transform: none;
+  outline: 0;
 }
 
-.container-home-banner .oldlist .olditem .oldbuttons button:hover {
+.container-home-banner .list .item .buttons button:hover {
 
     background-color: initial;
     background-position: 0 0;
     color: #FF4742;
 }
 
-.container-home-banner .oldlist .olditem .oldbuttons button:nth-child(2) {
+.container-home-banner .list .item .buttons button:nth-child(2) {
     background-color: transparent;
     padding: 0;
     backdrop-filter: blur(30px);
 }
 
-.container-home-banner .oldlist .olditem .oldbuttons button:nth-child(2):hover {
+.container-home-banner .list .item .buttons button:nth-child(2):hover {
     background: #f1683a;
     color: white;
 }
 
 /* thumbail */
-.oldthumbnail {
+.thumbnail {
     position: absolute;
     bottom: 8px;
     left: 48%;
@@ -188,13 +188,13 @@
     overflow-y: scroll;
 }
 
-@media only screen and (min-width: 1282px) {
-    .oldthumbnail {
+/* @media only screen and (min-width: 1282px) {
+    .thumbnail {
         width: 1040px;
         left: 50%;
         transform: translate(-50%);
     }
-}
+} */
 
 .arrow456453star {
     font-size: 30px;
@@ -227,13 +227,13 @@
     right: 5px;
 }
 
-.oldthumbnail .thumbnailitemsstar {
+.thumbnail .thumbnailitemsstar {
     display: flex;
     gap: 10px;
     overflow-y: hidden;
 }
 
-.oldthumbnail .olditem {
+.thumbnail .item {
     width: 150px;
     height: 220px;
     flex-shrink: 0;
@@ -242,13 +242,13 @@
     color: white;
 }
 
-.oldthumbnail .olditem:hover {
+.thumbnail .item:hover {
     border: 2px solid var(--text-color);
     transition: .7s;
 
 }
 
-.oldopacity-layer {
+.opacity-layer {
     width: 100%;
     height: 127px;
     background: var(--opacity-layer);
@@ -257,7 +257,7 @@
     left: 0;
 }
 
-.oldthumbnail .olditem img {
+.thumbnail .item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -267,7 +267,7 @@
     filter: var(--bg-img2);
 }
 
-.oldthumbnail .olditem img:hover {
+.thumbnail .item img:hover {
     scale: 1.1;
     border-radius: 20px;
 
@@ -276,7 +276,7 @@
 
 
 
-.oldthumbnail .olditem .oldcontent {
+.thumbnail .item .content {
     color: white;
     position: absolute;
     bottom: 10px;
@@ -284,16 +284,16 @@
     right: 10px;
 }
 
-.oldthumbnail .olditem .oldcontent .oldtitle {
+.thumbnail .item .content .title {
     font-weight: 500;
 }
 
-.oldthumbnail .olditem .oldcontent .olddes {
+.thumbnail .item .content .description {
     font-weight: 300;
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .oldlist .olditem .olddes {
+    .container-home-banner .list .item .des {
         line-height: 1.1em;
         padding: 5px;
         max-height: 120px;
@@ -303,42 +303,42 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .oldthumbnail {
+    .thumbnail {
         left: 2%;
         width: 590px;
     }
 }
 
 @media only screen and (max-width: 540px) {
-    .oldthumbnail {
+    .thumbnail {
         left: 2%;
         width: 530px;
     }
 }
 
 @media only screen and (max-width: 440px) {
-    .oldthumbnail {
+    .thumbnail {
         left: 2%;
         width: 390px;
     }
 }
 
 @media only screen and (max-width: 435px) {
-    .oldthumbnail {
+    .thumbnail {
         left: 2%;
         width: 420px;
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    .container-home-banner .oldlist .olditem {
+    .container-home-banner .list .item {
         height: 100%;
         width: 100%;
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    .container-home-banner .oldlist .olditem img {
+    .container-home-banner .list .item img {
         height: 100vh;
         width: 100vw;
     }
@@ -347,7 +347,7 @@
 
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .oldlist .olditem .oldcontent {
+    .container-home-banner .list .item .content {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -362,14 +362,14 @@
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .oldlist .olditem .oldtitle {
+    .container-home-banner .list .item .title {
         font-size: 10vw;
         width: 400px;
     }
 }
 
 @media only screen and (max-width: 720px) {
-    .container-home-banner .oldlist .olditem .oldtitle {
+    .container-home-banner .list .item .title {
         font-size: 9vw;
         width: 500px;
     }
