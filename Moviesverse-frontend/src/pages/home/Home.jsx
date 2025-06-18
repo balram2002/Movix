@@ -33,7 +33,7 @@ const RecommendationSection = ({ item, title }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = (url, setData, setLoading) => {
+  const fetchData = (url, setData) => {
     const options = {
       method: 'GET',
       headers: {
@@ -56,7 +56,7 @@ const RecommendationSection = ({ item, title }) => {
 
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/${item.media_type}/${item.id}/recommendations?language=en-US&page=1`;
-    fetchData(url, setData, setLoading);
+    fetchData(url, setData);
   }, [item]);
 
   return (

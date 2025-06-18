@@ -23,6 +23,7 @@
     "dayjs": "^1.11.7",
     "firebase": "^10.6.0",
     "framer-motion": "^10.18.0",
+    "lucide-react": "^0.517.0",
     "moviesverse---balram-dhakad": "file:..",
     "postcss": "^8.5.5",
     "react": "^18.2.0",
