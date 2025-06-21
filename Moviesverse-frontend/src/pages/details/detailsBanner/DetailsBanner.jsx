@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaRegHeart } from "react-icons/fa6";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
@@ -38,7 +38,7 @@ const DetailsBanner = ({ video, crew }) => {
     const [stream, setStream] = useState(false);
     const [openstream, setOpenstream] = useState(false);
 
-
+    const navigate = useNavigate();
     const { mediaType, id } = useParams();
 
     const { user } = UserAuth();
@@ -114,6 +114,19 @@ const DetailsBanner = ({ video, crew }) => {
     }, []);
 
     const titleee = data?.name || data?.title;
+
+    const handleStreamClick = () => {
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+            setOpenstream(!openstream);
+            setStream(!stream);
+            console.log("Mobile device detected");
+        } else {
+            navigate(`/stream/${data?.endpoint || mediaType}/${id}${mediaType === 'tv' ? '/1/1' : '/0/0'}`)
+            console.log("Desktop device detected");
+        }
+    };
 
     return (
         <>
@@ -204,8 +217,7 @@ const DetailsBanner = ({ video, crew }) => {
                                                 <div
                                                     className="playbtn-real watchbtn"
                                                     onClick={() => {
-                                                        setOpenstream(!openstream);
-                                                        setStream(!stream);
+                                                        handleStreamClick()
                                                     }}
                                                 >
                                                     <PlayIcon />

@@ -12,4 +12,9 @@
     &.hide {
         opacity: 1;
     }
+
+    &.streamhidem{
+        opacity: 0;
+        display: none;
+    }
 }

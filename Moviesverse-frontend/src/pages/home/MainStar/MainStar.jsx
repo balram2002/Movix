@@ -100,12 +100,12 @@ const CarouselStar = styled.div`
     object-fit: cover;
   }
 
-  .list .item .content {
+  .list .item .list-content-main {
     position: absolute;
     top: 15%;
     width: 1140px;
     max-width: 80%;
-    left: 40%;
+    left: 41% !important;
     transform: translateX(-50%);
     padding-right: 30%;
     box-sizing: border-box;
@@ -113,27 +113,39 @@ const CarouselStar = styled.div`
     text-shadow: 0 5px 10px #0004;
   }
 
-  .list .item .author {
-    font-weight: bold;
-    letter-spacing: 10px;
+  .list .item .list-content-main .author {
+    font-weight: bold !important;
+    letter-spacing: 10px !important;
   }
 
-  .list .item .title,
+  .list .item .list-content-main .title{
+      color: #f1683a !important;
+  }
+
+  .list .item .list-content-main .title,
   .list .item .topic {
-    font-size: 5em;
-    font-weight: bold;
-    line-height: 1.3em;
+    font-size: 4em !important;
+    font-weight: bold !important;
+    line-height: 1.3em !important;
   }
 
-  .list .item .topic {
-    color: #f1683a;
+  .list .item .list-content-main .topic {
+    color: oklch(83.7% 0.128 66.29) !important;
+        font-size: 2em !important;
   }
 
-   .list .item .des {
-    max-width: 590px;
+  .list .item .list-content-main .nameuserstar23, 
+  .list .item .list-content-main .nameuserstar2345{
+    margin-bottom: 5px !important;
   }
 
-  .list .item .buttons {
+   .list .item .list-content-main .des {
+    max-width: 590px !important;
+        font-size: 0.8em !important;
+        color: oklch(86.9% 0.005 56.366) !important;
+  }
+
+  .list .item .list-content-main .buttons {
     display: grid;
     grid-template-columns: repeat(2, 130px);
     grid-template-rows: 40px;
@@ -141,7 +153,7 @@ const CarouselStar = styled.div`
     margin-top: 20px;
   }
 
-.list .item .buttons button {
+.list .item .list-content-main .buttons button {
 
    background: #FF4742;
   border: 1px solid #FF4742;
@@ -154,7 +166,7 @@ const CarouselStar = styled.div`
   justify-content: center;
   max-width: 100%;  
   font-family: Nunito, Roboto, "Proxima Nova", sans-serif;
-  font-size: 1rem;           
+  font-size: 1rem !important;           
   line-height: 1.2;
   font-weight: 800;
   white-space: normal;
@@ -169,20 +181,20 @@ const CarouselStar = styled.div`
   outline: 0;
 }
 
-.list .item .buttons button:hover {
+.list .item .list-content-main .buttons button:hover {
 
     background-color: initial;
     background-position: 0 0;
     color: #FF4742;
 }
 
-.list .item .buttons button:nth-child(2) {
+.list .item .list-content-main .buttons button:nth-child(2) {
     background-color: transparent;
     padding: 0;
     backdrop-filter: blur(30px);
 }
 
-.list .item .buttons button:nth-child(2):hover {
+.list .item .list-content-main .buttons button:nth-child(2):hover {
     background: #f1683a;
     color: white;
 }
@@ -212,7 +224,7 @@ const CarouselStar = styled.div`
     border-radius: 20px;
   }
 
- .list .item .content {
+ .list .item .list-content-main {
   position: absolute;
   top: 15%;
   width: 1140px;
@@ -228,11 +240,11 @@ const CarouselStar = styled.div`
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-  .thumbnail .item .content .title {
+  .thumbnail .item .thumbnail-content .title {
     font-weight: 500;
   }
 
-  .thumbnail .item .content .description {
+  .thumbnail .item .thumbnail-content .description {
     font-weight: 300;
   }
 
@@ -261,7 +273,7 @@ const CarouselStar = styled.div`
     cursor: pointer;
   }
 
-  .list .item:nth-child(1) .content {
+  .list .item:nth-child(1) .list-content-main {
   opacity: 1;
   visibility: visible;
 }
@@ -275,32 +287,32 @@ const CarouselStar = styled.div`
     z-index: 1;
   }
 
-  .list .item:nth-child(1) .content .author,
-  .list .item:nth-child(1) .content .title,
-  .list .item:nth-child(1) .content .topic,
-  .list .item:nth-child(1) .content .des,
-    .list .item:nth-child(1) .content .nameuserstar2345,
-  .list .item:nth-child(1) .content .nameuserstar23,
-  .list .item:nth-child(1) .content .buttons {
+  .list .item:nth-child(1) .list-content-main .author,
+  .list .item:nth-child(1) .list-content-main .title,
+  .list .item:nth-child(1) .list-content-main .topic,
+  .list .item:nth-child(1) .list-content-main .des,
+    .list .item:nth-child(1) .list-content-main .nameuserstar2345,
+  .list .item:nth-child(1) .list-content-main .nameuserstar23,
+  .list .item:nth-child(1) .list-content-main .buttons {
     transform: translateY(50px);
   filter: blur(20px);
   opacity: 0;
   animation: ${showContent} .5s 1s ease-out 1 forwards;
   }
 
-  .list .item:nth-child(1) .content .title {
+  .list .item:nth-child(1) .list-content-main .title {
     animation-delay: 1.2s !important;
   }
 
-  .list .item:nth-child(1) .content .topic {
+  .list .item:nth-child(1) .list-content-main .topic {
     animation-delay: 1.4s !important;
   }
 
-  .list .item:nth-child(1) .content .des {
+  .list .item:nth-child(1) .list-content-main .des {
     animation-delay: 1.6s !important;
   }
 
-  .list .item:nth-child(1) .content .buttons {
+  .list .item:nth-child(1) .list-content-main .buttons {
     animation-delay: 1.8s !important;
   }
 
@@ -359,13 +371,13 @@ const CarouselStar = styled.div`
     pointer-events: none;
   }
 
-  &.prev .list .item:nth-child(2) .content .author,
-   &.prev .list .item:nth-child(2) .content .nameuserstar2345,
-  &.prev .list .item:nth-child(2) .content .nameuserstar23,
-  &.prev .list .item:nth-child(2) .content .title,
-  &.prev .list .item:nth-child(2) .content .topic,
-  &.prev .list .item:nth-child(2) .content .des,
-  &.prev .list .item:nth-child(2) .content .buttons {
+  &.prev .list .item:nth-child(2) .list-content-main .author,
+   &.prev .list .item:nth-child(2) .list-content-main .nameuserstar2345,
+  &.prev .list .item:nth-child(2) .list-content-main .nameuserstar23,
+  &.prev .list .item:nth-child(2) .list-content-main .title,
+  &.prev .list .item:nth-child(2) .list-content-main .topic,
+  &.prev .list .item:nth-child(2) .list-content-main .des,
+  &.prev .list .item:nth-child(2) .list-content-main .buttons {
     animation: ${contentOut} 0.5s ease-out 1 forwards !important;
   }
 
@@ -374,10 +386,10 @@ const CarouselStar = styled.div`
   }
 
   @media screen and (max-width: 678px) {
-    .list .item .content {
+    .list .item .list-content-main {
       padding-right: 0;
     }
-    .list .item .content .title {
+    .list .item .list-content-main .title {
       font-size: 30px;
     }
   }
@@ -502,7 +514,7 @@ const MainStar = () => {
                     }}
                   >
                     <img src={backdrop_path} alt="" />
-                    <div className="content">
+                    <div className="list-content-main">
                       <div className="nameuserstar2345">Hi, </div>
                       <div className="nameuserstar23">{details?.name || "Guest"}</div>
                       <div className="author">{slide?.media_type?.toUpperCase()}</div>
@@ -539,7 +551,7 @@ const MainStar = () => {
                 return (
                   <div key={slideIndex} className="item" onClick={() => handleThumbnailClick(slideIndex)}>
                     <img src={posterUrl} alt="" />
-                    <div className="content">
+                    <div className="thumbnail-content">
                       <div className="title">{slide?.title || slide?.name}</div>
                       <div className="description">{slide?.release_date}</div>
                     </div>

@@ -27,8 +27,16 @@ import PersonDetails from "./pages/person/PersonDetails";
 import About from "./pages/about/About";
 import ResestPassword from "./components/resetpassword/ResestPassword";
 import StreamPage from "./pages/Stream/StreamMovie";
+import { ValuesContext } from "./context/ValuesContext";
 
 function App() {
+
+    const [season, setSeason] = useState(1);
+    const [episode, setEpisode] = useState(1);
+    const [server, setServer] = useState(1);
+    const [endpoint, setEndpoint] = useState('xyz');
+
+
     const dispatch = useDispatch();
     const { url } = useSelector((state) => state.home);
 
@@ -76,38 +84,40 @@ function App() {
     return (
         <ThemeProvider>
             <AuthContextProvider>
-                <BrowserRouter>
-                    <Header />
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={true}
-                        closeOnClick
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        draggablePercent={60}
-                        theme={themelist[(Math.floor(Math.random() * themelist.length))]}
-                    />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/movie" element={<Movies />} />
-                        <Route path="/tv" element={<Tv />} />
-                        <Route path="/account" element={<AccountPage />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/:mediaType/:id" element={<Details />} />
-                        <Route path="/stream/:type/:id/:season/:episode" element={<StreamPage />} />
-                        <Route path="/person/:id" element={<PersonDetails />} />
-                        <Route path="/search/:endpoint/:query" element={<SearchResult />} />
-                        <Route path="/explore/:mediaType" element={<Explore />} />
-                        <Route path="/Login" element={<Authentication />} />
-                        <Route path="/forgot-password" element={<ResestPassword />} />
-                        <Route path="*" element={<PageNotFound />} />
-                    </Routes>
-                    <ShowNavbar />
-                    <Footer />
-                </BrowserRouter>
+                <ValuesContext.Provider value={{ setEndpoint, endpoint, setServer, server, setEpisode, episode, setSeason, season }}>
+                    <BrowserRouter>
+                        <Header />
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={true}
+                            closeOnClick
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            draggablePercent={60}
+                            theme={themelist[(Math.floor(Math.random() * themelist.length))]}
+                        />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/movie" element={<Movies />} />
+                            <Route path="/tv" element={<Tv />} />
+                            <Route path="/account" element={<AccountPage />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/:mediaType/:id" element={<Details />} />
+                            <Route path="/stream/:mediaType/:id/:season/:episode" element={<StreamPage />} />
+                            <Route path="/person/:id" element={<PersonDetails />} />
+                            <Route path="/search/:endpoint/:query" element={<SearchResult />} />
+                            <Route path="/explore/:mediaType" element={<Explore />} />
+                            <Route path="/Login" element={<Authentication />} />
+                            <Route path="/forgot-password" element={<ResestPassword />} />
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                        <ShowNavbar />
+                        <Footer />
+                    </BrowserRouter>
+                </ValuesContext.Provider>
             </AuthContextProvider>
         </ThemeProvider>
     );

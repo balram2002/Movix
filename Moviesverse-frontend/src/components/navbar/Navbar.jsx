@@ -14,13 +14,12 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
     const location = useLocation();
-
-
     const navigate = useNavigate();
     const [show, setShow] = useState("top");
     const [lastScrollY, setLastScrollY] = useState(0);
     const [shows, setShows] = useState(false);
 
+    const isStreamingPage = location.pathname.match(/^\/stream\/[^\/]+\/[^\/]+\/[^\/]+\/[^\/]+$/);
 
     const controlNavbar = () => {
         setShows(true);
@@ -50,7 +49,7 @@ const Navbar = () => {
     return (
         <ContentWrapper>
             <center>
-                <div className={`navbar ${shows ? "mobileView" : ""} ${show}`}>
+                <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage && 'streamhidem'}`}>
                     <ul>
                         <NavLink className="list" to='/movie' onClick={() => toast.info("Movies Page")}>
                             <a href="">

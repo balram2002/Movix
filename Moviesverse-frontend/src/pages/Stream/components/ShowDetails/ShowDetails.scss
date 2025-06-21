@@ -1,0 +1,296 @@
+  @import "../../../../mixins.scss";
+
+   .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        gap: 25px;
+
+        @include md {
+            gap: 50px;
+            flex-direction: row;
+        }
+
+        .auth-icons-details {
+            position: absolute;
+            right: 1px;
+            top: -20px !important;
+            display: flex;
+
+            .liked-icon {
+                font-size: 35px;
+                color: var(--text-color);
+                margin-right: 7px;
+                cursor: pointer;
+
+
+                &:hover {
+                    color: var(--pink);
+                    font-size: 33px;
+                }
+            }
+
+            .watch-icon {
+                font-size: 35px;
+                color: var(--text-color);
+                cursor: pointer;
+
+
+                &:hover {
+                    color: var(--pink);
+                    font-size: 33px;
+
+                }
+            }
+
+            @media only screen and (max-width: 940px) {
+                top: -45px;
+                left: 67px;
+            }
+
+            @media only screen and (max-width: 760px) {
+                top: -24px;
+                left: 15px;
+            }
+
+        }
+
+        .shareicon989-details {
+            position: absolute;
+            right: 1px;
+            top: 158px;
+
+            .shareicon98icon {
+                font-size: 30px;
+                color: var(--text-color);
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--pink);
+                    font-size: 28px;
+                }
+            }
+
+            @media only screen and (max-width: 1040px) {
+                top: -45px;
+                right: 15px;
+            }
+
+            @media only screen and (max-width: 760px) {
+                right: 15px;
+                top: -21px;
+            }
+        }
+
+        .left {
+            flex-shrink: 0;
+
+            .posterImg {
+                width: 100%;
+                display: block;
+                border-radius: 12px;
+                filter: var(--bg-img);
+                border: 1px solid var(--text-color);
+
+                @include md {
+                    max-width: 350px;
+                }
+            }
+        }
+
+        .right {
+            color: var(--text-color);
+
+            .title {
+                font-size: 28px;
+                line-height: 40px;
+                color: #f1683a;
+                width: 400px !important;
+                font-weight: 550;
+                text-overflow: ellipsis;
+                overflow: hidden;
+
+                @include md {
+                    font-size: 34px;
+                    line-height: 44px;
+                    width: 600px !important;
+                }
+            }
+
+            .subtitle {
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 15px;
+                font-style: italic;
+                opacity: 0.5;
+
+                @include md {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+            }
+
+            .genres {
+                margin-bottom: 25px;
+                flex-flow: row wrap;
+            }
+
+            .overview {
+                margin-bottom: 25px;
+
+                .heading {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+
+                .description {
+                    line-height: 24px;
+                    color: var(--heading-color);
+
+                    @include md {
+                        padding-right: 100px;
+                    }
+                }
+            }
+
+            .circleRating {
+                max-width: 70px;
+                background-color: var(--item-bg);
+
+                @include md {
+                    max-width: 90px;
+                    min-width: 70px;
+                }
+
+                @media only screen and (max-width: 435px) {
+                    min-width: 60px;
+                }
+
+                .CircularProgressbar-text {
+                    fill: var(--text);
+                }
+            }
+
+            .playbtn-real {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                cursor: pointer;
+
+                @media only screen and (max-width: 535px) {
+                    gap: 10px;
+                }
+
+                &.watchbtn{
+                   padding: 5px;
+                   border-radius: 12px;
+
+                   &:hover{
+                      .text {
+                        color: rgb(255, 94, 0);
+                    }
+
+                    .triangle {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                        stroke: rgb(255, 94, 0);
+                        animation: trailorPlay 0.7s ease-in-out;
+                    }
+
+                    .circle {
+                        stroke-dashoffset: 0;
+                        stroke: rgb(255, 94, 0);
+                    }
+                   }
+                }
+
+                svg {
+                    width: 60px;
+
+                    @include md {
+                        width: 80px;
+                    }
+                }
+
+                .text {
+                    font-size: 20px;
+                    transition: all 0.7s ease-in-out;
+                }
+
+                .triangle {
+                    stroke-dasharray: 240;
+                    stroke-dashoffset: 480;
+                    stroke: var(--text-color);
+                    transform: translateY(0);
+                    transition: all 0.7s ease-in-out;
+                }
+
+                .circle {
+                    stroke: var(--text-color);
+                    stroke-dasharray: 650;
+                    stroke-dashoffset: 1300;
+                    transition: all 0.5s ease-in-out;
+                }
+
+                &:hover {
+                    .text {
+                        color: var(--pink);
+                    }
+
+                    .triangle {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                        stroke: var(--pink);
+                        animation: trailorPlay 0.7s ease-in-out;
+                    }
+
+                    .circle {
+                        stroke-dashoffset: 0;
+                        stroke: var(--pink);
+                    }
+                }
+            }
+
+            .row-real {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+                margin-bottom: 25px;
+
+                @media only screen and (max-width: 535px) {
+                    gap: 13px;
+                }
+            }
+
+            .info {
+                border-bottom: 1px solid var(--line);
+                padding: 15px 0;
+                display: flex;
+
+                &.writer645 {
+                    border-bottom: 0;
+                }
+
+                &.linecreator654 {
+                    border-bottom: 0;
+                }
+
+                .infoItem {
+                    margin-right: 10px;
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+
+                .text {
+                    margin-right: 10px;
+                    opacity: 0.5;
+                    line-height: 24px;
+
+                    &.bold {
+                        font-weight: 600;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }

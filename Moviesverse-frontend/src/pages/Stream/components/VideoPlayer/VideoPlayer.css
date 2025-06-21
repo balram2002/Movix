@@ -1,0 +1,34 @@
+.video-player-container {
+  width: 100%;
+  border-radius: 0.5rem;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.movieonlyscreenvideo {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.video-player-container iframe {
+  height: 100% !important;
+  width: 100% !important;
+  border: 2px solid var(--text-color);
+  object-fit: cover;
+  object-position: center;
+}
+
+.video-placeholder-icon {
+  width: 4rem;
+  height: 4rem;
+  color: var(--text-color);
+}
+
+@media (max-width: 767px) {
+  .movieonlyscreenvideo {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

@@ -25,7 +25,7 @@ import Line from "../line/Line";
 import "./style.scss";
 import { toast } from "react-toastify";
 
-const Carousel = ({ data, loading, endpoint, title }) => {
+const Carousel = ({ data, loading, endpoint, title, isStream }) => {
     const carouselContainer = useRef();
     const { url } = useSelector((state) => state.home);
     const navigate = useNavigate();
@@ -92,7 +92,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
         <>
             <div className="carousel">
                 <ContentWrapper>
-                    {title && <div className="carouselTitle">{title}</div>}
+                    {title && !isStream && <div className="carouselTitle">{title}</div>}
                     <BsFillArrowLeftCircleFill
                         className="carouselLeftNav arrowcar535"
                         onClick={() => navigation("left")}
@@ -159,7 +159,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                     )}
                 </ContentWrapper>
             </div>
-            <Line />
+           {!isStream &&  <Line />}
         </>
     );
 };

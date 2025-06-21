@@ -1,0 +1,157 @@
+.stream-page-container {
+  min-height: 100vh;
+  background-color: #04152d; /* Main background color */
+  padding-top: 70px; /* Header height */
+  font-family: 'Arial', sans-serif;
+}
+
+.mobile-layout {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .mobile-layout {
+    display: none;
+  }
+}
+
+.mobile-player-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.player-controls {
+  flex-shrink: 0;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.mobile-episodes-section {
+  min-height: 100vh;
+  padding: 1rem 0;
+}
+
+.mobile-show-details {
+  padding: 1rem;
+  background: rgba(4, 21, 45, 0.3); /* Glassmorphism for mobile details */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin: 0 1rem;
+}
+
+.desktop-layout {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-layout {
+    display: block;
+  }
+}
+
+.desktop-main-content {
+  display: flex;
+  height: calc(100vh - 70px); /* Full height minus header */
+}
+
+.desktop-player-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.5rem;
+  padding-bottom: 0.8rem;
+  background: linear-gradient(135deg, rgba(4, 21, 45, 0.5), rgba(22, 33, 62, 0.5)); /* Subtle glassmorphism gradient */
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+.video-player-wrapper {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.desktop-controls {
+  flex-shrink: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.episode-list-wrapper {
+  flex: 0 0 35%;
+  height: calc(100vh - 70px);
+  background: rgba(4, 21, 45, 0.3); /* Glassmorphism background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  padding: 10px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/* Glassmorphism for show details section */
+.desktop-show-details {
+  padding: 1.5rem;
+  background: rgba(4, 21, 45, 0.3); /* Glassmorphism background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin: 0 1rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 15px;
+}
+
+/* Hypothetical tags section (apply to ShowDetails or EpisodeList as needed) */
+.tags-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(4, 21, 45, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: rgba(37, 99, 235, 0.2); /* Blue accent for tags */
+  color: #e0e7ff;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  transition: background 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(37, 99, 235, 0.4);
+  cursor: pointer;
+}
+
+/* General text styles for readability */
+.desktop-show-details p,
+.episode-list-wrapper p,
+.tags-section p {
+  color: #e0e7ff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Hover effects for interactive elements */
+.episode-list-wrapper:hover,
+.desktop-show-details:hover {
+  background: rgba(4, 21, 45, 0.4); /* Slightly more opaque on hover */
+  transition: background 0.3s ease;
+}
