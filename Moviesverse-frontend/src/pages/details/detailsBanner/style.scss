@@ -130,14 +130,14 @@
             flex-shrink: 0;
 
             .posterImg {
-                width: 100%;
+                width: 100% !important;
                 display: block;
                 border-radius: 12px;
                 filter: var(--bg-img);
                 border: 1px solid var(--text-color);
 
                 @include md {
-                    max-width: 350px;
+                    max-width: 350px !important;
                 }
             }
         }

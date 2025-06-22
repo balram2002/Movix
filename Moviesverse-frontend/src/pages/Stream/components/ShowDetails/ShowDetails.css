@@ -156,11 +156,6 @@
 }
 
 @media (max-width: 767px) {
-  .posterImg {
-    max-width: 200px;
-    margin: 0 auto;
-  }
-
   .show-title {
     font-size: 1.25rem;
   }

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import dayjs from "dayjs";
 import Spinner from "../spinner/Spinner";
 
-
 import "./style.scss";
 
 function Autocomplete({ changeWord }) {
@@ -19,20 +18,19 @@ function Autocomplete({ changeWord }) {
 
     const { data, loading } = useFetch(`/search/multi?query=${changeWord}`);
 
-
     return (
         <div className={`autocomplete09 ${closeAuto ? "autocomplete09none" : ""}`}>
             <div className="autocomplete-items">
                 {!loading ? (<div>
                     {data?.results && data?.results?.slice(0, 10)?.map((item) => {
-                        const posterUrl = item.poster_path
-                            ? url.poster + item.poster_path
+                        const posterUrl = item?.poster_path
+                            ? url.poster + item?.poster_path
                             : PosterFallback;
                         const profileurl = item?.profile_path ? url.profile + item?.profile_path : PosterFallbackPerson;
                         return (
                             <div className="autocomplete-item" key={item?.id} onClick={() => {
                                 navigate(
-                                    `/${item.media_type}/${item.id
+                                    `/${item?.media_type}/${item.id
                                     }`
                                 )
                                 setCloseAuto(true);
@@ -54,7 +52,7 @@ function Autocomplete({ changeWord }) {
                             </div>
                         );
                     })}
-                    {data?.results.length <= 0 && <h1 className='noresults56756'>No Results Found, Try valid names...</h1>}
+                    {data?.results?.length <= 0 && <h1 className='noresults56756'>No Results Found, Try valid names...</h1>}
                 </div>) : (<div className='spinerrauto'>
                     <Spinner />
                 </div>)}

@@ -155,6 +155,10 @@ const Header = () => {
                                     setchangeWord(e.target.value);
                                 }}
                                 onKeyUp={searchQueryHandler}
+                                onSubmit={()=>{
+                                    setShowSearch(false); 
+                                    setchangeWord("");
+                                }}
                             />
                             <VscChromeClose
                                 onClick={() => {
