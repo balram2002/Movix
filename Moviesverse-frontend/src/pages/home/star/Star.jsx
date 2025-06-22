@@ -97,10 +97,6 @@ function Star() {
         setBackground(bg);
     }, [data]);
 
-    useEffect(() => {
-        toast.info("Data not coming ? Try VPN, Enjoy!")
-    }, [])
-
     return (
         <>
             {!loading ? (
@@ -171,6 +167,7 @@ function Star() {
                     size={100}
                     aria-label="Loading Spinner"
                 />
+                <span>Data not coming ? Try VPN, Enjoy!</span>
             </div>)}
         </>
     )

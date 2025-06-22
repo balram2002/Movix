@@ -26,10 +26,18 @@
 
 .loaderstar34 {
     display: flex;
+    flex-direction: column !important;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
+}
+
+.loaderstar34 span{
+    color: rgb(161, 153, 153);
+    font-weight: 500;
+    font-size: 20px;
 }
 
 @keyframes slide {

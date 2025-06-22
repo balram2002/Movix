@@ -51,13 +51,13 @@ const Navbar = () => {
             <center>
                 <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage && 'streamhidem'}`}>
                     <ul>
-                        <NavLink className="list" to='/movie' onClick={() => toast.info("Movies Page")}>
+                        <NavLink className="list" to='/movie'>
                             <a href="">
                                 <span className="icon"><BiMoviePlay /></span>
                                 <span className="text" id="one">Movies</span>
                             </a>
                         </NavLink>
-                        <NavLink className="list" to='/tv' onClick={() => toast.info("TV Shows Page")}>
+                        <NavLink className="list" to='/tv'>
                             <a href="">
                                 <span className="icon"><RiSlideshow3Line /></span>
                                 <span className="text" id="two">TV</span>

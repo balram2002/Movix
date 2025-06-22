@@ -574,6 +574,7 @@ const MainStar = () => {
             size={100}
             aria-label="Loading Spinner"
           />
+          <span>Data not coming ? Try VPN, Enjoy!</span>
         </div>
       )}
     </>
