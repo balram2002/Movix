@@ -11,7 +11,7 @@ import Spinner from "../spinner/Spinner";
 
 import "./style.scss";
 
-function Autocomplete({ changeWord }) {
+function Autocomplete({ changeWord, setShowSearch, setchangeWord }) {
     const { url } = useSelector((state) => state.home);
     const navigate = useNavigate();
     const [closeAuto, setCloseAuto] = useState(false);
@@ -34,6 +34,8 @@ function Autocomplete({ changeWord }) {
                                     }`
                                 )
                                 setCloseAuto(true);
+                                setShowSearch(false);
+                                setchangeWord("");
                             }}>
                                 <div className="autocomplete-poster">
                                     <Img className="posterautoimg" src={item?.media_type === "person" ? profileurl : posterUrl} />
@@ -60,6 +62,8 @@ function Autocomplete({ changeWord }) {
             <div className="moreresultsauto" onClick={() => {
                 navigate(`/search/multi/${changeWord}`);
                 setCloseAuto(true);
+                setShowSearch(false);
+                setchangeWord("");
             }}>See More Results..</div>
         </div>
     )

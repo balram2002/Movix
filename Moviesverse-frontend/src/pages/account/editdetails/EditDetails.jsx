@@ -88,7 +88,7 @@ function EditDetails() {
                                 <span>Occupation : </span>
                                 <input type="text" name="ocupation" required class="box" placeholder="enter your occupation" onChange={(e) => setJob(e.target.value)} />
                                 <span>Profile pic : </span>
-                                <input type="hidden" name="old_image" />
+                                {/* <input type="hidden" name="old_image" /> */}
                                 <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png" onChange={(e) => handleProfile(e)} />
                             </div>
                             <div class="inputBox">

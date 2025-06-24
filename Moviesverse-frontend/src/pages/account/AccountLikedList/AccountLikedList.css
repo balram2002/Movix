@@ -1,11 +1,3 @@
-.AccountLikedList .AccountLikedList-title {
-    font-size: 24px;
-    color: var(--text-color);
-    margin-bottom: 20px;
-    font-weight: normal;
-    text-align: center;
-}
-
 .AccountLikedList .AccountLikedList-list-main {
     display: flex;
     flex-flow: row wrap;
@@ -13,7 +5,13 @@
     margin-bottom: 50px;
     padding-left: 30px;
     margin-top: 10px;
+}
 
+@media only screen and (max-width: 480px) {
+    .AccountLikedList .AccountLikedList-list-main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 .AccountLikedList .AccountLikedList-item {
@@ -22,8 +20,11 @@
     cursor: pointer;
     flex-shrink: 0;
     padding: 6px;
-    background: var(--blackbg1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (min-width: 350px) {
@@ -50,115 +51,8 @@
     }
 }
 
-.AccountLikedList .AccountLikedList-poster {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1.5;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: flex-end;
-    border: 1px solid var(--item-bg);
-    justify-content: space-between;
-    padding: 10px;
-    transition: all ease 0.5s;
-    border-radius: 12px;
-}
-
-
-
-.AccountLikedList .lazy-load-image-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 12px;
-    /* overflow: hidden; */
-    /* transition: 0.5s; */
-}
-
-.AccountLikedList .AccountLikedList-poster img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: var(--bg-img2);
-    border-radius: 12px;
-}
-
-.AccountLikedList .medialikedlist6757 {
-    position: absolute;
-    top: 6px;
-    padding: 3px;
-    font-size: 10px;
-    left: 6px;
-    background-color: var(--media);
-    color: white;
-    font-weight: 500;
-    border-radius: 4px;
-}
-
-.AccountLikedList .deleteiconlists5435 {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    padding: 1px;
-    padding-bottom: 0;
-    border-radius: 4px;
-    background: var(--media);
-    font-size: 18px;
-    color: white;
-}
-
-
-.AccountLikedList .AccountLikedList-delete:hover {
-    color: red;
-    top: 6px;
-}
-
-.AccountLikedList .AccountLikedList-poster img:hover {
-    filter: brightness(55%);
-}
-
-.AccountLikedList .AccountLikedList-text {
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background: var(--blackbg2);
-    padding: 6px 2px 2px 2px;
-    border-radius: 12px;
-}
-
-.AccountLikedList .AccountLikedList-text:hover {
-    color: var(--pink);
-}
-
-.AccountLikedList .AccountLikedList-texttitle {
-    font-size: 19px;
-    margin-bottom: 10px;
-    line-height: 24px;
-}
-
-.noresultsaccount67 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 170px;
-    font-size: 30px;
-    color: white;
-    font-weight: 700;
-    /* width: 80%; */
-
-}
-
-.noresultsaccount67 span {
-    border-radius: 10px;
-    color: white;
-    padding: 10px;
-    background-color: orange
+@media only screen and (max-width: 480px) {
+    .AccountLikedList .AccountLikedList-item {
+        width: 100%;
+    }
 }

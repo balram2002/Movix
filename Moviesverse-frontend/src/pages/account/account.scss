@@ -1,9 +1,10 @@
 .Account-Main {
     padding: 15px;
-    /* height: 1000px; */
-    border: 2px solid #192938;
-    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.15), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.15), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
-    transition: 0.5s;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     overflow-x: hidden;
 
     .switchAccountLists {
@@ -27,10 +28,37 @@
                 font-size: 16px;
                 width: 130px;
                 margin-right: 5px;
-
             }
         }
 
+         .tab {
+        padding: 10px 20px;
+        margin: 0 5px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: background 0.3s;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .tab:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .tab.active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media only screen and (max-width: 480px) {
+        .tab {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+    }
     }
 
     .alternateswipergfhf6677 {
@@ -39,18 +67,17 @@
         align-items: center;
         flex-direction: column;
         gap: 10px;
-        /* height: 200px; */
-        width: 100%;
         margin-bottom: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px;
 
-        .alternateswipergfhf6677 .fhfhfhyf67576 {
+        .fhfhfhyf67576 {
             color: var(--text-color);
-            width: 70%;
             font-size: 18px;
             text-align: center;
-            font-weight: 400;
-            padding: 5px;
         }
     }
-
 }

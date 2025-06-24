@@ -158,6 +158,7 @@ const Header = () => {
                                 onSubmit={()=>{
                                     setShowSearch(false); 
                                     setchangeWord("");
+                                    setQuery("");
                                 }}
                             />
                             <VscChromeClose
@@ -167,7 +168,7 @@ const Header = () => {
                                 }}
                             />
                         </div>
-                        {changeWord.length > 2 && <Autocomplete changeWord={changeWord} />}
+                        {changeWord.length > 2 && <Autocomplete changeWord={changeWord} setchangeWord={setchangeWord} setShowSearch={setShowSearch} />}
                     </ContentWrapper>
                 </div>
             )}

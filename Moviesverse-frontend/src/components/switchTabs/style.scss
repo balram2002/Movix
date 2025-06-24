@@ -30,6 +30,10 @@
             @media only screen and (max-width: 500px) {
                 width: 100%;
                 padding: 10px 15px;
+
+                 &.active {
+                color: #f89e00;
+            }
             }
         }
 

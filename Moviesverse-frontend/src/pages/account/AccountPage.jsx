@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import Line from './../../components/line/Line';
 
 function AccountPage() {
-    const { user } = UserAuth();
+   const { user } = UserAuth();
 
     const [likedList, setLikedList] = useState(true);
     const [likedMovie, setLikedMovie] = useState(true);

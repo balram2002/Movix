@@ -12,6 +12,7 @@ import Img from "../lazyLoadImage/Img";
 import { PlayIcon } from "../../pages/details/Playbtn";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
+import StreamHere from "../stream/StreamHere";
 
 const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
 
@@ -110,6 +111,7 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
                     )}
                 </ContentWrapper>
             </div>
+             {stream && <StreamHere EndPoint={mediaType} id={id} title={title} season={season} episode={episode} />}
         </>
     );
 };

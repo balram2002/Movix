@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 75rem; */
     margin-bottom: 20px;
     border: 5px solid var(--heading-color);
     border-radius: 12px;
@@ -16,8 +15,6 @@
     text-align: center;
 }
 
-
-
 .update-profile-container {
     display: flex;
     align-items: center;
@@ -27,7 +24,6 @@
 }
 
 @media only screen and (max-width: 1180px) {
-
     .update-profile-container {
         padding: 0;
     }
@@ -35,17 +31,18 @@
 
 .update-profile-container form {
     width: 70rem;
-    border-radius: .5rem;
-    background-color: var(--black);
-    padding: 1rem 2rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
     text-align: center;
 }
 
 @media only screen and (max-width: 1180px) {
-
     .update-profile-container form {
-        padding: 0;
-        width: 20rem;
+        width: 90%;
     }
 }
 
@@ -74,13 +71,6 @@
     }
 }
 
-.update-profile-container form img {
-    height: 20rem;
-    width: 20rem;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
-
 .update-profile-container form .flex .inputBox span {
     font-size: 2rem;
     color: var(--text-color);
@@ -91,17 +81,18 @@
 .update-profile-container form .flex .inputBox .box {
     width: 100%;
     padding: 1.2rem 1.4rem;
-    border-radius: .5rem;
+    border-radius: 8px;
     font-size: 1.8rem;
-    color: var(--heading-color);
+    color: var(--text-color);
     margin: 1rem 0;
-    background-color: var(--bg-item);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 @media only screen and (max-width: 1180px) {
     .update-profile-container form .flex .inputBox .box {
         width: 93%;
-        /* text-align: center; */
     }
 }
 
@@ -123,8 +114,15 @@
     padding: 12px 50px;
     font-size: 25px;
     border-radius: 25px;
-    background-color: var(--black4);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
+.update-profile-container .flex-btn .subtxt:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .update-profile-container .flex-btn .recordr {
@@ -134,27 +132,3 @@
     font-weight: 600;
     color: green;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* media queries  */
-
-
-
-/* @media (max-width:768px) {
-
-    .update-profile-container form .flex .inputBox {
-        width: 100%;
-    }
-
-} */

@@ -12,11 +12,12 @@
     /* position: relative; */
     /* top: 4px; */
     /* right: 8px; */
-    padding: 8px;
+    padding: 12px;
+    cursor: pointer;
     text-align: right;
     font-size: 15px;
     color: var(--text-color);
-    background-color: var(--black4);
+    background-color: var(--black);
     border-radius: 8px;
 }
 
