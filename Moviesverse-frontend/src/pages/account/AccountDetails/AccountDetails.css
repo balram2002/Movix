@@ -39,6 +39,7 @@
 
 .AccountArea .AccountArea-avatar img {
     width: 135px;
+    min-width: 135px !important;
     height: 140px;
     border-radius: 100%;
     border: solid 4px var(--text-color);
