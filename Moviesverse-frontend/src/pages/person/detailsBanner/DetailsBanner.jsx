@@ -61,8 +61,7 @@ const DetailsBanner = () => {
     return (
         <>
                     <Helmet>
-                <title>{data?.name || data?.title + ' | MV'}</title>
-                <meta name="description" content="aiconnect docs page containing all the information about site" />
+                <title>{data?.name || data?.title + ' | Movix'}</title>
             </Helmet>
 
             <div className="detailsBanner">

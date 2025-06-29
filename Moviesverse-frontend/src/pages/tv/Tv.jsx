@@ -114,8 +114,7 @@ const Tv = () => {
     return (
         <>
             <Helmet>
-                <title>Tv Shows Page | AIConnect</title>
-                <meta name="description" content="aiconnect docs page containing all the information about site" />
+                <title>Tv Shows Page | Movix</title>
             </Helmet>
 
             <main>

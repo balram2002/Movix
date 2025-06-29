@@ -128,10 +128,12 @@ const DetailsBanner = ({ video, crew }) => {
         }
     };
 
+    const releaseYear = dayjs(data?.release_date).format("YYYY");
+
     return (
         <>
             <Helmet>
-                <title>{titleee + ' | MV'}</title>
+                <title>{titleee + ' | Movix'}</title>
                 <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
             </Helmet>
             <div className="detailsBanner">
@@ -159,9 +161,9 @@ const DetailsBanner = ({ video, crew }) => {
                                         <div className="shareicon989-details">
                                             <RWebShare
                                                 data={{
-                                                    text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                                                    text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${releaseYear} ) with a tagline of '${data?.tagline}'.`,
                                                     url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
-                                                    title: "Movix Share" + data?.name | data?.title,
+                                                    title: "Movix Share " + data?.name | data?.title,
                                                 }}
                                             >
                                                 <span><FaShareSquare className="shareicon98icon" /></span>

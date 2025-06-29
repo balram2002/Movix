@@ -13,6 +13,7 @@ import { PlayIcon } from "../../pages/details/Playbtn";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import StreamHere from "../stream/StreamHere";
+import Line from "../line/Line";
 
 const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
 
@@ -43,13 +44,8 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
         setSeason(item?.season_number);
         setEpisode(item?.episode_number);
         setTitle(`${name} season ${season} Episode ${episode}`);
-        setOpenstream(!openstream);
-        setStream(!stream);
-        if (openstream) {
-            toast.info("Video Space closed!")
-        } else {
-            toast.info("Scroll down to watch online!");
-        }
+        setOpenstream(true);
+        setStream(true);
     };
 
 
@@ -111,7 +107,8 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
                     )}
                 </ContentWrapper>
             </div>
-             {stream && <StreamHere EndPoint={mediaType} id={id} title={title} season={season} episode={episode} />}
+            {!stream && <Line />}
+             {stream && <StreamHere EndPoint={mediaType} id={id} title={" " + title + ' Episode ' + episode + " "} season={season} episode={episode} show={stream} setShow={setStream} />}
         </>
     );
 };

@@ -116,7 +116,7 @@ const Movies = () => {
   return (
     <>
       <Helmet>
-        <title>Movies Page | MV</title>
+        <title>Movies Page | Movix</title>
         <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
       </Helmet>
       <main>
