@@ -35,6 +35,10 @@
             color: var(--item-bg);
             text-decoration: none;
 
+            &.active{
+                 color: var(--pink);
+            }
+
             @include md {
                 font-size: 16px;
             }

@@ -110,7 +110,7 @@ function Star() {
                                 <div className="nameuserstar2345">Hi, </div>
                                 <div className="nameuserstar23">{details?.name || "Guest"}</div>
                                 <div class="author">{movie?.media_type?.toUpperCase()}</div>
-                                <div class="title">{movie?.title || movie?.name}</div>
+                                <div class="title" id="titlestarmob">{movie?.title || movie?.name}</div>
                                 <div class="topic">{movie?.release_date}</div>
                                 <div class="des">{movie?.overview}
                                 </div>

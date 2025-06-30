@@ -40,6 +40,11 @@
     font-size: 20px;
 }
 
+#titlestarmob{
+    font-size: 45px !important;
+    max-width: 450px !important;
+}
+
 @keyframes slide {
     50% {
         left: 50px;

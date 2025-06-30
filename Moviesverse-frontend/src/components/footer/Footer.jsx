@@ -29,10 +29,10 @@ const Footer = () => {
                     <NavLink to='/explore/tv' className="menuItem">Discover TV Shows</NavLink>
                 </ul>
                 <div className="infoText">
-                    This Product is developed by <b>Balram Dhakad</b> in a major project work in a Medi-caps college, Indore.
+                    This Product is developed by <b><a href="https://balram-dhakad-portfolio.vercel.app/">Balram Dhakad</a></b> in a major project work in a Medi-caps college, Indore.
                 </div>
                 <div className="infoText">
-                    This Single page application focuses on Finding, Exploring, Getting Recommendations, Getting Details and Finding our dream watch pick by playing with different filters, options and categories available in application.
+                    This Single page application focuses on Finding, Streaming, Exploring, Getting Recommendations, Getting Details and Finding our dream watch pick by playing with different filters, options and categories available in application.
                 </div>
                 <div className="socialIcons">
                     <span className="icon" onClick={() => openInNewTab("https://www.facebook.com/balram.dhakad.3551?mibextid=ZbWKwL")}>
