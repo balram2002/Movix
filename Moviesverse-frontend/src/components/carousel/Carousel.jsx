@@ -3,9 +3,7 @@ import {
     BsFillArrowLeftCircleFill,
     BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-// import { MdOutlineAddToPhotos } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa6";
-
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -75,7 +73,6 @@ const Carousel = ({ data, loading, endpoint, title, isStream }) => {
         });
     };
 
-
     const skItem = () => {
         return (
             <div className="skeletonItem">
@@ -93,73 +90,85 @@ const Carousel = ({ data, loading, endpoint, title, isStream }) => {
             <div className="carousel">
                 <ContentWrapper>
                     {title && !isStream && <div className="carouselTitle">{title}</div>}
-                    <BsFillArrowLeftCircleFill
-                        className="carouselLeftNav arrowcar535"
-                        onClick={() => navigation("left")}
-                    />
-                    <BsFillArrowRightCircleFill
-                        className="carouselRighttNav arrowcar535"
-                        onClick={() => navigation("right")}
-                    />
-                    {!loading ? (
-                        <div className="carouselItems" ref={carouselContainer}>
-                            {data?.map((item) => {
-                                const posterUrl = item.poster_path
-                                    ? url.poster + item.poster_path
-                                    : PosterFallback;
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className="carouselItem"
-                                    >
-                                        <div className="posterBlock" onClick={() =>
-                                            navigate(
-                                                `/${item.media_type || endpoint}/${item.id
-                                                }`
-                                            )
-                                        }>
-                                            <Img src={posterUrl} />
-                                            <CircleRating
-                                                rating={item.vote_average.toFixed(
-                                                    1
-                                                )}
-                                            />
-                                            <Genres
-                                                data={item.genre_ids.slice(0, 2)}
-                                            />
-                                            <span className="mediatype09">{item.media_type || endpoint}</span>
-                                        </div>
-                                        <div className="textBlock">
-                                            <span className="title">
-                                                {item.title || item.name}
-                                            </span>
-                                            <span className="date">
-                                                {dayjs(item.release_date || item.first_air_date).format(
-                                                    "MMM D, YYYY"
-                                                )}
-                                            </span>
-                                            <span className="liked-maincar" onClick={() => {
-                                                saveLiked(item);
-                                            }}>
-                                                <FaRegHeart className="addicon" />
-                                            </span>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                    {data?.length > 2 ? (
+                        <>
+                            <BsFillArrowLeftCircleFill
+                                className="carouselLeftNav arrowcar535"
+                                onClick={() => navigation("left")}
+                            />
+                            <BsFillArrowRightCircleFill
+                                className="carouselRighttNav arrowcar535"
+                                onClick={() => navigation("right")}
+                            />
+                            {!loading ? (
+                                <div className="carouselItems" ref={carouselContainer}>
+                                    {data?.map((item) => {
+                                        const posterUrl = item.poster_path
+                                            ? url.poster + item.poster_path
+                                            : PosterFallback;
+                                        return (
+                                            <div
+                                                key={item.id}
+                                                className="carouselItem"
+                                            >
+                                                <div className="posterBlock" onClick={() =>
+                                                    navigate(
+                                                        `/${item.media_type || endpoint}/${item.id}`
+                                                    )
+                                                }>
+                                                    <Img src={posterUrl} />
+                                                    <CircleRating
+                                                        rating={item.vote_average.toFixed(1)}
+                                                    />
+                                                    <Genres
+                                                        data={item.genre_ids.slice(0, 2)}
+                                                    />
+                                                    <span className="mediatype09">{item.media_type || endpoint}</span>
+                                                </div>
+                                                <div className="textBlock">
+                                                    <span className="title">
+                                                        {item.title || item.name}
+                                                    </span>
+                                                    <span className="date">
+                                                        {dayjs(item.release_date || item.first_air_date).format(
+                                                            "MMM D, YYYY"
+                                                        )}
+                                                    </span>
+                                                    <span className="liked-maincar" onClick={() => {
+                                                        saveLiked(item);
+                                                    }}>
+                                                        <FaRegHeart className="addicon" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <div className="loadingSkeleton">
+                                    {skItem()}
+                                    {skItem()}
+                                    {skItem()}
+                                    {skItem()}
+                                    {skItem()}
+                                </div>
+                            )}
+                        </>
                     ) : (
-                        <div className="loadingSkeleton">
-                            {skItem()}
-                            {skItem()}
-                            {skItem()}
-                            {skItem()}
-                            {skItem()}
+                        <div style={{ 
+                            display: 'flex', 
+                            justifyContent: 'center', 
+                            alignItems: 'center', 
+                            padding: '40px 20px',
+                            color: '#666',
+                            fontSize: '18px'
+                        }}>
+                            No data available for this
                         </div>
                     )}
                 </ContentWrapper>
             </div>
-           {!isStream &&  <Line />}
+            {!isStream && <Line />}
         </>
     );
 };

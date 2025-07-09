@@ -81,11 +81,13 @@
             position: absolute;
             right: 6px;
             top: 46px;
+            z-index: 99999;
 
             .shareicon98icon {
                 font-size: 30px;
                 color: var(--text-color);
                 cursor: pointer;
+                z-index: 9999999;
 
                 &:hover {
                     color: var(--pink);

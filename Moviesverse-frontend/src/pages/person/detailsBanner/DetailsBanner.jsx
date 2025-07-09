@@ -84,8 +84,8 @@ const DetailsBanner = () => {
                                         <div className="shareicon989-person">
                                             <RWebShare
                     data={{
-                      text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
-                      url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
+                      text: `Moviesverse shared ${data?.endpoint || "Person"} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                      url: `https://moviesverse.vercel.app/${data?.endpoint || "Person"}/${id | data?.id}`,
                       title: "Movix Share" + data?.name | data?.title,
                     }}
                   >
