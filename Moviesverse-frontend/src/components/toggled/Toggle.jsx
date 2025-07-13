@@ -26,7 +26,7 @@ function Toggle() {
                 onChange={toggleMode}
                 checked={theme === "dark"}
             />
-            <label className='dark_mode_label' for='darkmode-toggle'>
+            <label className='dark_mode_label' htmlFor='darkmode-toggle'>
                 <FiSun className='sun svg' />
                 <RiMoonClearLine className='moon svg' />
             </label>

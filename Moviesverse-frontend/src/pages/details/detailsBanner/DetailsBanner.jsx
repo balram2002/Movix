@@ -450,7 +450,7 @@ const DetailsBanner = ({ video, crew }) => {
                 )}
             </div>
             <Line />
-            {stream && <StreamHere EndPoint={mediaType} id={id} title={titleee} />}
+            {stream && <StreamHere EndPoint={mediaType} id={id} title={titleee} setShow={setStream} />}
         </>
     );
 };

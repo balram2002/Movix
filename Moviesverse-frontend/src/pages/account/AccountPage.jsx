@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AccountDetails from './AccountDetails/AccountDetails';
 import { Helmet } from 'react-helmet';
 
@@ -12,6 +12,7 @@ import { UserAuth } from '../../context/AuthContext';
 import EditDetails from './editdetails/EditDetails';
 import { toast } from 'react-toastify';
 import Line from './../../components/line/Line';
+import Axios from "axios";
 
 function AccountPage() {
    const { user } = UserAuth();
@@ -23,6 +24,7 @@ function AccountPage() {
     const [AccountDetailsChange, setAccountDetailsChange] = useState(false);
     const [activeList, setActiveList] = useState(`Liked Lists`);
     const [activeLikedList, setActiveLikedList] = useState(`Liked Movies and TV Shows of ${user?.email}`);
+    const [details, setDetails] = useState({});
 
     const onTabChange = (tab) => {
         if (tab === "Liked") {
@@ -54,10 +56,21 @@ function AccountPage() {
         }
     };
 
+      useEffect(() => {
+            Axios.post(`https://movix-api.vercel.app/api/user/getDetails`, {
+                email: user?.email,
+            }).then(response => {
+                setDetails(response.data);
+            }).catch(err => {
+                console.log(err);
+            })
+            console.log(details);
+        }, [user?.email]);
+
     return (
         <div className='Account-Main'>
              <Helmet>
-                <title>Account | Movix</title>
+                <title>{`${details?.name || 'Account'} | Movix`}</title>
                 <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
             </Helmet>
             <AccountDetails />

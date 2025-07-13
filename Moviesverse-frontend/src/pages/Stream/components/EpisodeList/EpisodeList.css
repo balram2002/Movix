@@ -1,10 +1,16 @@
 .episode-container {
+  flex:0 0 38% !important;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: var(--blacksh);
-  border-radius: 0.5rem;
   padding: 10px;
+   background: linear-gradient(135deg, rgba(4, 21, 45, 0.5), rgba(22, 33, 62, 0.5)); /* Subtle glassmorphism gradient */
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
 }
 
 .mobile-season-selector {
@@ -116,7 +122,11 @@
 
 .episode-header-title {
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .view-toggle {
@@ -178,6 +188,11 @@
   flex-direction: column;
   gap: 0.5rem;
   padding-right: 3px;
+   background: var(--blacksh); /* Subtle glassmorphism gradient */
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
 }
 
 .episode-list-item {
@@ -211,6 +226,7 @@
 .episode-title {
   color: var(--text-color);
   font-weight: 500;
+  text-align: left;
   font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -273,6 +289,7 @@
 
 .episode-grid-content {
   text-align: center;
+  gap: 5px;
 }
 
 .episode-grid-number {
@@ -313,7 +330,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Episode Grid Active State */
 .episode-grid-item-active {
   background-color: var(--second);
   border: 2px solid var(--primary);
@@ -327,7 +343,6 @@
   font-weight: bold;
 }
 
-/* Episode List Active State */
 .episode-list-item-active {
   background-color: var(--item-bg);
   border-left: 4px solid var(--second);
@@ -344,7 +359,6 @@
   color: var(--text);
 }
 
-/* Smooth transitions for both */
 .episode-grid-item,
 .episode-list-item {
   transition: all 0.2s ease-in-out;
@@ -379,4 +393,11 @@
   .episode-grid-episode {
     font-size: 0.875rem;
   }
+}
+
+.no-content {
+  text-align: center;
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 1rem;
 }

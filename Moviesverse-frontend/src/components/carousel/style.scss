@@ -2,6 +2,7 @@
 
 .carousel {
     margin-bottom: 5px;
+    position: relative;
 
     .contentWrapper {
         position: relative;
@@ -18,29 +19,32 @@
         font-size: 30px;
         color: var(--item-bg);
         position: absolute;
-        top: 38%;
-        transform: translateY(-50%);
+        top: 50%;
+        transform: translateY(-50%) scale(1);
         cursor: pointer;
         opacity: 0.6;
-        z-index: 1;
+        z-index: 10;
         display: none;
+        transition: all 0.3s ease;
 
         @include md {
             display: block;
         }
 
         &:hover {
-            opacity: 0.7;
-            color: black;
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+            color: var(--pink);
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
         }
     }
 
     .carouselLeftNav {
-        left: -20px;
+        left: -40px;
     }
 
     .carouselRighttNav {
-        right: -20px;
+        right: -40px;
     }
 
     .loadingSkeleton {
@@ -99,14 +103,21 @@
     .carouselItems {
         display: flex;
         gap: 10px;
+        overflow-x: scroll;
         overflow-y: hidden;
+        scroll-behavior: smooth;
         margin-right: -20px;
         margin-left: -20px;
         padding: 0 20px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         @include md {
             gap: 20px;
-            overflow: hidden;
             margin: 0;
             padding: 0;
         }
@@ -139,7 +150,6 @@
                 justify-content: space-between;
                 padding: 10px;
 
-                // overflow: hidden;
                 .lazy-load-image-background {
                     position: absolute;
                     top: 0;
@@ -149,12 +159,6 @@
                     border-radius: 12px;
                     overflow: hidden;
                     transition: 0.2s;
-
-                    // &:hover {
-                    //     border: 3.5px solid #ffffff;
-
-                    // }
-
 
                     img {
                         width: 100%;
@@ -285,5 +289,4 @@
             }
         }
     }
-
 }

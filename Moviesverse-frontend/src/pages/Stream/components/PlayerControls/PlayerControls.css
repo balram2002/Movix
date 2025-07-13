@@ -1,7 +1,32 @@
 .player-controls-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-width: 100%;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.player-controls-container.tv{
+  flex-direction: column;
+}
+
+.player-controls-container-lang{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-controls-container-servers{
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
+  gap: 5px;
 }
 
 .server-buttons {

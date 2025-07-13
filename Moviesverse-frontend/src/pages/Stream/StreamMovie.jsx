@@ -25,7 +25,7 @@ function StreamPage() {
   return (
     <>
       <Helmet>
-        <title>{'Streaming ' + detailsData?.name || detailsData?.title + " | Movix"}</title>
+        <title>{`Streaming ${detailsData?.name || detailsData?.title} | Movix`}</title>
         <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
       </Helmet>
       <div className="stream-page-container">
@@ -67,9 +67,7 @@ function StreamPage() {
             </div>
 
             {/* Right side - Episode List */}
-            {mediaType === 'tv' && <div className="episode-list-wrapper">
-              <EpisodeList CollectionId={Collection} Seasons={Seasons} mediaType={mediaType} id={id} />
-            </div>}
+             <EpisodeList Seasons={Seasons} mediaType={mediaType} id={id} collectionId={Collection} />
           </div>
 
           {/* Desktop: Show Details Section - Below the main content */}

@@ -61,7 +61,7 @@ const DetailsBanner = () => {
     return (
         <>
                     <Helmet>
-                <title>{data?.name || data?.title + ' | Movix'}</title>
+                <title>{`${data?.name || data?.title} - Person | Movix`}</title>
             </Helmet>
 
             <div className="detailsBanner">

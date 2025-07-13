@@ -64,7 +64,9 @@ function App() {
     const [season, setSeason] = useState(1);
     const [episode, setEpisode] = useState(1);
     const [server, setServer] = useState(1);
+     const [language, setLanguage] = useState('Original');
     const [endpoint, setEndpoint] = useState('xyz');
+    const [lanEndpoint, seLantEndpoint] = useState('one');
     const isOnline = useOnlineStatus();
     const { data, loading } = useFetch(`/trending/all/day`);
     const dispatch = useDispatch();
@@ -111,7 +113,7 @@ function App() {
     return (
         <ThemeProvider>
             <AuthContextProvider>
-                <ValuesContext.Provider value={{ setEndpoint, endpoint, setServer, server, setEpisode, episode, setSeason, season }}>
+                <ValuesContext.Provider value={{ setEndpoint, endpoint, setServer, server, setEpisode, episode, setSeason, season, language, setLanguage, lanEndpoint, seLantEndpoint }}>
                     <BrowserRouter>
                         <Header />
                         <ToastContainer

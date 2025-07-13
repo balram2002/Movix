@@ -8,6 +8,7 @@ import SwitchTabs from '../switchTabs/SwitchTabs';
 function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
     const [seasonNum, setSeasonNum] = useState(1);
     const [endpoint, setEndpoint] = useState("to");
+         const [lanEndpoint, setLanEndpoint] = useState(false);
     const [server, setServer] = useState("1");
     const [episodeNum, setEpisodeNum] = useState(1);
     const [width, setWidth] = useState(window.innerWidth);
@@ -43,6 +44,9 @@ function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
             setServer("1");
         }
     };
+    const preurl = EndPoint === "tv" ? `https://vidify.top/embed/${EndPoint}/${id}/${seasonNum || 1}/${episodeNum || 1}` : `https://vidify.top/embed/movie/${id}`
+    const url = lanEndpoint ? preurl :
+    `https://vidsrc.${endpoint}/embed/${EndPoint}/${id}${season && EndPoint === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`;
 
     return (
         <>
@@ -62,7 +66,7 @@ function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
                 <div className="stream-main">
                     <div className="stream-body">
                         <iframe
-                            src={`https://vidsrc.${endpoint}/embed/${EndPoint}/${id}${season && EndPoint === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`}
+                            src={url}
                             className="iframe-stream"
                             frameBorder="0"
                             title="Movieverse video player"
@@ -81,6 +85,7 @@ function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
                             onClick={() => {
                                 setEndpoint("net");
                                 setServer("1");
+                                setLanEndpoint(false);
                             }}
                         >
                             Server 1
@@ -90,9 +95,18 @@ function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
                             onClick={() => {
                                 setEndpoint("xyz");
                                 setServer("2");
+                                setLanEndpoint(false);
                             }}
                         >
                             Server 2
+                        </button>
+                        <button
+                            className="butseltabb butseltab34" id='butseltab36'
+                            onClick={() => {
+                               setLanEndpoint(true);
+                            }}
+                        >
+                            {'vidify(Hindi)'}
                         </button>
                     </div>
                 </div>
@@ -107,9 +121,9 @@ function StreamHere({ EndPoint, id, title, season, episode, show, setShow }) {
                     <span className="notplaystream34256">Use desktop or pc for better Experience!</span>
                 </div>
                 <div>
-                    <button class="btn-31" onClick={()=>setShow(false)}>
-                        <span class="text-container">
-                            <span class="text">Close</span>
+                    <button className="btn-31" onClick={()=>setShow(false)}>
+                        <span className="text-container">
+                            <span className="text">Close</span>
                         </span>
                     </button>
                 </div>

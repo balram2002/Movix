@@ -950,8 +950,6 @@ function Languages({ Language }) {
         })
     }, [Language])
 
-    console.log(value);
-
     return (
         <div>{value}</div>
     )
