@@ -60,7 +60,7 @@ const DetailsBanner = () => {
 
     return (
         <>
-                    <Helmet>
+            <Helmet>
                 <title>{`${data?.name || data?.title} - Person | Movix`}</title>
             </Helmet>
 
@@ -83,14 +83,14 @@ const DetailsBanner = () => {
                                         </div>
                                         <div className="shareicon989-person">
                                             <RWebShare
-                    data={{
-                      text: `Moviesverse shared ${data?.endpoint || "Person"} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
-                      url: `https://moviesverse.vercel.app/${data?.endpoint || "Person"}/${id | data?.id}`,
-                      title: "Movix Share" + data?.name | data?.title,
-                    }}
-                  >
-                     <span><FaShareSquare className="shareicon98icon" /></span>
-                  </RWebShare>
+                                                data={{
+                                                    text: `Moviesverse shared ${data?.endpoint || "Person"} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                                                    url: `https://www.moviesverse.studio/${data?.endpoint || "Person"}/${id | data?.id}`,
+                                                    title: "Movix Shared " + data?.name | data?.title,
+                                                }}
+                                            >
+                                                <span><FaShareSquare className="shareicon98icon" /></span>
+                                            </RWebShare>
                                         </div>
                                         <div className="left">
                                             {data?.profile_path ? (

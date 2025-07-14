@@ -162,8 +162,8 @@ const DetailsBanner = ({ video, crew }) => {
                                             <RWebShare
                                                 data={{
                                                     text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${releaseYear} ) with a tagline of '${data?.tagline}'.`,
-                                                    url: `https://moviesverse.vercel.app/${data?.endpoint || mediaType}/${id | data?.id}`,
-                                                    title: "Movix Share " + data?.name | data?.title,
+                                                    url: `https://www.moviesverse.studio/${data?.endpoint || mediaType}/${id | data?.id}`,
+                                                    title: "Movix Shared " + data?.name | data?.title,
                                                 }}
                                             >
                                                 <span><FaShareSquare className="shareicon98icon" /></span>

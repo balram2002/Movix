@@ -160,11 +160,44 @@
     font-size: 1.25rem;
   }
 
-  .show-genre, .show-release, .show-seasons {
+  .show-genre,
+  .show-release,
+  .show-seasons {
     font-size: 0.875rem;
   }
 
   .show-synopsis {
     font-size: 0.875rem;
+  }
+}
+
+.content .shareicon989-details {
+  position: absolute;
+  right: 1px;
+  top: 158px;
+}
+
+.content .shareicon98icon {
+  font-size: 30px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.content .shareicon98icon:hover {
+  color: var(--pink);
+  font-size: 28px;
+}
+
+@media only screen and (max-width: 1040px) {
+  .content .shareicon989-details {
+    top: -45px;
+    right: 15px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .content .shareicon989-details {
+    right: 15px;
+    top: -21px;
   }
 }

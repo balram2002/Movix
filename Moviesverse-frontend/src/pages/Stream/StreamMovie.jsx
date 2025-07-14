@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import PlayerControls from './components/PlayerControls/PlayerControls';
 import EpisodeList from './components/EpisodeList/EpisodeList';
@@ -9,6 +9,30 @@ import useFetch from '../../hooks/useFetch';
 import { Helmet } from 'react-helmet';
 
 function StreamPage() {
+
+   const fetchData = (url, setData, setLoading) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZTJkMmM2YWZlNTMwY2ZkNjlhN2FlOWE0OWMyNTc5ZCIsInN1YiI6IjY1Y2Q5M2IyMzEyMzQ1MDE3YmJhYTEyZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zgqx7AWkKbNhLnQgNMY8u8Ei_9e34RRD-cAXyDMlfc8'
+      }
+    };
+    setLoading(true);
+    fetch(url, options)
+      .then(res => res.json())
+      .then(json => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  };
+
+  const [collectionData, setCollectionData] = useState(null);
+  const [collectionLoading, setCollectionLoading] = useState(true);
 
   const { mediaType, id, season, episode } = useParams();
 
@@ -22,6 +46,14 @@ function StreamPage() {
   const Collection = detailsData && detailsData?.belongs_to_collection?.id;
   const Seasons = detailsData && detailsData?.seasons;
   const episodesLength = episodes?.episodes?.length;
+
+  // const { data: collectioData, loading: collectionLoading } = useFetch(`/collection/${Collection}`);
+   useEffect(() => {
+      if (Collection) {
+        const url = `https://api.themoviedb.org/3/collection/${Collection}`;
+        fetchData(url, setCollectionData, setCollectionLoading);
+      }
+    }, [Collection, mediaType, id]);
   return (
     <>
       <Helmet>
@@ -67,7 +99,7 @@ function StreamPage() {
             </div>
 
             {/* Right side - Episode List */}
-             <EpisodeList Seasons={Seasons} mediaType={mediaType} id={id} collectionId={Collection} />
+             <EpisodeList Seasons={Seasons} mediaType={mediaType} id={id} collectioData={collectionData} collectionLoading={collectionLoading} />
           </div>
 
           {/* Desktop: Show Details Section - Below the main content */}
