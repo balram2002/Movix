@@ -110,12 +110,17 @@ const Header = () => {
                         Explore
                     </NavLink>
                     {!user?.email ? <li className="menuItem">
-                        <button className="loginbutton" onClick={() => {
+                        <button class="buttonheadersvc" onClick={() => {
                             navigate(`/login`);
                             setMobileMenu(false);
                         }}>
-                            Login
+                            <div class="button-outerheadersvc">
+                                <div class="button-innerheadersvc">
+                                    <span>Login</span>
+                                </div>
+                            </div>
                         </button>
+                      
                     </li> : <NavLink to={"/account"} className="menuItem" id="person" >
                         <BsPersonCircle onClick={() => {
                             navigate('/account');
@@ -124,10 +129,15 @@ const Header = () => {
                         } />
                     </NavLink>}
                     {user?.email && <li
-                        className="menuItem"
-                        onClick={handleLogout}
+                        className="menuItem" 
                     >
-                        <button className="logbutton">Logout</button>
+                         <button class="buttonheadersvc" onClick={handleLogout}>
+                            <div class="button-outerheadersvc">
+                                <div class="button-innerheadersvc logoutheader">
+                                    <span>Logout</span>
+                                </div>
+                            </div>
+                        </button>
                     </li>}
                     <li className="menuItem">
                         <HiOutlineSearch onClick={openSearch} />
@@ -155,8 +165,8 @@ const Header = () => {
                                     setchangeWord(e.target.value);
                                 }}
                                 onKeyUp={searchQueryHandler}
-                                onSubmit={()=>{
-                                    setShowSearch(false); 
+                                onSubmit={() => {
+                                    setShowSearch(false);
                                     setchangeWord("");
                                     setQuery("");
                                 }}
