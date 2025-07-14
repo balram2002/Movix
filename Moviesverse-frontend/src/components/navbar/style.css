@@ -2,14 +2,21 @@
       position: fixed;
     width: 400px;
     height: 68px;
-    left: 50%;
-    transform: translate(-50%);
     bottom: 1px;
     z-index: 2147483647;
     opacity: 0.6;
     background: var(--item-bg);
     border-radius: 10px;
     transition: 0.5s;
+}
+
+.navbar.streamhidem{
+    right: 3.6% !important;
+}
+
+.navbar.normalnavbarposition{
+     left: 50%;
+    transform: translate(-50%);
 }
 
 

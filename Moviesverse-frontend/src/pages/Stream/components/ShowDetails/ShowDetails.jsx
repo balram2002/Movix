@@ -59,7 +59,7 @@ const ShowDetails = ({ data, video, crew }) => {
               <div className="shareicon989-details">
                 <RWebShare
                   data={{
-                    text: `Moviesverse shared ${data?.endpoint || "Person"} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
+                    text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
                     url: `https://www.moviesverse.studio/${data?.endpoint || "Person"}/${id | data?.id}`,
                     title: "Movix Shared " + data?.name | data?.title,
                   }}

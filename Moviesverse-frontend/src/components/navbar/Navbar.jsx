@@ -49,7 +49,7 @@ const Navbar = () => {
     return (
         <ContentWrapper>
             <center>
-                <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage && 'streamhidem'}`}>
+                <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage ? 'streamhidem' : 'normalnavbarposition'}`}>
                     <ul>
                         <NavLink className="list" to='/movie'>
                             <a href="">
