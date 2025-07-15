@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import "./movies.css";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import HeroBanner from "./heroBanner/HeroBanner";
 import Trending from "./trending/Trending";
 import Popular from "./popular/Popular";
@@ -116,8 +116,10 @@ const Movies = () => {
   return (
     <>
       <Helmet>
-        <title>Movies Page | Movix</title>
-        <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+        <title>Movies Page | Moviesverse</title>
+        <meta name="description" content="Movies page of moviesverse where users can explore and Discover millions of movies. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+          <meta property="og:title" content="Movies Page | Moviesverse"/>
+        <meta property="og:description" content="Movies page of moviesverse where users can explore and Discover millions of movies. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
       </Helmet>
       <main>
         <div className="homePage">

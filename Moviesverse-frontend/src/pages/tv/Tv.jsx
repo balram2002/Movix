@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import HeroBanner from "./heroBanner/HeroBanner";
 import Trending from "./trending/Trending";
 import Popular from "./popular/Popular";
@@ -114,7 +114,10 @@ const Tv = () => {
     return (
         <>
             <Helmet>
-                <title>Tv Shows Page | Movix</title>
+                <title>TV Shows Page | Moviesverse</title>
+                <meta name="description" content="TV shows page of moviesverse where users can explore and Discover millions of tv shows and web shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                  <meta property="og:title" content="TV Shows Page | Moviesverse"/>
+                  <meta property="og:description" content="TV shows page of moviesverse where users can explore and Discover millions of tv shows and web shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
 
             <main>
@@ -140,8 +143,8 @@ const Tv = () => {
                 </div>
             </main>
             {show && <ScrollButton />}
-               <ShootingStars />
-      <StarsBackground />
+            <ShootingStars />
+            <StarsBackground />
         </>
     );
 };

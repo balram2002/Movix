@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import logbg from "../../../public/logbg.jpg";
 import { UserAuth } from '../../context/AuthContext';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -72,10 +72,12 @@ function Authentication() {
 
     return (
         <div className="auth">
-             <Helmet>
-                            <title>{`${Wrapper ? 'SignUp' : 'Login'} | Welcome to Movix`}</title>
-                            <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
-                        </Helmet>
+            <Helmet>
+                <title>{`${Wrapper ? 'SignUp' : 'Login'} | Welcome to Moviesverse`}</title>
+                <meta name="description" content="Authentication page of moviesverse where users can create your account and login into their accounts. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                  <meta property="og:title" content={`${Wrapper ? 'SignUp' : 'Login'} | Welcome to Moviesverse`}/>
+                <meta property="og:description" content="Authentication page of moviesverse where users can create your account and login into their accounts. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+            </Helmet>
             <img className="logbg" src={logbg} alt="" />
             <div id="authwrapperbd" className={`${Wrapper ? "active" : ""}`}>
                 <span className="bg-animate"></span>

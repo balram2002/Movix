@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 
 import "./style.scss";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import useFetch from "../../../hooks/useFetch";
@@ -61,7 +61,10 @@ const DetailsBanner = () => {
     return (
         <>
             <Helmet>
-                <title>{`${data?.name || data?.title} - Person | Movix`}</title>
+                <title>{`${data?.name || data?.title} - Person | Moviesverse`}</title>
+                <meta name="description" content="Person details page of moviesverse where users can view person details and their roles and movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                  <meta property="og:title" content={`${data?.name || data?.title} - Person | Moviesverse`}/>
+                  <meta property="og:description" content="Person details page of moviesverse where users can view person details and their roles and movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
 
             <div className="detailsBanner">

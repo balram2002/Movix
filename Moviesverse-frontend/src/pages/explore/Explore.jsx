@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Select from "react-select";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import "./style.scss";
 
 import useFetch from "../../hooks/useFetch";
@@ -122,8 +122,8 @@ const Explore = () => {
     return (
         <>
          <Helmet>
-                <title>{mediaType === "tv"?"Explore TV Shows": "Explore Movies"} | Movix</title>
-                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                <title>{mediaType === "tv"?"Explore TV Shows": "Explore Movies"}{`${mediaType === 'tv' ? 'Explore TV Shows' : 'Explore Movies'} | Moviesverse`}</title>
+                <meta name="description" content="Explore and Discover millions of movies and tv shows by selecting filters, categories, ratings, popularity, release year etc. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
             <div className="explorePage">
                 <ContentWrapper>

@@ -109,6 +109,15 @@ const Header = () => {
                     >
                         Explore
                     </NavLink>
+                      <NavLink
+                        to={"/about"}
+                        className="menuItem"
+                        onClick={() => {
+                            setMobileMenu(false);
+                        }}
+                    >
+                        About
+                    </NavLink>
                     {!user?.email ? <li className="menuItem">
                         <button class="buttonheadersvc" onClick={() => {
                             navigate(`/login`);

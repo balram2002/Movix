@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AccountDetails from './AccountDetails/AccountDetails';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import "./account.scss";
 import AccountLikedList from './AccountLikedList/AccountLikedList';
@@ -70,8 +70,8 @@ function AccountPage() {
     return (
         <div className='Account-Main'>
              <Helmet>
-                <title>{`${details?.name || 'Account'} | Movix`}</title>
-                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                <title>{`${details?.name || 'Account'} | Moviesverse`}</title>
+                <meta name="description" content="User account page containing user details, liked lists, Watchlists, and edit profile modules. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
             <AccountDetails />
             <div className="switchAccountLists">

@@ -25,7 +25,7 @@ import Languages from "../../../components/Language/Languages.jsx";
 import Countrys from "../../../components/Country/Countrys.jsx";
 import Overview from "../../../components/overview/Overview.jsx";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { RWebShare } from 'react-web-share';
 import StreamHere from "../../../components/stream/StreamHere.jsx";
 
@@ -133,8 +133,10 @@ const DetailsBanner = ({ video, crew }) => {
     return (
         <>
             <Helmet>
-                <title>{titleee + ' | Movix'}</title>
-                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                <title>{`${titleee}, ${mediaType || ''} | Moviesverse`}</title>
+                <meta name="description" content="Movies and TV shows details page of moviesverse where users can view movies/tv shows details and their roles, trailer, cast, videos, collections, seasons, episodes and recommneded/similar movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content={`${titleee}, ${mediaType || ''} | Moviesverse`} />
+                <meta property="og:description" content="Movies and TV shows details page of moviesverse where users can view movies/tv shows details and their roles, trailer, cast, videos, collections, seasons, episodes and recommneded/similar movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
             <div className="detailsBanner">
                 {!loading ? (

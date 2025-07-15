@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeroBanner from "./heroBanner/HeroBanner";
 import Trending from './trending/Trending';
 import Streaming from './streaming/Streaming';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import 'aos/dist/aos.css';
 import "./style.css";
 import Star from './star/Star';
@@ -214,8 +214,10 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>Home | Moviesverse</title>
-        <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+        <title>Home Page | Moviesverse</title>
+        <meta name="description" content="Home page of moviesverse containing all the important endpoints, categories, and star components. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+          <meta property="og:title" content="Home Page | Moviesverse"/>
+          <meta property="og:description" content="Home page of moviesverse containing all the important endpoints, categories, and star components. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
       </Helmet>
 
       {isMobile ? <Star /> : <MainStar />}

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /account
+Disallow: /Login
+Disallow: /forgot-password
+Allow: /
+
+Sitemap: https://www.moviesverse.studio/sitemap.xml

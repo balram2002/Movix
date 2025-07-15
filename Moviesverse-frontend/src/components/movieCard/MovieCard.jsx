@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./style.scss";
@@ -10,6 +10,7 @@ import Genres from "../genres/Genres";
 import PosterFallback from "../../assets/no-poster.png";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
+    const {endpoint} = useParams();
     const { url } = useSelector((state) => state.home);
     const navigate = useNavigate();
     const posterUrl = data.poster_path
@@ -19,7 +20,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
         <div
             className="movieCard"
             onClick={() =>
-                navigate(`/${data.media_type || mediaType}/${data.id}`)
+                navigate(`/${data?.media_type || mediaType || endpoint}/${data.id}`)
             }
         >
             <div className="posterBlock">

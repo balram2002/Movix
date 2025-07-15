@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import "./style.scss";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import MovieCard from "../../components/movieCard/MovieCard";
@@ -75,8 +75,10 @@ const SearchResult = () => {
     return (
         <>
          <Helmet>
-                <title>Search for {query} | Movix</title>
-                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                <title>{`Search for ${query} | Moviesverse`}</title>
+                <meta name="description" content="Search results or response page for users query submitted in search action. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content={`Search for ${query} | Moviesverse`} />
+                <meta property="og:description" content="Search results or response page for users query submitted in search action. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
             <div className="searchResultsPage">
                 {loading && <Spinner initial={true} />}

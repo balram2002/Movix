@@ -27,6 +27,7 @@ import { ValuesContext } from "./context/ValuesContext";
 import { OfflineScreen } from "./components/InitialScreens/OfflineScreen";
 import { LoadingScreen } from "./components/InitialScreens/LoadingScreen";
 import { ServerBusyScreen } from "./components/InitialScreens/ServerBusyScreen";
+import { HelmetProvider } from 'react-helmet-async';
 
 const useOnlineStatus = () => {
     const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -64,7 +65,7 @@ function App() {
     const [season, setSeason] = useState(1);
     const [episode, setEpisode] = useState(1);
     const [server, setServer] = useState(1);
-     const [language, setLanguage] = useState('Original');
+    const [language, setLanguage] = useState('Original');
     const [endpoint, setEndpoint] = useState('xyz');
     const [lanEndpoint, seLantEndpoint] = useState('one');
     const isOnline = useOnlineStatus();
@@ -111,44 +112,46 @@ function App() {
         return <ServerBusyScreen />;
     }
     return (
-        <ThemeProvider>
-            <AuthContextProvider>
-                <ValuesContext.Provider value={{ setEndpoint, endpoint, setServer, server, setEpisode, episode, setSeason, season, language, setLanguage, lanEndpoint, seLantEndpoint }}>
-                    <BrowserRouter>
-                        <Header />
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={3000}
-                            hideProgressBar={false}
-                            newestOnTop={true}
-                            closeOnClick
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            draggablePercent={60}
-                            theme={themelist[(Math.floor(Math.random() * themelist.length))]}
-                        />
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/movie" element={<Movies />} />
-                            <Route path="/tv" element={<Tv />} />
-                            <Route path="/account" element={<AccountPage />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/:mediaType/:id" element={<Details />} />
-                            <Route path="/stream/:mediaType/:id/:season/:episode" element={<StreamPage />} />
-                            <Route path="/person/:id" element={<PersonDetails />} />
-                            <Route path="/search/:endpoint/:query" element={<SearchResult />} />
-                            <Route path="/explore/:mediaType" element={<Explore />} />
-                            <Route path="/Login" element={<Authentication />} />
-                            <Route path="/forgot-password" element={<ResestPassword />} />
-                            <Route path="*" element={<PageNotFound />} />
-                        </Routes>
-                        <ShowNavbar />
-                        <Footer />
-                    </BrowserRouter>
-                </ValuesContext.Provider>
-            </AuthContextProvider>
-        </ThemeProvider>
+        <HelmetProvider>
+            <ThemeProvider>
+                <AuthContextProvider>
+                    <ValuesContext.Provider value={{ setEndpoint, endpoint, setServer, server, setEpisode, episode, setSeason, season, language, setLanguage, lanEndpoint, seLantEndpoint }}>
+                        <BrowserRouter>
+                            <Header />
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={3000}
+                                hideProgressBar={false}
+                                newestOnTop={true}
+                                closeOnClick
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                draggablePercent={60}
+                                theme={themelist[(Math.floor(Math.random() * themelist.length))]}
+                            />
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/movie" element={<Movies />} />
+                                <Route path="/tv" element={<Tv />} />
+                                <Route path="/account" element={<AccountPage />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/:mediaType/:id" element={<Details />} />
+                                <Route path="/stream/:mediaType/:id/:season/:episode" element={<StreamPage />} />
+                                <Route path="/person/:id" element={<PersonDetails />} />
+                                <Route path="/search/:endpoint/:query" element={<SearchResult />} />
+                                <Route path="/explore/:mediaType" element={<Explore />} />
+                                <Route path="/Login" element={<Authentication />} />
+                                <Route path="/forgot-password" element={<ResestPassword />} />
+                                <Route path="*" element={<PageNotFound />} />
+                            </Routes>
+                            <ShowNavbar />
+                            <Footer />
+                        </BrowserRouter>
+                    </ValuesContext.Provider>
+                </AuthContextProvider>
+            </ThemeProvider>
+        </HelmetProvider>
     );
 }
 

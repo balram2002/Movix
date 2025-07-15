@@ -1,15 +1,17 @@
 import React from "react";
 
 import "./style.scss";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 
 const PageNotFound = () => {
     return (
         <div className="pageNotFound">
              <Helmet>
-                <title>404 | Movix</title>
-                <meta name="description" content="Discover and stream your favorite Movies and TV Shows with our powerful MERN stack app using TMDB API. Features include Firebase authentication, dynamic recommendations, search and explore pages, global state with Redux, Watchlist/Likes, and seamless content streaming with full error handling." />
+                <title>404 - Not Found | Movix</title>
+                <meta name="description" content="The requested page is not found or does not exist in the place, please verify the url to access the page. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content="404 - Not Found | Moviesverse" />
+                <meta property="og:description" content="The requested page is not found or does not exist in the place, please verify the url to access the page. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
             </Helmet>
             <ContentWrapper>
                 <span className="bigText">404</span>

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./style.scss";
 import Img from "../../components/lazyLoadImage/Img";
+import { Helmet } from "react-helmet-async";
 
 export default function ResestPassword() {
     const emailRef = useRef()
@@ -50,6 +51,12 @@ export default function ResestPassword() {
 
     return (
         <>
+         <Helmet>
+        <title>Forgot password | Moviesverse</title>
+        <meta name="description" content="Forgot password page of moviesverse where users can reset their password. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <meta property="og:title" content="Forgot password | Moviesverse" />
+        <meta property="og:description" content="Forgot password page of moviesverse where users can reset their password. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+      </Helmet>
             <Img src={background} className="imgforgotreset" />
             <div className="resetforgotpage" style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="forgotpassword09">

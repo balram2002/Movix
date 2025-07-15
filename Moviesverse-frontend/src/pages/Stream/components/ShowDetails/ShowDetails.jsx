@@ -60,7 +60,7 @@ const ShowDetails = ({ data, video, crew }) => {
                 <RWebShare
                   data={{
                     text: `Moviesverse shared ${data?.endpoint || mediaType} ${data?.name || data?.title} ( ${data?.release_date} ) with a tagline of '${data?.tagline}' and overview as '${data?.overview}'.`,
-                    url: `https://www.moviesverse.studio/${data?.endpoint || "Person"}/${id | data?.id}`,
+                    url: `https://www.moviesverse.studio/${data?.endpoint || mediaType}/${id | data?.id}`,
                     title: "Movix Shared " + data?.name | data?.title,
                   }}
                 >
