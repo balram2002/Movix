@@ -13,14 +13,26 @@ import 'swiper/css/navigation';
 import "./style.css";
 
 import { EffectCoverflow, Navigation, Autoplay } from 'swiper/modules';
+import { use } from 'react';
 
 function Banner() {
     const { url } = useSelector((state) => state.home);
     const [data, setData] = useState();
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setData(demoData.results);
     }, [])
+
+    useEffect(() => {
+         const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+           setIsMobile(true);
+        } else {
+           setIsMobile(false);
+        }
+    }, []);
 
     return (
         <>
@@ -63,10 +75,10 @@ function Banner() {
                     }
                 </Swiper>
             </div>
-            <div className="alternateswipergfhf6677">
+           { isMobile &&  <div className="alternateswipergfhf6677">
                 <span className='fhfhfhyf67576'>Use Desktop to experience more features.</span>
                 <span className='fhfhfhyf67576'>Make an account to like and add to watchlist content and get recommendations accordingly..</span>
-            </div>
+            </div>}
         </>
     )
 }

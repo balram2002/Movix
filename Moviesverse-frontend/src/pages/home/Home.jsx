@@ -236,7 +236,7 @@ function Home() {
           <Language />
           {recommendationItems[3] && <RecommendationSection key={recommendationItems[3].item.id} item={recommendationItems[3].item} title={recommendationItems[3].title} />}
           <Company />
-          <InfoSlider />
+          {!isMobile && <InfoSlider />}
           {genres && (
             <FavourateGenre
               title={`Because Your Favorite Genre is '${details.genre}'`}
