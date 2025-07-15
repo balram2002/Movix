@@ -12,6 +12,9 @@ const PageNotFound = () => {
                 <meta name="description" content="The requested page is not found or does not exist in the place, please verify the url to access the page. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
                 <meta property="og:title" content="404 - Not Found | Moviesverse" />
                 <meta property="og:description" content="The requested page is not found or does not exist in the place, please verify the url to access the page. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href="https://moviesverse.studio/404" />
+                <meta property="og:url" content="https://moviesverse.studio/404" />
+                <meta property="og:type" content="website" />
             </Helmet>
             <ContentWrapper>
                 <span className="bigText">404</span>

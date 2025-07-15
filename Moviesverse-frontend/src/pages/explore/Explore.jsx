@@ -124,6 +124,11 @@ const Explore = () => {
          <Helmet>
                 <title>{mediaType === "tv"?"Explore TV Shows": "Explore Movies"}{`${mediaType === 'tv' ? 'Explore TV Shows' : 'Explore Movies'} | Moviesverse`}</title>
                 <meta name="description" content="Explore and Discover millions of movies and tv shows by selecting filters, categories, ratings, popularity, release year etc. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content={`${mediaType === 'tv' ? 'Explore TV Shows' : 'Explore Movies'} | Moviesverse`} />
+                <meta property="og:description" content="Explore and Discover millions of movies and tv shows by selecting filters, categories, ratings, popularity, release year etc. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href={`https://moviesverse.studio/explore/${mediaType}`} />
+                <meta property="og:url" content={`https://moviesverse.studio/explore/${mediaType}`} />
+                <meta property="og:type" content="website" />
             </Helmet>
             <div className="explorePage">
                 <ContentWrapper>

@@ -116,8 +116,11 @@ const Tv = () => {
             <Helmet>
                 <title>TV Shows Page | Moviesverse</title>
                 <meta name="description" content="TV shows page of moviesverse where users can explore and Discover millions of tv shows and web shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
-                  <meta property="og:title" content="TV Shows Page | Moviesverse"/>
-                  <meta property="og:description" content="TV shows page of moviesverse where users can explore and Discover millions of tv shows and web shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content="TV Shows Page | Moviesverse" />
+                <meta property="og:description" content="TV shows page of moviesverse where users can explore and Discover millions of tv shows and web shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href="https://moviesverse.studio/tv" />
+                <meta property="og:url" content="https://moviesverse.studio/tv" />
+                <meta property="og:type" content="website" />
             </Helmet>
 
             <main>

@@ -61,6 +61,9 @@ function StreamPage() {
         <meta name="description" content="Stream page for movies and tv shows where users can watch their favourite content in different languages with multiple servers. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free."/>
         <meta property="og:title" content={`Streaming ${detailsData?.name || detailsData?.title} ${mediaType || ""} | Moviesverse`} />
         <meta property="og:description" content="Stream page for movies and tv shows where users can watch their favourite content in different languages with multiple servers. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <link rel="canonical" href={`https://moviesverse.studio/stream/${mediaType}/${id}/1/1`} />
+        <meta property="og:url" content={`https://moviesverse.studio/stream/${mediaType}/${id}/1/1`} />
+        <meta property="og:type" content="website" />
       </Helmet>
       <div className="stream-page-container">
         {/* Mobile Layout */}

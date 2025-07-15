@@ -72,6 +72,11 @@ function AccountPage() {
              <Helmet>
                 <title>{`${details?.name || 'Account'} | Moviesverse`}</title>
                 <meta name="description" content="User account page containing user details, liked lists, Watchlists, and edit profile modules. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content={`${details?.name || 'Account'} | Moviesverse`} />
+                <meta property="og:description" content="User account page containing user details, liked lists, Watchlists, and edit profile modules. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href={`https://moviesverse.studio/account`} />
+                <meta property="og:url" content={`https://moviesverse.studio/account`} />
+                <meta property="og:type" content="website" />
             </Helmet>
             <AccountDetails />
             <div className="switchAccountLists">

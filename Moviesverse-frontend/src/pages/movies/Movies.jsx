@@ -118,8 +118,11 @@ const Movies = () => {
       <Helmet>
         <title>Movies Page | Moviesverse</title>
         <meta name="description" content="Movies page of moviesverse where users can explore and Discover millions of movies. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
-          <meta property="og:title" content="Movies Page | Moviesverse"/>
+        <meta property="og:title" content="Movies Page | Moviesverse" />
         <meta property="og:description" content="Movies page of moviesverse where users can explore and Discover millions of movies. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <link rel="canonical" href="https://moviesverse.studio/movie" />
+        <meta property="og:url" content="https://moviesverse.studio/movie" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <main>
         <div className="homePage">
@@ -134,7 +137,7 @@ const Movies = () => {
           {recommendationItems[4] && <RecommendationSection key={recommendationItems[4].movie.id} movie={recommendationItems[4].movie} title={recommendationItems[4].title} />}
           <InTheaters />
           <Upcoming />
-           {recommendationItems[1] && <RecommendationSection key={recommendationItems[1].movie.id} movie={recommendationItems[1].movie} title={recommendationItems[1].title} />}
+          {recommendationItems[1] && <RecommendationSection key={recommendationItems[1].movie.id} movie={recommendationItems[1].movie} title={recommendationItems[1].title} />}
           <Country />
           <ReleaseYear />
           <Revenue />
@@ -145,9 +148,9 @@ const Movies = () => {
         </div>
       </main>
       {show && <ScrollButton />}
-   <ShootingStars />
-      <StarsBackground />  
-        </>
+      <ShootingStars />
+      <StarsBackground />
+    </>
   );
 };
 

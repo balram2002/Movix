@@ -56,6 +56,9 @@ export default function ResestPassword() {
         <meta name="description" content="Forgot password page of moviesverse where users can reset their password. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
         <meta property="og:title" content="Forgot password | Moviesverse" />
         <meta property="og:description" content="Forgot password page of moviesverse where users can reset their password. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <link rel="canonical" href="https://moviesverse.studio/forgot-password" />
+        <meta property="og:url" content="https://moviesverse.studio/forgot-password" />
+        <meta property="og:type" content="website" />
       </Helmet>
             <Img src={background} className="imgforgotreset" />
             <div className="resetforgotpage" style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>

@@ -63,8 +63,11 @@ const DetailsBanner = () => {
             <Helmet>
                 <title>{`${data?.name || data?.title} - Person | Moviesverse`}</title>
                 <meta name="description" content="Person details page of moviesverse where users can view person details and their roles and movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
-                  <meta property="og:title" content={`${data?.name || data?.title} - Person | Moviesverse`}/>
-                  <meta property="og:description" content="Person details page of moviesverse where users can view person details and their roles and movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <meta property="og:title" content={`${data?.name || data?.title} - Person | Moviesverse`} />
+                <meta property="og:description" content="Person details page of moviesverse where users can view person details and their roles and movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href={`https://moviesverse.studio/person/${id}`} />
+                <meta property="og:url" content={`https://moviesverse.studio/person/${id}`} />
+                <meta property="og:type" content="website" />
             </Helmet>
 
             <div className="detailsBanner">

@@ -77,6 +77,9 @@ function Authentication() {
                 <meta name="description" content="Authentication page of moviesverse where users can create your account and login into their accounts. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
                   <meta property="og:title" content={`${Wrapper ? 'SignUp' : 'Login'} | Welcome to Moviesverse`}/>
                 <meta property="og:description" content="Authentication page of moviesverse where users can create your account and login into their accounts. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href="https://moviesverse.studio/Login" />
+                <meta property="og:url" content="https://moviesverse.studio/Login" />
+                <meta property="og:type" content="website" />
             </Helmet>
             <img className="logbg" src={logbg} alt="" />
             <div id="authwrapperbd" className={`${Wrapper ? "active" : ""}`}>

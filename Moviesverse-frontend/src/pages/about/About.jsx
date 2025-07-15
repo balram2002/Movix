@@ -10,6 +10,9 @@ function About() {
                 <meta name="description" content="About page of moviesverse where users can learn about the story behind moviesverse, its features, technical stack, and how it evolved from a side project to a daily streaming habit. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
                 <meta property="og:title" content="About Moviesverse | Moviesverse" />
                 <meta property="og:description" content="About page of moviesverse where users can learn about the story behind moviesverse, its features, technical stack, and how it evolved from a side project to a daily streaming habit. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href="https://moviesverse.studio/about" />
+                <meta property="og:url" content="https://moviesverse.studio/about" />
+                <meta property="og:type" content="website" />
             </Helmet>
             <div className="about-hero">
                 <div className="hero-background">

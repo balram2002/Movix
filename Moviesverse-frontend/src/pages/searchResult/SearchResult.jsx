@@ -79,6 +79,9 @@ const SearchResult = () => {
                 <meta name="description" content="Search results or response page for users query submitted in search action. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
                 <meta property="og:title" content={`Search for ${query} | Moviesverse`} />
                 <meta property="og:description" content="Search results or response page for users query submitted in search action. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href={`https://moviesverse.studio/search/${endpoint}/${query}`} />
+                <meta property="og:url" content={`https://moviesverse.studio/search/${endpoint}/${query}`} />
+                <meta property="og:type" content="website" />
             </Helmet>
             <div className="searchResultsPage">
                 {loading && <Spinner initial={true} />}

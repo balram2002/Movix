@@ -216,8 +216,11 @@ function Home() {
       <Helmet>
         <title>Home Page | Moviesverse</title>
         <meta name="description" content="Home page of moviesverse containing all the important endpoints, categories, and star components. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
-          <meta property="og:title" content="Home Page | Moviesverse"/>
-          <meta property="og:description" content="Home page of moviesverse containing all the important endpoints, categories, and star components. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <meta property="og:title" content="Home Page | Moviesverse" />
+        <meta property="og:description" content="Home page of moviesverse containing all the important endpoints, categories, and star components. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+        <link rel="canonical" href="https://moviesverse.studio/" />
+        <meta property="og:url" content="https://moviesverse.studio/" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       {isMobile ? <Star /> : <MainStar />}

@@ -137,6 +137,9 @@ const DetailsBanner = ({ video, crew }) => {
                 <meta name="description" content="Movies and TV shows details page of moviesverse where users can view movies/tv shows details and their roles, trailer, cast, videos, collections, seasons, episodes and recommneded/similar movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
                 <meta property="og:title" content={`${titleee}, ${mediaType || ''} | Moviesverse`} />
                 <meta property="og:description" content="Movies and TV shows details page of moviesverse where users can view movies/tv shows details and their roles, trailer, cast, videos, collections, seasons, episodes and recommneded/similar movies/tv shows. Moviesverse - Explore and stream millions of movies, tv shows, animes, web shows etc for free." />
+                <link rel="canonical" href={`https://moviesverse.studio/${data?.endpoint || mediaType}/${id}`} />
+                <meta property="og:url" content={`https://moviesverse.studio/${data?.endpoint || mediaType}/${id}`} />
+                <meta property="og:type" content="website" />
             </Helmet>
             <div className="detailsBanner">
                 {!loading ? (
