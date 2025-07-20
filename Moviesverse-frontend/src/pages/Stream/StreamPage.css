@@ -97,6 +97,13 @@
   z-index: 2; /* Above overlay */
 }
 
+.desktop-player-section.on-stream {
+  border-top: 0; /* Highlight color when on stream */
+  border-bottom: 0;
+  box-shadow: none;
+  border-right: 0;
+}
+
 .video-player-wrapper {
   display: flex;
   height: 100%;
@@ -128,10 +135,10 @@
   opacity: 1 !important;
 }
 .desktop-controls.on-stream {
-  opacity: 0.1 !important;
+  opacity: 0.02 !important;
 }
 .desktop-show-details.on-stream {
-  opacity: 0.1 !important;
+  opacity: 0.02 !important;
 }
 
 .desktop-show-details {

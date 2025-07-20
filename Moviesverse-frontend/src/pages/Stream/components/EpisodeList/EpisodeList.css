@@ -19,7 +19,7 @@
 }
 
 .episode-container.on-stream {
-  opacity: 0.1 !important;
+  opacity: 0.02 !important;
 }
 
 .mobile-season-selector {
@@ -179,6 +179,9 @@
   scrollbar-width: thin;
   scrollbar-color: var(--second) transparent;
   border-left: 1px solid white;
+  padding-top: 7px;
+  padding-left: 4px;
+  padding-right: 4px;
   border-radius: 8px;
 }
 

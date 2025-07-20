@@ -103,16 +103,17 @@ const PlayerControls = ({ episodesLength }) => {
         :
 
         <div className='player-controls-container-movie'>
-          <div className='player-controls-container-movie-left'>
+         <div className={`player-controls-container-movie-left ${mediaType === 'movie' && 'movie'}`}>
                <div className='player-controls-container-movie-left-episode'>
-                   <span className='server-label-playerarea'>You are currently watching episode : </span>
-                   <span className='server-label-playerarea'>{episode}</span>
+                   <span className='server-label-playerarea'>Currently Watching : </span>
+                   <span className='server-label-playerarea'>Season: {season}</span>
+                   <span className='server-label-playerarea'>Episode: {episode}</span>
                </div>
           </div>
           <div className={`player-controls-container ${mediaType === 'tv' && 'tv'}`}>
             <div className='player-controls-container-lang'>
               <span className='server-label-playerarea'>Language : </span>
-              <SwitchTabs data={["Original", "Hindi"]} onTabChange={onTabChange} />
+              <SwitchTabs2 data={["Original", "Hindi"]} onTabChange={onTabChange} />
             </div>
 
             <div className='player-controls-container-servers'>

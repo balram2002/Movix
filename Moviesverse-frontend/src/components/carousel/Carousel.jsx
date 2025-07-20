@@ -142,34 +142,34 @@ const Carousel = ({ data, loading, endpoint, title, isStream }) => {
                             />
                             <div className="carouselItems" ref={carouselContainer}>
                                 {data?.map((item) => {
-                                    const posterUrl = item.poster_path
-                                        ? url.poster + item.poster_path
+                                    const posterUrl = item?.poster_path
+                                        ? url.poster + item?.poster_path
                                         : PosterFallback;
                                     return (
                                         <div
-                                            key={item.id}
+                                            key={item?.id}
                                             className="carouselItem"
                                         >
                                             <div className="posterBlock" onClick={() =>
                                                 navigate(
-                                                    `/${item.media_type || endpoint}/${item.id}`
+                                                    `/${item?.media_type || endpoint}/${item?.id}`
                                                 )
                                             }>
                                                 <Img src={posterUrl} />
                                                 <CircleRating
-                                                    rating={item.vote_average.toFixed(1)}
+                                                    rating={item?.vote_average?.toFixed(1)}
                                                 />
                                                 <Genres
-                                                    data={item.genre_ids.slice(0, 2)}
+                                                    data={item?.genre_ids?.slice(0, 2)}
                                                 />
-                                                <span className="mediatype09">{item.media_type || endpoint}</span>
+                                                <span className="mediatype09">{item?.media_type || endpoint}</span>
                                             </div>
                                             <div className="textBlock">
                                                 <span className="title">
-                                                    {item.title || item.name}
+                                                    {item?.title || item?.name}
                                                 </span>
                                                 <span className="date">
-                                                    {dayjs(item.release_date || item.first_air_date).format(
+                                                    {dayjs(item?.release_date || item?.first_air_date).format(
                                                         "MMM D, YYYY"
                                                     )}
                                                 </span>
@@ -187,8 +187,8 @@ const Carousel = ({ data, loading, endpoint, title, isStream }) => {
                     ) : (
                         <div className="carouselItems" ref={carouselContainer}>
                             {data?.map((item) => {
-                                const posterUrl = item.poster_path
-                                    ? url.poster + item.poster_path
+                                const posterUrl = item?.poster_path
+                                    ? url.poster + item?.poster_path
                                     : PosterFallback;
                                 return (
                                     <div
@@ -197,24 +197,24 @@ const Carousel = ({ data, loading, endpoint, title, isStream }) => {
                                     >
                                         <div className="posterBlock" onClick={() =>
                                             navigate(
-                                                `/${item.media_type || endpoint}/${item.id}`
+                                                `/${item?.media_type || endpoint}/${item?.id}`
                                             )
                                         }>
                                             <Img src={posterUrl} />
                                             <CircleRating
-                                                rating={item.vote_average.toFixed(1)}
+                                                rating={item?.vote_average.toFixed(1)}
                                             />
                                             <Genres
-                                                data={item.genre_ids.slice(0, 2)}
+                                                data={item?.genre_ids.slice(0, 2)}
                                             />
-                                            <span className="mediatype09">{item.media_type || endpoint}</span>
+                                            <span className="mediatype09">{item?.media_type || endpoint}</span>
                                         </div>
                                         <div className="textBlock">
                                             <span className="title">
-                                                {item.title || item.name}
+                                                {item?.title || item?.name}
                                             </span>
                                             <span className="date">
-                                                {dayjs(item.release_date || item.first_air_date).format(
+                                                {dayjs(item?.release_date || item?.first_air_date).format(
                                                     "MMM D, YYYY"
                                                 )}
                                             </span>

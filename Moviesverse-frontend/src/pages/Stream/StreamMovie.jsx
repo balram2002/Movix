@@ -96,7 +96,7 @@ function StreamPage() {
           {/* Desktop: Main Content - Full Viewport Height */}
           <div className="desktop-main-content">
             {/* Left side - Video Player and Controls */}
-            <div className="desktop-player-section">
+            <div className={`desktop-player-section ${isOnStream ? 'on-stream' : ''}`}>
               <div className={`video-player-wrapper ${isOnStream ? 'on-stream' : ''}`}>
                 <VideoPlayer mediaType={mediaType} id={id} />
               </div>

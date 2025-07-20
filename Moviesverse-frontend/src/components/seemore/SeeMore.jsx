@@ -38,17 +38,17 @@ const SeeMore = ({ show, setShow, title, data, loading, endpoint }) => {
                 </div>
                 <div className="seemoremainitems321">
                     {data?.map((item, index) => {
-                        const posterUrl = item.poster_path
-                            ? url.poster + item.poster_path
+                        const posterUrl = item?.poster_path
+                            ? url.poster + item?.poster_path
                             : PosterFallback;
                         return (
                             <div
-                                key={item.id}
+                                key={item?.id}
                                 className="carouselItem"
                             >
                                 <div className="posterBlock" onClick={() => {
                                     navigate(
-                                        `/${item.media_type || endpoint}/${item.id
+                                        `/${item?.media_type || endpoint}/${item?.id
                                         }`
                                     );
                                     hidePopup();
@@ -56,18 +56,18 @@ const SeeMore = ({ show, setShow, title, data, loading, endpoint }) => {
                                 }>
                                     <Img src={posterUrl} />
                                     <CircleRating
-                                        rating={item.vote_average.toFixed(
+                                        rating={item?.vote_average?.toFixed(
                                             1
                                         )}
                                     />
-                                    <span className="mediatype09">{item.media_type}</span>
+                                    <span className="mediatype09">{item?.media_type}</span>
                                 </div>
                                 <div className="textBlock">
                                     <span className="title">
-                                        {item.title || item.name}
+                                        {item?.title || item?.name}
                                     </span>
                                     <span className="date">
-                                        {dayjs(item.release_date || item.first_air_date).format(
+                                        {dayjs(item?.release_date || item?.first_air_date).format(
                                             "MMM D, YYYY"
                                         )}
                                     </span>
