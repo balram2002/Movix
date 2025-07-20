@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import PlayerControls from './components/PlayerControls/PlayerControls';
 import EpisodeList from './components/EpisodeList/EpisodeList';
@@ -7,6 +7,7 @@ import './StreamPage.css';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { Helmet } from 'react-helmet-async';
+import { ValuesContext } from '../../context/ValuesContext';
 
 function StreamPage() {
 
@@ -30,7 +31,8 @@ function StreamPage() {
         setLoading(false);
       });
   };
-
+  
+  const { isOnStream } = useContext(ValuesContext);
   const [collectionData, setCollectionData] = useState(null);
   const [collectionLoading, setCollectionLoading] = useState(true);
 
@@ -95,10 +97,10 @@ function StreamPage() {
           <div className="desktop-main-content">
             {/* Left side - Video Player and Controls */}
             <div className="desktop-player-section">
-              <div className="video-player-wrapper">
+              <div className={`video-player-wrapper ${isOnStream ? 'on-stream' : ''}`}>
                 <VideoPlayer mediaType={mediaType} id={id} />
               </div>
-              <div className="desktop-controls">
+              <div className={`desktop-controls ${isOnStream ? 'on-stream' : ''}`}>
                 <PlayerControls episodesLength={episodesLength} />
               </div>
             </div>
@@ -108,7 +110,7 @@ function StreamPage() {
           </div>
 
           {/* Desktop: Show Details Section - Below the main content */}
-          <div className="desktop-show-details">
+          <div className={`desktop-show-details ${isOnStream ? 'on-stream' : ''}`}>
             <ShowDetails data={detailsData} />
           </div>
         </div>

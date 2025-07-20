@@ -16,7 +16,7 @@
 .video-player-container iframe {
   height: 100% !important;
   width: 100% !important;
-  border: 2px solid var(--text-color);
+  border: 2px solid var(--black2);
   object-fit: cover;
   object-position: center;
 }

@@ -1,9 +1,10 @@
 .stream-page-container {
   min-height: 100vh;
-  background-color: #04152d; /* Main background color */
-  padding-top: 70px; /* Header height */
+  background-color: #04152d;
+  padding-top: 70px;
   font-family: 'Arial', sans-serif;
   overflow-x: hidden;
+  position: relative; /* For overlay positioning */
 }
 
 .mobile-layout {
@@ -39,7 +40,7 @@
 
 .mobile-show-details {
   padding: 1rem;
-  background: rgba(4, 21, 45, 0.3); /* Glassmorphism for mobile details */
+  background: rgba(4, 21, 45, 0.3);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -56,11 +57,25 @@
   }
 }
 
+/* Overlay for dimming effect when on-stream is true */
+.desktop-layout.on-stream::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dark overlay to simulate dimming */
+  z-index: 1; /* Below video player but above other content */
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
 .desktop-main-content {
   display: flex;
-  height: calc(100vh - 70px); /* Full height minus header */
+  height: calc(100vh - 70px);
   padding-left: 10px;
   padding-right: 10px;
+  position: relative; /* Ensure children can use z-index */
 }
 
 .desktop-player-section {
@@ -69,13 +84,17 @@
   flex-direction: column;
   height: 100%;
   padding: 0.5rem;
-  padding-bottom: 0.8rem;
-  background: linear-gradient(135deg, rgba(4, 21, 45, 0.5), rgba(22, 33, 62, 0.5)); /* Subtle glassmorphism gradient */
+  padding-bottom: 0.3rem;
+  background: linear-gradient(135deg, rgba(4, 21, 45, 0.5), rgba(22, 33, 62, 0.5));
   backdrop-filter: blur(8px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   margin-right: 0.5rem;
+  border-top: 4px solid white;
+  border-bottom: 1px solid white;
+  z-index: 2; /* Above overlay */
 }
 
 .video-player-wrapper {
@@ -83,39 +102,50 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  padding-bottom: 1rem;
+  padding-bottom: 4px;
+  background: transparent; /* Ensure no background interference */
 }
 
 .desktop-controls {
   flex-shrink: 0;
-  padding-top: 1rem;
+  padding-top: 5px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .episode-list-wrapper {
   height: calc(100vh - 70px);
-  background: rgba(4, 21, 45, 0.3); /* Glassmorphism background */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
+  background: rgba(4, 21, 45, 0.3);
+  backdrop-filter: blur(10px);
   padding: 10px;
   overflow-y: auto;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
+  position: relative; /* Ensure proper stacking */
 }
 
-/* Glassmorphism for show details section */
+.video-player-wrapper.on-stream {
+  opacity: 1 !important;
+}
+.desktop-controls.on-stream {
+  opacity: 0.1 !important;
+}
+.desktop-show-details.on-stream {
+  opacity: 0.1 !important;
+}
+
 .desktop-show-details {
   padding: 1.5rem;
-  background: rgba(4, 21, 45, 0.3); /* Glassmorphism background */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
+  background: rgba(4, 21, 45, 0.3);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   margin: 0 1rem 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-top: 15px;
+  position: relative; /* Ensure proper stacking */
 }
 
-/* Hypothetical tags section (apply to ShowDetails or EpisodeList as needed) */
 .tags-section {
   display: flex;
   flex-wrap: wrap;
@@ -130,7 +160,7 @@
 
 .tag {
   padding: 0.5rem 1rem;
-  background: rgba(37, 99, 235, 0.2); /* Blue accent for tags */
+  background: rgba(37, 99, 235, 0.2);
   color: #e0e7ff;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -142,7 +172,6 @@
   cursor: pointer;
 }
 
-/* General text styles for readability */
 .desktop-show-details p,
 .episode-list-wrapper p,
 .tags-section p {
@@ -150,9 +179,8 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* Hover effects for interactive elements */
 .episode-list-wrapper:hover,
 .desktop-show-details:hover {
-  background: rgba(4, 21, 45, 0.4); /* Slightly more opaque on hover */
+  background: rgba(4, 21, 45, 0.4);
   transition: background 0.3s ease;
 }

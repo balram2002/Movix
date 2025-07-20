@@ -19,38 +19,29 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
     episode: episodeNum, 
     season: seasonNum, 
     setSeason, 
-    setEpisode 
+    setEpisode,
+    isOnStream 
   } = useContext(ValuesContext);
 
   const { data: episode, loading: episodeLoading } = useFetch(`/${mediaType}/${id}/season/${seasonNum}`);
   const { data: detailsData, loading: detailsLoading } = useFetch(`/${mediaType}/${id}`);
 
-  // Memoized computed values for better performance
   const computedValues = useMemo(() => {
     const isTvShow = mediaType === 'tv';
     const filteredEpisodes = episode?.episodes;
     const items = isTvShow ? filteredEpisodes : collectioData?.parts;
     
-    // For TV shows: loading only when episodeLoading is true
-    // For movies: loading only when collectionLoading is true AND we don't have detailsData yet
     const isLoading = isTvShow 
       ? episodeLoading 
       : collectionLoading && !detailsData;
     
-    // Better condition checking for collections
     const hasValidCollection = !isTvShow && collectioData && Array.isArray(collectioData.parts) && collectioData.parts.length > 0;
     const hasNoCollection = !isTvShow && !collectioData && !collectionLoading;
     const hasEmptyCollection = !isTvShow && collectioData && (!collectioData.parts || collectioData.parts.length === 0);
     
-    // For TV shows
     const hasValidEpisodes = isTvShow && filteredEpisodes && Array.isArray(filteredEpisodes) && filteredEpisodes.length > 0;
     const hasNoEpisodes = isTvShow && !episodeLoading && (!filteredEpisodes || filteredEpisodes.length === 0);
     
-    // Should render fallback single item when:
-    // 1. Not a TV show AND
-    // 2. Not loading AND
-    // 3. Don't have valid collection AND
-    // 4. We have detailsData to show OR we're not in details loading state
     const shouldRenderFallback = !isTvShow && !isLoading && !hasValidCollection && !detailsLoading;
     
     return {
@@ -67,13 +58,11 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
     };
   }, [mediaType, episode, collectioData, collectionLoading, episodeLoading, detailsData, detailsLoading]);
 
-  // Helper function to get safe image URL
   const getImageUrl = (imagePath) => {
-    if (!url?.poster || !imagePath) return '/placeholder-image.jpg'; // Fallback image
+    if (!url?.poster || !imagePath) return '/placeholder-image.jpg';
     return url.poster + imagePath;
   };
 
-  // Helper function to format date safely
   const formatDate = (date, format = "MMM D, YYYY") => {
     if (!date) return 'N/A';
     try {
@@ -83,14 +72,12 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
     }
   };
 
-  // Helper function to handle episode click
   const handleEpisodeClick = (episodeNumber) => {
     if (typeof setEpisode === 'function') {
       setEpisode(episodeNumber);
     }
   };
 
-  // Helper function to handle movie click
   const handleMovieClick = (movieId) => {
     if (movieId && navigate) {
       navigate(`/stream/movie/${movieId}/0/0`);
@@ -115,7 +102,7 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
         alt={item.name || `Episode ${item.episode_number}`} 
         className="episode-thumbnail"
         onError={(e) => {
-          e.target.src = '/placeholder-image.jpg'; // Fallback on error
+          e.target.src = '/placeholder-image.jpg';
         }}
       />
       <div className="episode-details">
@@ -216,8 +203,6 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   );
 
   const renderFallbackItem = (isListView = true) => {
-    // Always render fallback if we're not a TV show and don't have valid collection
-    // Even if detailsData is not available yet, show a placeholder
     const fallbackData = detailsData || { title: 'Loading...', name: 'Loading...', release_date: null };
 
     const commonContent = (
@@ -269,25 +254,16 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
         </div>
       ) : (
         <>
-          {/* TV Show Episodes */}
           {computedValues.isTvShow && computedValues.hasValidEpisodes && 
             computedValues.items.map((item, index) => renderTvEpisodeListItem(item, index))
           }
-          
-          {/* Movie Collection */}
           {!computedValues.isTvShow && computedValues.hasValidCollection && 
             computedValues.items.map((item, index) => renderMovieListItem(item, index))
           }
-          
-          {/* No episodes found for TV */}
           {computedValues.hasNoEpisodes && (
             <div className="no-content">No episodes found for this season</div>
           )}
-          
-          {/* Fallback for movies without collection or single movie - ALWAYS render if should */}
           {computedValues.shouldRenderFallback && renderFallbackItem(true)}
-          
-          {/* Debug: Show when no content at all */}
           {!computedValues.isTvShow && !computedValues.hasValidCollection && !computedValues.shouldRenderFallback && (
             <div className="no-content">Loading movie details...</div>
           )}
@@ -304,25 +280,16 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
         </div>
       ) : (
         <>
-          {/* TV Show Episodes */}
           {computedValues.isTvShow && computedValues.hasValidEpisodes && 
             computedValues.items.map((item, index) => renderTvEpisodeGridItem(item, index))
           }
-          
-          {/* Movie Collection */}
           {!computedValues.isTvShow && computedValues.hasValidCollection && 
             computedValues.items.map((item, index) => renderMovieGridItem(item, index))
           }
-          
-          {/* No episodes found for TV */}
           {computedValues.hasNoEpisodes && (
             <div className="no-content">No episodes found for this season</div>
           )}
-          
-          {/* Fallback for movies without collection or single movie - ALWAYS render if should */}
           {computedValues.shouldRenderFallback && renderFallbackItem(false)}
-          
-          {/* Debug: Show when no content at all */}
           {!computedValues.isTvShow && !computedValues.hasValidCollection && !computedValues.shouldRenderFallback && (
             <div className="no-content">Loading movie details...</div>
           )}
@@ -336,11 +303,9 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
       const episodeCount = computedValues.filteredEpisodes?.length || 0;
       return `List of episodes (${episodeCount})`;
     }
-    
     if (computedValues.hasValidCollection) {
       return `Belongs to ${detailsData?.title || 'Collection'}`;
     }
-    
     return 'No Collection Found';
   };
 
@@ -351,26 +316,23 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   };
 
   return (
-    <div className="episode-container">
-      {/* Season Selector for TV Shows */}
+    <div className={`episode-container ${isOnStream ? 'on-stream' : ''}`}>
       {computedValues.isTvShow && Seasons && Array.isArray(Seasons) && Seasons.length > 0 && (
         <div className="desktop-season-selector">
           <div className="season-pills">
-            {Seasons.map((season) => (
+            {Seasons.filter(season => season.name !== "Specials").map((season) => (
               <button
                 key={`season-${season.id}`}
-                onClick={() => handleSeasonChange(season.season_number)}
-                className={`season-pill ${seasonNum === season.season_number ? 'season-pill-active' : ''}`}
-                disabled={!season.season_number}
+                onClick={() => handleSeasonChange(season?.season_number)}
+                className={`season-pill ${seasonNum === season?.season_number ? 'season-pill-active' : ''}`}
+                disabled={!season?.season_number}
               >
-                {season.name || `Season ${season.season_number}`}
+                {`Season ${season?.season_number}`}
               </button>
             ))}
           </div>
         </div>
       )}
-
-      {/* Header with title and view toggle */}
       <div className="episode-header">
         <h3 className="episode-header-title">
           {getHeaderTitle()}
@@ -392,8 +354,6 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
           </button>
         </div>
       </div>
-
-      {/* Episode Content */}
       <div className="episode-content">
         {viewMode === 'list' ? renderListView() : renderGridView()}
       </div>

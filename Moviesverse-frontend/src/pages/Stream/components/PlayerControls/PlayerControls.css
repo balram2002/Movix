@@ -1,27 +1,94 @@
 .player-controls-container {
+  /* flex: 0 0 70%; */
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between !important;
-  width: 100% !important;
-  min-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--black2);
+  border-radius: 12px;
   gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  padding: 15px;
+  border-right: 3px solid white;
 }
 
-.player-controls-container.tv{
+.player-controls-container-movie {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player-controls-container-movie-left {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: var(--black2);
+  border-radius: 12px;
+  padding: 17.5px;
+  min-height: 100%;
+  padding-left: 2px;
+  padding-right: 4px;
+  gap: 10px;
+  border-left: 3px solid white;
+}
+
+.player-controls-container-movie-left.movie {
+  display: none;
+  flex: 0 0 0%;
+  min-width: 0 !important;
+}
+
+.player-controls-container-movie-left.movie .player-controls-container {
+  flex: 0 0 100% !important;
+  min-width: 100% !important;
+}
+
+.player-controls-container-movie-left-episode {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  gap: 6px;
+}
+
+.player-controls-container-movie-left-episode> :first-child {
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--second) !important;
+}
+
+.player-controls-container-movie-left-episode> :nth-child(2) {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.player-controls-container-movie-left-episode> :nth-child(3) {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.player-controls-container.tv {
   flex-direction: column;
 }
 
-.player-controls-container-lang{
+.player-controls-container-lang {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.player-controls-container-servers{
+.player-controls-container-servers {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,7 +159,16 @@
 }
 
 .nav-button:hover {
-  background-color: var(--black-light);
+  background-color: var(--second);
+  color: white;
+}
+
+.prev-button:hover {
+  border-left: 3px solid white !important;
+}
+
+.next-button:hover {
+  border-right: 3px solid white !important;
 }
 
 .nav-icon {
@@ -110,7 +186,8 @@
     margin-bottom: 1rem;
   }
 
-  .server-button, .nav-button {
+  .server-button,
+  .nav-button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }

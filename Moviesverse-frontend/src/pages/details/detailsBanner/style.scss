@@ -58,7 +58,7 @@
         .auth-icons-details {
             position: absolute;
             right: 1px;
-            top: -20px !important;
+            top: 7px !important;
             display: flex;
 
             .liked-icon {
@@ -88,13 +88,13 @@
             }
 
             @media only screen and (max-width: 940px) {
-                top: -45px;
-                left: 67px;
+                top: -45px !important;
+                left: 67px !important;
             }
 
             @media only screen and (max-width: 760px) {
-                top: -24px;
-                left: 15px;
+                top: -20px !important;
+                left: 15px !important;
             }
 
         }
@@ -102,7 +102,7 @@
         .shareicon989-details {
             position: absolute;
             right: 1px;
-            top: 158px;
+            top: 160px;
 
             .shareicon98icon {
                 font-size: 30px;

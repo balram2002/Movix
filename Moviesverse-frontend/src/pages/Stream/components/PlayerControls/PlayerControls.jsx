@@ -4,12 +4,12 @@ import './PlayerControls.css';
 import { toast } from 'react-toastify';
 import { ValuesContext } from '../../../../context/ValuesContext';
 import { useParams } from 'react-router-dom';
-import SwitchTabs from '../../../../components/switchTabs/SwitchTabs';
+import SwitchTabs2 from '../../../../components/SwitchTabs2/SwitchTabs2';
 
-const PlayerControls = ({episodesLength}) => {
-  const {mediaType} = useParams();
-  const { setEpisode, setEndpoint, episode, endpoint, setLanguage: setLan, language: lan, seLantEndpoint, lanEndpoint } = useContext(ValuesContext);
-    const [language, setLanguage] = useState("day");
+const PlayerControls = ({ episodesLength }) => {
+  const { mediaType } = useParams();
+  const { setEpisode, setEndpoint, episode, endpoint, setLanguage: setLan, language: lan, seLantEndpoint, lanEndpoint, season } = useContext(ValuesContext);
+  const [language, setLanguage] = useState("day");
 
   const handlePrevEpisode = () => {
     if (episode > 1) {
@@ -23,111 +23,130 @@ const PlayerControls = ({episodesLength}) => {
     }
   };
 
-   const onTabChange = (tab) => {
-        setLanguage(tab === "Original" ? "Original" : "Hindi");
-        setLan(tab);
-        if(tab=== 'Hindi'){
-          toast.info("Click on top-left corner of player to select Bollywood!");
-        }
-    };
+  const onTabChange = (tab) => {
+    setLanguage(tab === "Original" ? "Original" : "Hindi");
+    setLan(tab);
+    if (tab === 'Hindi') {
+      toast.info("Click on top-left corner of player to select Bollywood!");
+    }
+  };
 
   return (
-  <>
-  {mediaType === "tv" ?   <div className={`player-controls-container ${mediaType=== 'tv' && 'tv'}`}>
-     <div className='player-controls-container-lang'>
-       <span className='server-label-playerarea'>Language : </span>
-           <SwitchTabs data={["Original", "Hindi"]} onTabChange={onTabChange} />
-     </div>
+    <>
+      {mediaType === "tv" ?
+       <div className='player-controls-container-movie'>
+          <div className={`player-controls-container-movie-left ${mediaType === 'movie' && 'movie'}`}>
+               <div className='player-controls-container-movie-left-episode'>
+                   <span className='server-label-playerarea'>Currently Watching : </span>
+                   <span className='server-label-playerarea'>Season: {season}</span>
+                   <span className='server-label-playerarea'>Episode: {episode}</span>
+               </div>
+          </div>
 
-     <div className='player-controls-container-servers'>
-      {lan === "Hindi" ? 
-      <div className="server-buttons">
-         <span className='server-label-playerarea'>Server : </span>
-        <button className={`server-button ${lanEndpoint === 'one' && 'server-button-active'}`} onClick={()=>{seLantEndpoint('one')}}>
-           Vidify
-        </button>
-        <button className={`server-button ${lanEndpoint === 'two' && 'server-button-active'}`} onClick={()=>{seLantEndpoint('two')}}>
-           AutoEmbed
-        </button>
-      </div>
-       : 
-       <div className="server-buttons">
-         <span className='server-label-playerarea'>Server : </span>
-        <button className={`server-button ${endpoint === 'xyz' && 'server-button-active'}`} onClick={()=>{setEndpoint('xyz')}}>
-           1
-        </button>
-        <button className={`server-button ${endpoint === 'net' && 'server-button-active'}`} onClick={()=>{setEndpoint('net')}}>
-           2
-        </button>
-         <button className={`server-button ${endpoint === 'pm' && 'server-button-active'}`} onClick={()=>{setEndpoint('pm')}}>
-           3
-        </button>
-        <button className={`server-button ${endpoint === 'vc' && 'server-button-active'}`} onClick={()=>{setEndpoint('vc')}}>
-           4
-        </button>
-      </div>}
-      
-     {mediaType === 'tv' && 
-      <div className="navigation-buttons">
-        <button 
-          className="nav-button prev-button" 
-          onClick={handlePrevEpisode} 
-          disabled={episode <= 1}
-        >
-          <ChevronLeft className="nav-icon" />
-          Prev
-        </button>
-        <button 
-          className="nav-button next-button" 
-          onClick={handleNextEpisode} 
-          disabled={episode >= episodesLength}
-        >
-          Next
-          <ChevronRight className="nav-icon" />
-        </button>
-      </div>
-     }
-     </div>
-    </div> 
-     :
+            <div className={`player-controls-container ${mediaType === 'tv' && 'tv'}`}>
+          <div className='player-controls-container-lang'>
+            <span className='server-label-playerarea'>Language : </span>
+            <SwitchTabs2 data={["Original", "Hindi"]} onTabChange={onTabChange} />
+          </div>
 
-      <div className={`player-controls-container ${mediaType=== 'tv' && 'tv'}`}>
-     <div className='player-controls-container-lang'>
-       <span className='server-label-playerarea'>Language : </span>
-           <SwitchTabs data={["Original", "Hindi"]} onTabChange={onTabChange} />
-     </div>
+          <div className='player-controls-container-servers'>
+            {lan === "Hindi" ?
+              <div className="server-buttons">
+                <span className='server-label-playerarea'>Server : </span>
+                <button className={`server-button ${lanEndpoint === 'one' && 'server-button-active'}`} onClick={() => { seLantEndpoint('one') }}>
+                  Vidify
+                </button>
+                <button className={`server-button ${lanEndpoint === 'two' && 'server-button-active'}`} onClick={() => { seLantEndpoint('two') }}>
+                  AutoEmbed
+                </button>
+              </div>
+              :
+              <div className="server-buttons">
+                <span className='server-label-playerarea'>Server : </span>
+                <button className={`server-button ${endpoint === 'xyz' && 'server-button-active'}`} onClick={() => { setEndpoint('xyz') }}>
+                  1
+                </button>
+                <button className={`server-button ${endpoint === 'net' && 'server-button-active'}`} onClick={() => { setEndpoint('net') }}>
+                  2
+                </button>
+                <button className={`server-button ${endpoint === 'pm' && 'server-button-active'}`} onClick={() => { setEndpoint('pm') }}>
+                  3
+                </button>
+                <button className={`server-button ${endpoint === 'vc' && 'server-button-active'}`} onClick={() => { setEndpoint('vc') }}>
+                  4
+                </button>
+              </div>}
 
-     <div className='player-controls-container-servers'>
-      {lan === "Hindi" ? 
-      <div className="server-buttons">
-         <span className='server-label-playerarea'>Server : </span>
-        <button className={`server-button ${lanEndpoint === 'one' && 'server-button-active'}`} onClick={()=>{seLantEndpoint('one')}}>
-           Vidify
-        </button>
-        <button className={`server-button ${lanEndpoint === 'two' && 'server-button-active'}`} onClick={()=>{seLantEndpoint('two')}}>
-           AutoEmbed
-        </button>
-      </div>
-       : 
-       <div className="server-buttons">
-         <span className='server-label-playerarea'>Server : </span>
-        <button className={`server-button ${endpoint === 'xyz' && 'server-button-active'}`} onClick={()=>{setEndpoint('xyz')}}>
-           1
-        </button>
-        <button className={`server-button ${endpoint === 'net' && 'server-button-active'}`} onClick={()=>{setEndpoint('net')}}>
-           2
-        </button>
-         <button className={`server-button ${endpoint === 'pm' && 'server-button-active'}`} onClick={()=>{setEndpoint('pm')}}>
-           3
-        </button>
-        <button className={`server-button ${endpoint === 'vc' && 'server-button-active'}`} onClick={()=>{setEndpoint('vc')}}>
-           4
-        </button>
-      </div>}
-     </div>
-    </div>
-    }
-  </>
+            {mediaType === 'tv' &&
+              <div className="navigation-buttons">
+                <button
+                  className="nav-button prev-button"
+                  onClick={handlePrevEpisode}
+                  disabled={episode <= 1}
+                >
+                  <ChevronLeft className="nav-icon" />
+                  Prev
+                </button>
+                <button
+                  className="nav-button next-button"
+                  onClick={handleNextEpisode}
+                  disabled={episode >= episodesLength}
+                >
+                  Next
+                  <ChevronRight className="nav-icon" />
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+          </div>
+        :
+
+        <div className='player-controls-container-movie'>
+          <div className='player-controls-container-movie-left'>
+               <div className='player-controls-container-movie-left-episode'>
+                   <span className='server-label-playerarea'>You are currently watching episode : </span>
+                   <span className='server-label-playerarea'>{episode}</span>
+               </div>
+          </div>
+          <div className={`player-controls-container ${mediaType === 'tv' && 'tv'}`}>
+            <div className='player-controls-container-lang'>
+              <span className='server-label-playerarea'>Language : </span>
+              <SwitchTabs data={["Original", "Hindi"]} onTabChange={onTabChange} />
+            </div>
+
+            <div className='player-controls-container-servers'>
+              {lan === "Hindi" ?
+                <div className="server-buttons">
+                  <span className='server-label-playerarea'>Server : </span>
+                  <button className={`server-button ${lanEndpoint === 'one' && 'server-button-active'}`} onClick={() => { seLantEndpoint('one') }}>
+                    Vidify
+                  </button>
+                  <button className={`server-button ${lanEndpoint === 'two' && 'server-button-active'}`} onClick={() => { seLantEndpoint('two') }}>
+                    AutoEmbed
+                  </button>
+                </div>
+                :
+                <div className="server-buttons">
+                  <span className='server-label-playerarea'>Server : </span>
+                  <button className={`server-button ${endpoint === 'xyz' && 'server-button-active'}`} onClick={() => { setEndpoint('xyz') }}>
+                    1
+                  </button>
+                  <button className={`server-button ${endpoint === 'net' && 'server-button-active'}`} onClick={() => { setEndpoint('net') }}>
+                    2
+                  </button>
+                  <button className={`server-button ${endpoint === 'pm' && 'server-button-active'}`} onClick={() => { setEndpoint('pm') }}>
+                    3
+                  </button>
+                  <button className={`server-button ${endpoint === 'vc' && 'server-button-active'}`} onClick={() => { setEndpoint('vc') }}>
+                    4
+                  </button>
+                </div>}
+            </div>
+          </div>
+        </div>
+      }
+    </>
   );
 };
 

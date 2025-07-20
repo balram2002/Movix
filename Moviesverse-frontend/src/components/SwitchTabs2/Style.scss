@@ -1,0 +1,55 @@
+.switchingTabs-newstr {
+    height: 34px;
+    background-color: var(--item-bg);
+    border-radius: 20px;
+    padding: 2px;
+
+    .tabItems-newstr {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        position: relative;
+
+        .tabItem-newstr {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            color: var(--black);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transition: color ease 0.3s;
+
+            &.active {
+                color: white;
+            }
+
+            @media only screen and (max-width: 500px) {
+                width: 100%;
+                padding: 10px 15px;
+
+                 &.active {
+                color: #f89e00;
+            }
+            }
+        }
+
+        .movingBg-newstr {
+            height: 30px;
+            width: 100px;
+            border-radius: 15px;
+            background-image: var(--gradient2);
+            position: absolute;
+            left: 0;
+            transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+
+            @media only screen and (max-width: 500px) {
+                width: 70px;
+                background-image: none;
+            }
+        }
+    }
+}

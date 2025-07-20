@@ -12,11 +12,20 @@ const VideoPlayer = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [id, seasonNum, episodeNum]);
+ useEffect(() => {
+  if (scrollRef.current) {
+    const element = scrollRef.current;
+    const headerOffset = 75; // height of fixed header in px
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+}, [id, seasonNum, episodeNum]);
+
   
   const preurl = lanEndpoint === 'one' ? `https://vidify.top/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}` :
   `https://player.autoembed.cc/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}` + '?server=2'
@@ -24,10 +33,11 @@ const VideoPlayer = () => {
   `https://vidsrc.${endpoint}/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`
 
   return (
-    <div className={`video-player-container`}>
+    <div className={`video-player-container`} >
       {/* <ImageIcon className="video-placeholder-icon" /> */}
       <iframe
-        src={url}
+        src={url} 
+        ref={scrollRef}
         className="iframe-stream"
         frameBorder="0"
         title="Movieverse video player"

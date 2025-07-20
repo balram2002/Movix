@@ -124,11 +124,11 @@
     color: var(--pink);
 }
 
-.AccountLikedList .AccountLikedList-texttitle {
+/* .AccountLikedList .AccountLikedList-texttitle {
     font-size: 19px;
     margin-bottom: 10px;
     line-height: 24px;
-}
+} */
 
 .noresultsaccount67 {
     display: flex;

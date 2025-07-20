@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import "./style.scss";
 import { useSelector } from "react-redux";
@@ -14,10 +14,14 @@ import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import StreamHere from "../stream/StreamHere";
 import Line from "../line/Line";
+import { useNavigate } from "react-router-dom";
+import { ValuesContext } from "../../context/ValuesContext";
 
 const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
 
     const { url } = useSelector((state) => state.home);
+     const { setEpisode : setEps, setSeason: setSeas } = useContext(ValuesContext);
+    const navigate = useNavigate();
     const [stream, setStream] = useState(false);
     const [episode, setEpisode] = useState(1);
     const [season, setSeason] = useState(1);
@@ -41,11 +45,22 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
     };
 
     const handleEpisodeClick = (item) => {
-        setSeason(item?.season_number);
-        setEpisode(item?.episode_number);
-        setTitle(`${name} season ${season} Episode ${episode}`);
-        setOpenstream(true);
-        setStream(true);
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+            setSeason(item?.season_number);
+            setEpisode(item?.episode_number);
+            setTitle(`${name} season ${season} Episode ${episode}`);
+            setOpenstream(true);
+            setStream(true);
+            console.log("Mobile device detected");
+        } else {
+            setEps(item?.episode_number);
+            setSeas(item?.season_number);
+            navigate(`/stream/${data?.endpoint || mediaType}/${id}${mediaType === 'tv' ? `/${item?.season_number}/${item?.episode_number}` : '/0/0'}`)
+            console.log("Desktop device detected");
+        }
+        console.log("Episode clicked:", item);
     };
 
 
@@ -108,7 +123,7 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
                 </ContentWrapper>
             </div>
             {!stream && <Line />}
-             {stream && <StreamHere EndPoint={mediaType} id={id} title={" " + title + ' Episode ' + episode + " "} season={season} episode={episode} show={stream} setShow={setStream} />}
+            {stream && <StreamHere EndPoint={mediaType} id={id} title={" " + title + ' Episode ' + episode + " "} season={season} episode={episode} show={stream} setShow={setStream} />}
         </>
     );
 };

@@ -101,7 +101,7 @@ function Authentication() {
                             <FaLock className='icon' />
                             {userWrongPass === "Incorrect Password" && <span onClick={() => navigate('/forgot-password')} className='forgotclickspan'>forgot password?</span>}
                         </div>
-                        <button className="btn animation" style={{ "--i": 3, "--j": 24 }} type='submit'>{userLoging}</button>
+                        <button className="btn-auth animation" style={{ "--i": 3, "--j": 24 }} type='submit'>{userLoging}</button>
                         <div className="logreg-link animation" style={{ "--i": 4, "--j": 25 }}>
                             <p>Don't have an account? <a href="" className="register-link" onClick={(e) => {
                                 setWrapper(true);
@@ -135,7 +135,7 @@ function Authentication() {
                             <label>Password</label>
                             <FaLock className='icon' />
                         </div>
-                        <button className="btn animation" style={{ "--i": 21, "--j": 4 }} type='submit'>{userRegistering}</button>
+                        <button className="btn-auth animation" style={{ "--i": 21, "--j": 4 }} type='submit'>{userRegistering}</button>
                         <div className="logreg-link animation" style={{ "--i": 22, "--j": 5 }}>
                             <p>Already have an account? <a href="" className="login-link" onClick={(e) => {
                                 setWrapper(false);

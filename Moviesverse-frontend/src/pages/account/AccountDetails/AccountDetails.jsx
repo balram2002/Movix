@@ -26,14 +26,29 @@ const AccountDetails = () => {
             console.log(response);
             if (response.data.msg === "success") {
                 setGet(true);
+                  setCame("Load Details");
             }
             setDetails(response.data);
-            setCame("Load Details");
         }).catch(err => {
             console.log(err);
         })
-        console.log(details);
-    }, [load]);
+    }, [emailuser]);
+
+    const handleLoadDetails = async () => {
+        setCame("Loading...");
+        await Axios.post(`https://movix-api.vercel.app/api/user/getDetails`, {
+            email: emailuser,
+        }).then(response => {
+            console.log(response);
+            if (response.data.msg === "success") {
+                setGet(true);
+            }
+            setDetails(response.data);
+        }).catch(err => {
+            console.log(err);
+        })
+        setCame("Load Details");
+    }
 
 
     return (
@@ -57,7 +72,7 @@ const AccountDetails = () => {
                 <p>Occupation: <b>{details.job}</b></p>
                 <p>Favourate Genre: <b>{details.genre}</b></p>
                 <p>Email: <b>{user?.email}</b></p>
-                <p>            <button className="button-load" onClick={() => setLoad(true)}>Load Details</button>
+                <p>            <button className="button-load" onClick={() => handleLoadDetails()}>{came}</button>
                 </p>
             </div>
         </div>
