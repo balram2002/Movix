@@ -22,12 +22,12 @@ import AccountPage from "./pages/account/AccountPage";
 import PersonDetails from "./pages/person/PersonDetails";
 import About from "./pages/about/About";
 import ResestPassword from "./components/resetpassword/ResestPassword";
-import StreamPage from "./pages/Stream/StreamMovie";
 import { ValuesContext } from "./context/ValuesContext";
 import { OfflineScreen } from "./components/InitialScreens/OfflineScreen";
 import { LoadingScreen } from "./components/InitialScreens/LoadingScreen";
 import { ServerBusyScreen } from "./components/InitialScreens/ServerBusyScreen";
 import { HelmetProvider } from 'react-helmet-async';
+import StreamPage from "./pages/Stream/StreamPage";
 
 const useOnlineStatus = () => {
     const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -65,7 +65,7 @@ function App() {
     const [season, setSeason] = useState(1);
     const [episode, setEpisode] = useState(1);
     const [server, setServer] = useState(1);
-    const [ isOnStream, setIsOnStream ] = useState(false);
+    const [isOnStream, setIsOnStream] = useState(false);
     const [language, setLanguage] = useState('Original');
     const [endpoint, setEndpoint] = useState('xyz');
     const [lanEndpoint, seLantEndpoint] = useState('one');
@@ -106,8 +106,12 @@ function App() {
     if (!isOnline) {
         return <OfflineScreen />;
     }
+    const currentPath = window.location.pathname;
+    const isStreamPage = currentPath.startsWith("/stream/");
     if (loading) {
-        return <LoadingScreen />;
+        if (!isStreamPage) {
+            return <LoadingScreen />;
+        }
     }
     if (!data || !data.results || data.results.length < 5) {
         return <ServerBusyScreen />;

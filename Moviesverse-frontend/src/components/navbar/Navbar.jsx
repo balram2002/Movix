@@ -46,10 +46,12 @@ const Navbar = () => {
         window.scrollTo(0, 0);
     }, [location]);
 
+    const isMobile = window.innerWidth <= 768;
+
     return (
         <ContentWrapper>
             <center>
-                <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage ? 'streamhidem' : 'normalnavbarposition'}`}>
+                <div className={`navbar ${shows ? "mobileView" : ""} ${show} ${isStreamingPage ? 'streamhidem' : 'normalnavbarposition'}`} style={{display: isStreamingPage && isMobile && "none"}}>
                     <ul>
                         <NavLink className="list" to='/movie'>
                             <a href="">

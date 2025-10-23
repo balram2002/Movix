@@ -18,6 +18,7 @@ import Similar from '../../../details/carousels/Similar';
 import Recommendation from '../../../details/carousels/Recommendation';
 import { RWebShare } from 'react-web-share';
 import { FaShareSquare } from 'react-icons/fa';
+import WatchHistory from '../../../../components/watchHistory/WatchHistory';
 
 const ShowDetails = ({ data, video, crew }) => {
   const { mediaType, id } = useParams();
@@ -309,6 +310,14 @@ const ShowDetails = ({ data, video, crew }) => {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="similar-shows">
+          <h2 className="similar-shows-title">Similar {mediaType === 'tv' ? 'TV Shows' : 'Movies'}</h2>
+          {/* Placeholder for future content */}
+          <div className="similar-shows-list">
+            <WatchHistory notShowLine={true} />
           </div>
         </div>
 

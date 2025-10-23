@@ -27,6 +27,7 @@ import MainStar from './MainStar/MainStar';
 import { ShootingStars } from './../../components/ui/shooting-stars';
 import { StarsBackground } from './../../components/ui/stars-background';
 import BackgroundPaths from '../../components/ui/BackgroundPaths';
+import WatchHistory from '../../components/watchHistory/WatchHistory';
 
 // Component to handle recommendations for a single item (movie or TV show)
 const RecommendationSection = ({ item, title }) => {
@@ -228,6 +229,7 @@ function Home() {
       <div className='homebanner' id='bgbirds'>
         <div className="corousal">
           <Trending />
+          <WatchHistory />
           {recommendationItems[0] && <RecommendationSection key={recommendationItems[0].item.id} item={recommendationItems[0].item} title={recommendationItems[0].title} />}
           <TrendingCast />
           {recommendationItems[1] && <RecommendationSection key={recommendationItems[1].item.id} item={recommendationItems[1].item} title={recommendationItems[1].title} />}

@@ -1,5 +1,4 @@
 .player-controls-container {
-  /* flex: 0 0 70%; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -82,10 +81,40 @@
 }
 
 .player-controls-container-lang {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+}
+
+.player-controls-container-lang .lanswitchtab{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.player-controls-container-lang .episode-toggle-btn-controls{
+   flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--second, #da2f68);
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  margin: auto 0.5rem auto 0;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.player-controls-container-lang .episode-toggle-btn-controls:hover{
+    transform: scale(1.1);
+    border: 2px solid var(--pink);
 }
 
 .player-controls-container-servers {
@@ -177,18 +206,59 @@
 }
 
 @media (max-width: 767px) {
+  .player-controls-container-movie {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .player-controls-container-movie-left {
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+    border-left: 3px solid white;
+  }
+
   .player-controls-container {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    padding: 1rem;
+    width: 100%;
+    gap: 1rem;
+    border-right: 3px solid white;
+  }
+
+  .player-controls-container-lang {
+    width: 100%;
+  }
+
+  .player-controls-container-servers {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
 
   .server-buttons {
-    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .server-label-playerarea {
+    margin: 0 0 0.5rem 0;
+    text-align: left;
+  }
+
+  .navigation-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
 
   .server-button,
   .nav-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    text-align: center;
   }
 }

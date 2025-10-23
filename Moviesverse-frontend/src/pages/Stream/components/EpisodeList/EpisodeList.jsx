@@ -1,21 +1,28 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useRef, useEffect } from 'react';
 import { List, Grid3X3, ChevronDown } from 'lucide-react';
 import './EpisodeList.css';
 import useFetch from '../../../../hooks/useFetch';
 import { ValuesContext } from '../../../../context/ValuesContext';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading }) => {
+const EpisodeList = ({
+  id,
+  mediaType,
+  Seasons,
+  collectionData,
+  collectionLoading,
+  episodesData: initialEpisodesData,
+  episodesLoading: initialEpisodesLoading,
+  detailsData: initialDetailsData
+}) => {
   const navigate = useNavigate();
-  const [selectedSeason, setSelectedSeason] = useState(1);
+  const { id: paramId } = useParams();
   const [viewMode, setViewMode] = useState('list');
   
   const { url } = useSelector((state) => state.home);
   const { 
-    endpoint, 
-    server, 
     episode: episodeNum, 
     season: seasonNum, 
     setSeason, 
@@ -23,40 +30,69 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
     isOnStream 
   } = useContext(ValuesContext);
 
+  const { data: apiTestData, loading: apiTestLoading } = useFetch('/trending/all/day');
+
   const { data: episode, loading: episodeLoading } = useFetch(`/${mediaType}/${id}/season/${seasonNum}`);
   const { data: detailsData, loading: detailsLoading } = useFetch(`/${mediaType}/${id}`);
 
+  const episodesData = apiTestData ? episode : initialEpisodesData;
+  const episodesLoadingCombined = apiTestLoading || (apiTestData ? episodeLoading : initialEpisodesLoading);
+  const detailsDataCombined = apiTestData ? detailsData : initialDetailsData;
+  const detailsLoadingCombined = apiTestLoading || (apiTestData ? detailsLoading : false);
+
+
+  const scrollContainerRef = useRef(null);
+  const activeItemRef = useRef(null);
+
+  useEffect(() => {
+    if (activeItemRef.current && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const item = activeItemRef.current;
+      
+      const itemOffsetTop = item.offsetTop;
+      const containerPaddingTop = parseFloat(getComputedStyle(container).paddingTop) || 0;
+      
+      container.scrollTo({ 
+        top: itemOffsetTop - containerPaddingTop - 10,
+        behavior: 'smooth' 
+      });
+    }
+  }, [episodeNum, seasonNum, id, viewMode, episodesData]);
+
   const computedValues = useMemo(() => {
     const isTvShow = mediaType === 'tv';
-    const filteredEpisodes = episode?.episodes;
-    const items = isTvShow ? filteredEpisodes : collectioData?.parts;
+    const filteredEpisodes = episodesData?.episodes;
+    const items = isTvShow ? filteredEpisodes : collectionData?.parts;
     
     const isLoading = isTvShow 
-      ? episodeLoading 
-      : collectionLoading && !detailsData;
+      ? episodesLoadingCombined 
+      : collectionLoading && !detailsDataCombined;
     
-    const hasValidCollection = !isTvShow && collectioData && Array.isArray(collectioData.parts) && collectioData.parts.length > 0;
-    const hasNoCollection = !isTvShow && !collectioData && !collectionLoading;
-    const hasEmptyCollection = !isTvShow && collectioData && (!collectioData.parts || collectioData.parts.length === 0);
+    const hasValidCollection = !isTvShow && collectionData && Array.isArray(collectionData.parts) && collectionData.parts.length > 0;
     
     const hasValidEpisodes = isTvShow && filteredEpisodes && Array.isArray(filteredEpisodes) && filteredEpisodes.length > 0;
-    const hasNoEpisodes = isTvShow && !episodeLoading && (!filteredEpisodes || filteredEpisodes.length === 0);
+    const hasNoEpisodes = isTvShow && !episodesLoadingCombined && (!filteredEpisodes || filteredEpisodes.length === 0);
     
-    const shouldRenderFallback = !isTvShow && !isLoading && !hasValidCollection && !detailsLoading;
+    const shouldRenderFallback = !isTvShow && !isLoading && !hasValidCollection && detailsDataCombined;
     
     return {
       isTvShow,
       items,
       isLoading,
       hasValidCollection,
-      hasNoCollection,
-      hasEmptyCollection,
       hasValidEpisodes,
       hasNoEpisodes,
       shouldRenderFallback,
       filteredEpisodes
     };
-  }, [mediaType, episode, collectioData, collectionLoading, episodeLoading, detailsData, detailsLoading]);
+  }, [
+    mediaType, 
+    episodesData, 
+    collectionData, 
+    collectionLoading, 
+    episodesLoadingCombined, 
+    detailsDataCombined
+  ]);
 
   const getImageUrl = (imagePath) => {
     if (!url?.poster || !imagePath) return '/placeholder-image.jpg';
@@ -75,27 +111,34 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   const handleEpisodeClick = (episodeNumber) => {
     if (typeof setEpisode === 'function') {
       setEpisode(episodeNumber);
+      const searchParams = new URLSearchParams(window.location.search);
+      navigate(`/stream/${mediaType}/${id}/${seasonNum}/${episodeNumber}?${searchParams.toString()}`);
     }
   };
 
   const handleMovieClick = (movieId) => {
     if (movieId && navigate) {
-      navigate(`/stream/movie/${movieId}/0/0`);
+      const searchParams = new URLSearchParams(window.location.search);
+      navigate(`/stream/movie/${movieId}/1/1?${searchParams.toString()}`);
+    }
+  };
+  
+  const handleSeasonChange = (seasonNumber) => {
+    if (typeof setSeason === 'function') {
+      setSeason(seasonNumber);
+      const searchParams = new URLSearchParams(window.location.search);
+      navigate(`/stream/${mediaType}/${id}/${seasonNumber}/1?${searchParams.toString()}`);
     }
   };
 
   const renderTvEpisodeListItem = (item, index) => (
     <div
       key={`episode-${item.id}-${index}`}
-      className={`episode-list-item ${item.episode_number === episodeNum ? 'episode-list-item-active' : ''}`}
+      className={`episode-list-item ${item.episode_number == episodeNum ? 'episode-list-item-active' : ''}`}
       onClick={() => handleEpisodeClick(item.episode_number)}
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleEpisodeClick(item.episode_number);
-        }
-      }}
+      ref={item.episode_number == episodeNum ? activeItemRef : null}
     >
       <img 
         src={getImageUrl(item.still_path)} 
@@ -129,15 +172,11 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   const renderMovieListItem = (item, index) => (
     <div
       key={`movie-${item.id}-${index}`}
-      className={`episode-list-item ${item.id === parseInt(id) ? 'episode-list-item-active' : ''}`}
+      className={`episode-list-item ${item.id == paramId ? 'episode-list-item-active' : ''}`}
       onClick={() => handleMovieClick(item.id)}
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleMovieClick(item.id);
-        }
-      }}
+      ref={item.id == paramId ? activeItemRef : null}
     >
       <img 
         src={getImageUrl(item.poster_path)} 
@@ -165,15 +204,11 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   const renderTvEpisodeGridItem = (item, index) => (
     <div
       key={`episode-grid-${item.id}-${index}`}
-      className={`episode-grid-item ${item.episode_number === episodeNum ? 'episode-grid-item-active' : ''}`}
+      className={`episode-grid-item ${item.episode_number == episodeNum ? 'episode-grid-item-active' : ''}`}
       onClick={() => handleEpisodeClick(item.episode_number)}
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleEpisodeClick(item.episode_number);
-        }
-      }}
+      ref={item.episode_number == episodeNum ? activeItemRef : null}
     >
       <div className="episode-grid-content">
         <div className="episode-grid-number">{item.episode_number}</div>
@@ -185,15 +220,11 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   const renderMovieGridItem = (item, index) => (
     <div
       key={`movie-grid-${item.id}-${index}`}
-      className={`episode-grid-item ${item.id === parseInt(id) ? 'episode-grid-item-active' : ''}`}
+      className={`episode-grid-item ${item.id == paramId ? 'episode-grid-item-active' : ''}`}
       onClick={() => handleMovieClick(item.id)}
       role="button"
       tabIndex={0}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleMovieClick(item.id);
-        }
-      }}
+      ref={item.id == paramId ? activeItemRef : null}
     >
       <div className="episode-grid-content">
         <div className="episode-grid-number">{index + 1}</div>
@@ -203,7 +234,7 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
   );
 
   const renderFallbackItem = (isListView = true) => {
-    const fallbackData = detailsData || { title: 'Loading...', name: 'Loading...', release_date: null };
+    const fallbackData = detailsDataCombined || { title: 'Loading...', name: 'Loading...', release_date: null };
 
     const commonContent = (
       <>
@@ -240,7 +271,10 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
     );
 
     return (
-      <div className={`${isListView ? 'episode-list-item' : 'episode-grid-item'} episode-${isListView ? 'list' : 'grid'}-item-active`}>
+      <div 
+        className={`${isListView ? 'episode-list-item' : 'episode-grid-item'} episode-${isListView ? 'list' : 'grid'}-item-active`}
+        ref={activeItemRef}
+      >
         {commonContent}
       </div>
     );
@@ -304,34 +338,78 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
       return `List of episodes (${episodeCount})`;
     }
     if (computedValues.hasValidCollection) {
-      return `Belongs to ${detailsData?.title || 'Collection'}`;
+      return `Belongs to ${detailsDataCombined?.title || 'Collection'}`;
     }
     return 'No Collection Found';
   };
 
-  const handleSeasonChange = (seasonNumber) => {
-    if (typeof setSeason === 'function') {
-      setSeason(seasonNumber);
-    }
-  };
+  if (apiTestLoading) {
+    return (
+      <div className={`episode-container ${isOnStream ? 'on-stream' : ''}`}>
+        <div className="episode-loader-container" style={{ minHeight: '100%' }}>
+          <div className="episode-loader"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!apiTestData && !apiTestLoading) {
+    return (
+      <div className={`episode-container ${isOnStream ? 'on-stream' : ''}`}>
+        <div className="server-error-container">
+          <h3 className="server-error-title">Server Error</h3>
+          <p className="server-error-text">The server is down for now.</p>
+          <p className="server-error-text">Please try again in some time.</p>
+          <button 
+            className="server-error-button" 
+            onClick={() => window.location.reload()}
+          >
+            Reload
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`episode-container ${isOnStream ? 'on-stream' : ''}`}>
       {computedValues.isTvShow && Seasons && Array.isArray(Seasons) && Seasons.length > 0 && (
-        <div className="desktop-season-selector">
-          <div className="season-pills">
-            {Seasons.filter(season => season.name !== "Specials").map((season) => (
-              <button
-                key={`season-${season.id}`}
-                onClick={() => handleSeasonChange(season?.season_number)}
-                className={`season-pill ${seasonNum === season?.season_number ? 'season-pill-active' : ''}`}
-                disabled={!season?.season_number}
+        <>
+          <div className="mobile-season-selector">
+            <div className="season-selector-wrapper">
+              <select
+                className="season-dropdown"
+                value={seasonNum}
+                onChange={(e) => handleSeasonChange(e.target.value)}
               >
-                {`Season ${season?.season_number}`}
-              </button>
-            ))}
+                {Seasons.filter(season => season.name !== "Specials").map((season) => (
+                  <option
+                    key={`mobile-season-${season.id}`}
+                    value={season.season_number}
+                  >
+                    {season.name}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="season-dropdown-icon" />
+            </div>
           </div>
-        </div>
+        
+          <div className="desktop-season-selector">
+            <div className="season-pills">
+              {Seasons.filter(season => season.name !== "Specials").map((season) => (
+                <button
+                  key={`season-${season.id}`}
+                  onClick={() => handleSeasonChange(season?.season_number)}
+                  className={`season-pill ${seasonNum == season?.season_number ? 'season-pill-active' : ''}`}
+                  disabled={!season?.season_number}
+                >
+                  {`Season ${season?.season_number}`}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
       )}
       <div className="episode-header">
         <h3 className="episode-header-title">
@@ -354,7 +432,7 @@ const EpisodeList = ({ id, mediaType, Seasons, collectioData, collectionLoading 
           </button>
         </div>
       </div>
-      <div className="episode-content">
+      <div className="episode-content" ref={scrollContainerRef}>
         {viewMode === 'list' ? renderListView() : renderGridView()}
       </div>
     </div>

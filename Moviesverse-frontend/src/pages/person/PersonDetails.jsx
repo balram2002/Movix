@@ -8,6 +8,7 @@ import CombinedCredits from "./personcarousels/CombinedCredits";
 import MovieCredits from "./personcarousels/MovieCredits";
 import TvCredits from './personcarousels/TvCredits';
 import ScrollButton from "../../components/scrollbutton/ScrollButton";
+import WatchHistory from "../../components/watchHistory/WatchHistory";
 
 const PersonDetails = () => {
 
@@ -45,6 +46,7 @@ const PersonDetails = () => {
         <>
             <div className="details">
                 <DetailsBanner />
+                <WatchHistory />
                 <CombinedCredits data={combine?.cast} loading={loading} />
                 <MovieCredits data={movie?.cast} loading={movieLoading} />
                 <TvCredits data={tv?.cast} loading={tvLoading} />

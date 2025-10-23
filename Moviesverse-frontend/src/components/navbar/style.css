@@ -300,3 +300,8 @@
         transform: translateX(calc(52px * 6));
     }
 } */
+
+.navbar .streamhidemobile{
+    opacity: 0 !important;
+    display: none;
+}
