@@ -130,6 +130,11 @@
   gap: 0.5rem;
 }
 
+.server-button .server-buttons-mobile {
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
 .server-label-playerarea {
   text-align: center;
   display: flex;

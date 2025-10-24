@@ -20,14 +20,14 @@ const EpisodeList = ({
   const navigate = useNavigate();
   const { id: paramId } = useParams();
   const [viewMode, setViewMode] = useState('list');
-  
+
   const { url } = useSelector((state) => state.home);
-  const { 
-    episode: episodeNum, 
-    season: seasonNum, 
-    setSeason, 
+  const {
+    episode: episodeNum,
+    season: seasonNum,
+    setSeason,
     setEpisode,
-    isOnStream 
+    isOnStream
   } = useContext(ValuesContext);
 
   const { data: apiTestData, loading: apiTestLoading } = useFetch('/trending/all/day');
@@ -44,17 +44,19 @@ const EpisodeList = ({
   const scrollContainerRef = useRef(null);
   const activeItemRef = useRef(null);
 
+  const isMobile = window.innerWidth <= 768;
+
   useEffect(() => {
     if (activeItemRef.current && scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const item = activeItemRef.current;
-      
+
       const itemOffsetTop = item.offsetTop;
       const containerPaddingTop = parseFloat(getComputedStyle(container).paddingTop) || 0;
-      
-      container.scrollTo({ 
+
+      container.scrollTo({
         top: itemOffsetTop - containerPaddingTop - 10,
-        behavior: 'smooth' 
+        behavior: 'smooth'
       });
     }
   }, [episodeNum, seasonNum, id, viewMode, episodesData]);
@@ -63,18 +65,18 @@ const EpisodeList = ({
     const isTvShow = mediaType === 'tv';
     const filteredEpisodes = episodesData?.episodes;
     const items = isTvShow ? filteredEpisodes : collectionData?.parts;
-    
-    const isLoading = isTvShow 
-      ? episodesLoadingCombined 
+
+    const isLoading = isTvShow
+      ? episodesLoadingCombined
       : collectionLoading && !detailsDataCombined;
-    
+
     const hasValidCollection = !isTvShow && collectionData && Array.isArray(collectionData.parts) && collectionData.parts.length > 0;
-    
+
     const hasValidEpisodes = isTvShow && filteredEpisodes && Array.isArray(filteredEpisodes) && filteredEpisodes.length > 0;
     const hasNoEpisodes = isTvShow && !episodesLoadingCombined && (!filteredEpisodes || filteredEpisodes.length === 0);
-    
+
     const shouldRenderFallback = !isTvShow && !isLoading && !hasValidCollection && detailsDataCombined;
-    
+
     return {
       isTvShow,
       items,
@@ -86,11 +88,11 @@ const EpisodeList = ({
       filteredEpisodes
     };
   }, [
-    mediaType, 
-    episodesData, 
-    collectionData, 
-    collectionLoading, 
-    episodesLoadingCombined, 
+    mediaType,
+    episodesData,
+    collectionData,
+    collectionLoading,
+    episodesLoadingCombined,
     detailsDataCombined
   ]);
 
@@ -122,7 +124,7 @@ const EpisodeList = ({
       navigate(`/stream/movie/${movieId}/1/1?${searchParams.toString()}`);
     }
   };
-  
+
   const handleSeasonChange = (seasonNumber) => {
     if (typeof setSeason === 'function') {
       setSeason(seasonNumber);
@@ -134,37 +136,42 @@ const EpisodeList = ({
   const renderTvEpisodeListItem = (item, index) => (
     <div
       key={`episode-${item.id}-${index}`}
-      className={`episode-list-item ${item.episode_number == episodeNum ? 'episode-list-item-active' : ''}`}
+      className={`episode-list-item gap-x-2 ${item.episode_number == episodeNum ? 'episode-list-item-active' : ''}`}
       onClick={() => handleEpisodeClick(item.episode_number)}
       role="button"
       tabIndex={0}
       ref={item.episode_number == episodeNum ? activeItemRef : null}
     >
-      <img 
-        src={getImageUrl(item.still_path)} 
-        alt={item.name || `Episode ${item.episode_number}`} 
-        className="episode-thumbnail"
-        onError={(e) => {
-          e.target.src = '/placeholder-image.jpg';
-        }}
-      />
-      <div className="episode-details">
-        <h4 className="episode-title">{item.name || `Episode ${item.episode_number}`}</h4>
-        <div className="episode-meta">
-          <span>Ep {item.episode_number}</span>
-          {item.air_date && (
-            <>
-              <span className="episode-meta-divider">•</span>
-              <span>{formatDate(item.air_date)}</span>
-            </>
-          )}
-          {item.runtime && (
-            <>
-              <span className="episode-meta-divider">•</span>
-              <span>{item.runtime} min</span>
-            </>
-          )}
+      <div className='flex flex-row gap-x-2'>
+        <img
+          src={getImageUrl(item.still_path)}
+          alt={item.name || `Episode ${item.episode_number}`}
+          className="episode-thumbnail"
+          onError={(e) => {
+            e.target.src = '/placeholder-image.jpg';
+          }}
+        />
+        <div className={`episode-details ${isMobile && 'flex flex-col items-start justify-start gap-2'}`}>
+          <h4 className="episode-title truncate">{item.name || `Episode ${item.episode_number}`}</h4>
+          <div className="episode-meta">
+            <span>Ep {item.episode_number}</span>
+            {item.air_date && (
+              <>
+                <span className="episode-meta-divider">•</span>
+                <span>{formatDate(item.air_date)}</span>
+              </>
+            )}
+            {item.runtime && (
+              <>
+                <span className="episode-meta-divider">•</span>
+                <span>{item.runtime} min</span>
+              </>
+            )}
+          </div>
         </div>
+      </div>
+      <div className='hidden sm:flex mr-1'>
+        <span className={`text-4xl ${item?.episode_number == episodeNum ? 'text-[#0998a8]' : 'text-white'}`}>{item?.episode_number}</span>
       </div>
     </div>
   );
@@ -178,9 +185,9 @@ const EpisodeList = ({
       tabIndex={0}
       ref={item.id == paramId ? activeItemRef : null}
     >
-      <img 
-        src={getImageUrl(item.poster_path)} 
-        alt={item.title || `Movie ${index + 1}`} 
+      <img
+        src={getImageUrl(item.poster_path)}
+        alt={item.title || `Movie ${index + 1}`}
         className="episode-thumbnail"
         onError={(e) => {
           e.target.src = '/placeholder-image.jpg';
@@ -238,9 +245,9 @@ const EpisodeList = ({
 
     const commonContent = (
       <>
-        <img 
-          src={getImageUrl(fallbackData.poster_path)} 
-          alt={fallbackData.title || fallbackData.name || 'Media'} 
+        <img
+          src={getImageUrl(fallbackData.poster_path)}
+          alt={fallbackData.title || fallbackData.name || 'Media'}
           className="episode-thumbnail"
           onError={(e) => {
             e.target.src = '/placeholder-image.jpg';
@@ -271,7 +278,7 @@ const EpisodeList = ({
     );
 
     return (
-      <div 
+      <div
         className={`${isListView ? 'episode-list-item' : 'episode-grid-item'} episode-${isListView ? 'list' : 'grid'}-item-active`}
         ref={activeItemRef}
       >
@@ -288,10 +295,10 @@ const EpisodeList = ({
         </div>
       ) : (
         <>
-          {computedValues.isTvShow && computedValues.hasValidEpisodes && 
+          {computedValues.isTvShow && computedValues.hasValidEpisodes &&
             computedValues.items.map((item, index) => renderTvEpisodeListItem(item, index))
           }
-          {!computedValues.isTvShow && computedValues.hasValidCollection && 
+          {!computedValues.isTvShow && computedValues.hasValidCollection &&
             computedValues.items.map((item, index) => renderMovieListItem(item, index))
           }
           {computedValues.hasNoEpisodes && (
@@ -314,10 +321,10 @@ const EpisodeList = ({
         </div>
       ) : (
         <>
-          {computedValues.isTvShow && computedValues.hasValidEpisodes && 
+          {computedValues.isTvShow && computedValues.hasValidEpisodes &&
             computedValues.items.map((item, index) => renderTvEpisodeGridItem(item, index))
           }
-          {!computedValues.isTvShow && computedValues.hasValidCollection && 
+          {!computedValues.isTvShow && computedValues.hasValidCollection &&
             computedValues.items.map((item, index) => renderMovieGridItem(item, index))
           }
           {computedValues.hasNoEpisodes && (
@@ -360,8 +367,8 @@ const EpisodeList = ({
           <h3 className="server-error-title">Server Error</h3>
           <p className="server-error-text">The server is down for now.</p>
           <p className="server-error-text">Please try again in some time.</p>
-          <button 
-            className="server-error-button" 
+          <button
+            className="server-error-button"
             onClick={() => window.location.reload()}
           >
             Reload
@@ -394,7 +401,7 @@ const EpisodeList = ({
               <ChevronDown className="season-dropdown-icon" />
             </div>
           </div>
-        
+
           <div className="desktop-season-selector">
             <div className="season-pills">
               {Seasons.filter(season => season.name !== "Specials").map((season) => (

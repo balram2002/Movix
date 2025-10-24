@@ -45,7 +45,7 @@ const VideosSection2 = ({ data, loading, title, mediaType, id, name }) => {
     };
 
     const handleEpisodeClick = (item) => {
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = false; //window.innerWidth <= 768;
 
         if (isMobile) {
             setSeason(item?.season_number);

@@ -75,7 +75,7 @@ function StreamPage() {
     setSeason(season);
     setEpisode(episode);
     setLanguage(searchParams.get('lang') || 'Original');
-    setEndpoint(searchParams.get('ep') || 'xyz');
+    setEndpoint(searchParams.get('ep') || 'ru');
     seLantEndpoint(searchParams.get('lep') || 'one');
     window.scrollTo(0, 0);
   }, [
@@ -91,119 +91,90 @@ function StreamPage() {
     seLantEndpoint
   ]);
 
-useEffect(() => {
-    // Debounce or initial check conditions
-    if (!user || !user.uid || detailsLoading || (mediaType === 'tv' && episloading)) {
-      // Don't save if not logged in, essential data is still loading,
-      // or if required details for TV episode name aren't ready
+  useEffect(() => {
+    if (!user?.uid || detailsLoading || (mediaType === 'tv' && episloading)) {
       return;
     }
 
-    // Set a timer to save after 3 minutes
+    if (!detailsData || (mediaType === 'tv' && !episodes?.episodes)) {
+      return;
+    }
+
     const timerId = setTimeout(() => {
       const saveWatchHistory = () => {
         try {
           const historyKey = "watchHistory";
-          const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+          const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
-          // 1. Retrieve and Parse Existing History
-          const rawHistory = localStorage.getItem(historyKey);
           let history = {};
+          const rawHistory = localStorage.getItem(historyKey);
+
           if (rawHistory) {
             try {
-              history = JSON.parse(rawHistory);
-              if (typeof history !== 'object' || history === null) {
-                 // Handle case where localStorage contains invalid JSON
-                 console.warn("Invalid watch history found in localStorage. Resetting.");
-                 history = {};
+              const parsed = JSON.parse(rawHistory);
+              if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+                history = parsed;
               }
-            } catch (parseError) {
-              console.error("Failed to parse watch history from localStorage:", parseError);
-              history = {}; // Reset history if parsing fails
+            } catch (e) {
+              console.error("Failed to parse watch history:", e);
             }
           }
 
-          const userHistory = history[user.uid] || [];
+          const userHistory = Array.isArray(history[user.uid]) ? history[user.uid] : [];
 
-          // 2. Filter out expired items
-          const cleanUserHistory = userHistory.filter(item => item.timestamp && item.timestamp > sevenDaysAgo);
+          const cleanUserHistory = userHistory.filter(item =>
+            item &&
+            item.id &&
+            item.mediaType &&
+            item.timestamp &&
+            item.timestamp > sevenDaysAgo
+          );
 
-          // 3. Check if the current item already exists
           const existingItemIndex = cleanUserHistory.findIndex(item => {
             if (item.id !== id || item.mediaType !== mediaType) return false;
-            if (mediaType === "movie") return true; // Match found for movie
-            // For TV, also check season and episode
-            return item.season == season && item.episode == episode;
+            if (mediaType === "movie") return true;
+            return String(item.season) === String(season) && String(item.episode) === String(episode);
           });
 
-          let finalHistory;
+          const currentEpisodeDetails = mediaType === 'tv'
+            ? episodes.episodes.find(ep => String(ep.episode_number) === String(episode))
+            : null;
 
-          if (existingItemIndex > -1) {
-            // --- Item Found: Move to Front ---
-            // console.log("Watch History: Item found, moving to front.");
-            // Get the existing item
-            const existingItem = cleanUserHistory[existingItemIndex];
-            // Update its timestamp
-            existingItem.timestamp = Date.now();
-            // Remove it from its old position
-            cleanUserHistory.splice(existingItemIndex, 1);
-            // Add the updated item to the beginning
-            cleanUserHistory.unshift(existingItem);
-            // The modified cleanUserHistory is our final history
-            finalHistory = cleanUserHistory;
+          const newItem = {
+            mediaType,
+            id,
+            timestamp: Date.now(),
+            name: detailsData.name || detailsData.title || "Unknown Title",
+            poster: detailsData.poster_path || null
+          };
 
-          } else {
-            // --- Item Not Found: Add New ---
-            // console.log("Watch History: New item, adding to front.");
-            // Find current episode details if it's a TV show
-            const currentEpisodeDetails = mediaType === 'tv'
-              ? episodes?.episodes?.find(ep => ep.episode_number == episode)
-              : null;
-
-            // Prepare the new item
-            const newItem = {
-              mediaType,
-              id,
-              timestamp: Date.now(),
-              name: detailsData?.name || detailsData?.title || "Unknown Title", // Add fallback
-              poster: detailsData?.poster_path || null // Add fallback
-            };
-
-            if (mediaType === "tv") {
-              newItem.season = season;
-              newItem.episode = episode;
-              newItem.episodeName = currentEpisodeDetails?.name || `Episode ${episode}`;
-            }
-
-            // Add the new item to the beginning of the clean history
-            cleanUserHistory.unshift(newItem);
-            // The modified cleanUserHistory is our final history
-            finalHistory = cleanUserHistory;
+          if (mediaType === "tv") {
+            newItem.season = String(season);
+            newItem.episode = String(episode);
+            newItem.episodeName = currentEpisodeDetails?.name || `Episode ${episode}`;
           }
 
-          // 4. Update localStorage
-          history[user.uid] = finalHistory;
+          if (existingItemIndex > -1) {
+            cleanUserHistory.splice(existingItemIndex, 1);
+          }
+
+          cleanUserHistory.unshift(newItem);
+
+          history[user.uid] = cleanUserHistory;
           localStorage.setItem(historyKey, JSON.stringify(history));
 
         } catch (error) {
-          // Catch errors during the saving process (e.g., localStorage full)
           console.error("Failed to save watch history:", error);
-          // Potential fallback: Notify user, clear old history, etc.
         }
       };
 
       saveWatchHistory();
 
-    }, 180000); // 3 minutes (180,000 milliseconds)
+    }, 180000);
 
-    // Cleanup function to clear the timer if dependencies change before 3 minutes
-    return () => {
-      clearTimeout(timerId);
-    };
+    return () => clearTimeout(timerId);
 
-    // Dependencies: Re-run effect if media, user, or essential data changes
-  }, [mediaType, id, season, episode, user, detailsData, episodes, detailsLoading, episloading]);
-
+  }, [mediaType, id, season, episode, user.uid, detailsData, episodes, detailsLoading, episloading]);
 
   return (
     <>

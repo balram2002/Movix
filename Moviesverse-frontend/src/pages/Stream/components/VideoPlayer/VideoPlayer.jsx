@@ -42,11 +42,17 @@ const VideoPlayer = () => {
   const getOriginalLanguageDomain = () => {
     if (endpoint === 'ru' || endpoint === 'su') {
       return `vidsrcme.${endpoint}`;
+    }else if(endpoint === 'ru2'){
+      return `vidsrc-me.ru`;
+    }else if(endpoint === 'su2'){
+      return `vidsrc-embed.su`;
     }
     return `vidsrc.${endpoint}`;
   };  
   const url = language === "Hindi" ? preurl :
-    `https://${getOriginalLanguageDomain()}/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`
+    `https://${getOriginalLanguageDomain()}/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`;
+
+    console.log("Video URL:", url);
 
   return (
     <div className={`video-player-container`} >

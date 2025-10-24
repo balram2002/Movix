@@ -116,16 +116,7 @@ const DetailsBanner = ({ video, crew }) => {
     const titleee = data?.name || data?.title;
 
     const handleStreamClick = () => {
-        const isMobile = window.innerWidth <= 768;
-
-        if (isMobile) {
-            setOpenstream(!openstream);
-            setStream(!stream);
-            console.log("Mobile device detected");
-        } else {
-            navigate(`/stream/${data?.endpoint || mediaType}/${id}${mediaType === 'tv' ? '/1/1' : '/0/0'}`)
-            console.log("Desktop device detected");
-        }
+        navigate(`/stream/${data?.endpoint || mediaType}/${id}${mediaType === 'tv' ? '/1/1' : '/0/0'}`)
     };
 
     const releaseYear = dayjs(data?.release_date).format("YYYY");

@@ -126,6 +126,7 @@
   border: 1px solid var(--borderS);
   border-radius: 12px;
   padding: 1.5rem;
+  padding-bottom: 0;
   margin-top: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

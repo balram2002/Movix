@@ -52,6 +52,88 @@ const PlayerControls = ({ episodesLength, setIsEpisodeListOpen, isEpisodeListOpe
     updateQueryParam('lep', value);
   };
 
+  const isMobile = window.innerWidth <= 768;
+
+  const serverButtons = (
+    <div className="server-buttons">
+      <span className="server-label-playerarea">Server : </span>
+      <button
+        className={`server-button ${endpoint === 'ru' ? 'server-button-active' : ''}`}
+        onClick={() => handleEndpointChange('ru')}
+      >
+        1
+      </button>
+      <button
+        className={`server-button ${endpoint === 'su' ? 'server-button-active' : ''}`}
+        onClick={() => handleEndpointChange('su')}
+      >
+        2
+      </button>
+      <button
+        className={`server-button ${endpoint === 'ru2' ? 'server-button-active' : ''}`}
+        onClick={() => handleEndpointChange('ru2')}
+      >
+        3
+      </button>
+      <button
+        className={`server-button ${endpoint === 'su2' ? 'server-button-active' : ''}`}
+        onClick={() => handleEndpointChange('su2')}
+      >
+        4
+      </button>
+    </div>
+  );
+
+const MobileServerButtons = (
+  <div className="flex items-center gap-2 w-full justify-center w-full h-full">
+    <span className="text-2xl font-bold text-gray-300 whitespace-nowrap text-center">Server:</span>
+    <div className="flex gap-1.5 flex-1 justify-end">
+      <button
+        className={`w-9 h-9 rounded flex items-center justify-center text-sm font-medium transition-colors ${
+          endpoint === 'ru' 
+            ? 'bg-blue-600 text-white' 
+            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+        }`}
+        onClick={() => handleEndpointChange('ru')}
+      >
+        1
+      </button>
+      <button
+        className={`w-9 h-9 rounded flex items-center justify-center text-sm font-medium transition-colors ${
+          endpoint === 'su' 
+            ? 'bg-blue-600 text-white' 
+            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+        }`}
+        onClick={() => handleEndpointChange('su')}
+      >
+        2
+      </button>
+      <button
+        className={`w-9 h-9 rounded flex items-center justify-center text-sm font-medium transition-colors ${
+          endpoint === 'ru2' 
+            ? 'bg-blue-600 text-white' 
+            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+        }`}
+        onClick={() => handleEndpointChange('ru2')}
+      >
+        3
+      </button>
+      <button
+        className={`w-9 h-9 rounded flex items-center justify-center text-sm font-medium transition-colors ${
+          endpoint === 'su2' 
+            ? 'bg-blue-600 text-white' 
+            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+        }`}
+        onClick={() => handleEndpointChange('su2')}
+      >
+        4
+      </button>
+    </div>
+  </div>
+);
+
+  const ServerButtonSection = () => (isMobile ? MobileServerButtons : serverButtons);
+
   return (
     <>
       {mediaType === "tv" ?
@@ -65,13 +147,14 @@ const PlayerControls = ({ episodesLength, setIsEpisodeListOpen, isEpisodeListOpe
           </div>
 
           <div className={`player-controls-container ${mediaType === 'tv' && 'tv'}`}>
-            <div className='player-controls-container-lang'>
-              <div className='lanswitchtab'> 
+            <div className='player-controls-container-lang' style={{ justifyContent: isMobile && "center" }}>
+              <div className='lanswitchtab'>
                 <span className='server-label-playerarea'>Language : </span>
                 <SwitchTabs2 data={["Original", "Hindi"]} onTabChange={onTabChange} currentTab={lan} />
               </div>
               <button
                 className="episode-toggle-btn-controls"
+                style={{ display: isMobile && "none" }}
                 onClick={() => setIsEpisodeListOpen(!isEpisodeListOpen)}
                 title={isEpisodeListOpen ? "Close Episodes" : "Open Episodes"}
               >
@@ -91,21 +174,8 @@ const PlayerControls = ({ episodesLength, setIsEpisodeListOpen, isEpisodeListOpe
                   </button>
                 </div>
                 :
-                <div className="server-buttons">
-                  <span className='server-label-playerarea'>Server : </span>
-                  <button className={`server-button ${endpoint === 'ru' && 'server-button-active'}`} onClick={() => handleEndpointChange('ru')}>
-                    1
-                  </button>
-                  <button className={`server-button ${endpoint === 'su' && 'server-button-active'}`} onClick={() => handleEndpointChange('su')}>
-                    2
-                  </button>
-                  <button className={`server-button ${endpoint === 'xyz' && 'server-button-active'}`} onClick={() => handleEndpointChange('xyz')}>
-                    3
-                  </button>
-                  <button className={`server-button ${endpoint === 'me' && 'server-button-active'}`} onClick={() => handleEndpointChange('me')}>
-                    4
-                  </button>
-                </div>}
+                <ServerButtonSection />
+              }
 
               {mediaType === 'tv' &&
                 <div className="navigation-buttons">

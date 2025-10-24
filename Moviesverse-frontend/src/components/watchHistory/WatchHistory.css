@@ -1,7 +1,32 @@
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --pink-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --blue-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --glow-pink: rgba(218, 47, 104, 0.6);
+  --glow-blue: rgba(79, 172, 254, 0.6);
+}
+
 .watchHistorySection {
   position: relative;
-  margin-bottom: 40px; /* Increased margin */
+  margin-bottom: 50px;
   padding: 0 20px;
+  animation: fadeInUp 0.6s ease-out;
+  transition: all 0.4s ease;
+}
+
+.watchHistorySection.collapsed {
+  margin-bottom: 30px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .historyContentWrapper {
@@ -11,26 +36,190 @@
   position: relative;
 }
 
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.historyHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .historyTitle {
-  font-size: 24px;
+  font-size: 28px;
   color: white;
-  margin-bottom: 25px; /* Increased margin */
-  font-weight: 600; /* Bolder title */
-  padding-left: 10px; /* Align with carousel padding */
+  font-weight: 700;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+  }
+}
+
+.titleIcon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.historyCount {
+  font-size: 22px;
+  color: white;
+  padding: 4px 12px;
+  margin-top: 4px;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(218, 47, 104, 0.4);
+  animation: countPop 0.4s ease-out;
+}
+
+@keyframes countPop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.historyControls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filterBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filterBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.filterBtn:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+.filterBtn:hover::before {
+  opacity: 0.2;
+}
+
+.filterBtn.active {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.controlBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.controlBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.clearBtn:hover {
+  background: rgba(245, 87, 108, 0.2);
+  border-color: rgba(245, 87, 108, 0.5);
+  color: #f5576c;
+}
+
+.visibilityBtn:hover {
+  background: rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.5);
+  color: #4facfe;
 }
 
 .historyCarousel {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   overflow-y: hidden;
   overflow-x: scroll;
   scroll-behavior: smooth;
   margin-right: -20px;
+  padding-bottom: 0;
   margin-left: -20px;
-  padding: 0 20px 15px 20px;
+  padding: 0 20px 20px 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .historyCarousel::-webkit-scrollbar {
   display: none;
 }
@@ -41,29 +230,48 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease-out; /* Add subtle hover effect to item */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: slideIn 0.5s ease-out backwards;
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.historyCarouselItem:nth-child(1) { animation-delay: 0.05s; }
+.historyCarouselItem:nth-child(2) { animation-delay: 0.1s; }
+.historyCarouselItem:nth-child(3) { animation-delay: 0.15s; }
+.historyCarouselItem:nth-child(4) { animation-delay: 0.2s; }
+.historyCarouselItem:nth-child(5) { animation-delay: 0.25s; }
+
 .historyCarouselItem:hover {
-  transform: translateY(-4px); /* Lift item slightly on hover */
+  /* transform: translateY(-8px) scale(1.02); */
+  z-index: 10;
 }
 
 .historyPosterBlock {
   position: relative;
   width: 100%;
   aspect-ratio: 2 / 3;
-  background-color: var(--black3, #1c1c1c); /* Use theme variable if available */
-  border-radius: 8px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 12px; /* Increased space */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Ensure Img component fills the container */
 .historyPosterBlock .lazy-load-image-background {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .historyPosterBlock img {
@@ -72,62 +280,178 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  transition: transform 0.3s ease-in-out;
 }
 
-.historyPosterBlock:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px rgba(218, 47, 104, 0.4); /* Enhanced hover shadow */
+.historyCarouselItem:hover .historyPosterBlock {
+  /* transform: scale(1.02); */
+  box-shadow: 0 15px 40px var(--glow-pink);
+  border-color: rgba(218, 47, 104, 0.5);
+}
+
+.historyCarouselItem:hover .historyPosterBlock img {
+  transform: scale(1.08);
+}
+
+.shimmerEffect {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 200%;
+  }
 }
 
 .historyItemOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%); /* Adjusted gradient */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .historyPosterBlock:hover .historyItemOverlay {
-    opacity: 1;
+  opacity: 1;
 }
 
 .playIcon {
-    color: rgba(255, 255, 255, 0.85);
-    transition: transform 0.3s ease, color 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Add shadow to icon */
+  color: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 4px 12px rgba(218, 47, 104, 0.8));
+  animation: playPulse 2s ease-in-out infinite;
+  transform: rotate(90deg);
+}
+
+@keyframes playPulse {
+  0%, 100% {
+    filter: drop-shadow(0 4px 12px rgba(218, 47, 104, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 6px 20px rgba(218, 47, 104, 1));
+  }
 }
 
 .historyPosterBlock:hover .playIcon {
-    transform: scale(1.15);
-    color: rgba(255, 255, 255, 1);
+  transform: scale(1.25);
+}
+
+.progressBarContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--pink-gradient);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--glow-pink);
 }
 
 .mediaTypeBadge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    color: #04152d;
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly less transparent */
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 10px; /* Smaller font */
-    font-weight: 700;
-    text-transform: uppercase;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Space between icon and text */
-    line-height: 1; /* Ensure tight vertical alignment */
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
-.mediaTypeBadge svg {
-    margin-bottom: 1px; /* Fine-tune icon alignment */
+.mediaTypeBadge.tv {
+  background: linear-gradient(135deg, rgba(79, 172, 254, 0.9) 0%, rgba(0, 242, 254, 0.9) 100%);
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.5);
+}
+
+.mediaTypeBadge.movie {
+  background: linear-gradient(135deg, rgba(240, 147, 251, 0.9) 0%, rgba(245, 87, 108, 0.9) 100%);
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.5);
+}
+
+.historyCarouselItem:hover .mediaTypeBadge {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.removeItemButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  line-height: 0;
+  backdrop-filter: blur(10px);
+}
+
+.historyCarouselItem:hover .removeItemButton {
+  opacity: 1;
+}
+
+.removeItemButton:hover {
+  background: rgba(245, 87, 108, 0.95);
+  color: white;
+  transform: scale(1.15) rotate(90deg);
+  border-color: rgba(245, 87, 108, 0.8);
+  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.6);
+}
+
+.removeItemButton svg {
+  display: block;
 }
 
 .historyTextBlk {
@@ -135,170 +459,337 @@
   display: flex;
   flex-direction: column;
   padding: 0 2px;
-  gap: 4px; /* Add gap between text elements */
+  gap: 5px;
 }
 
 .historyItemTitle {
   font-size: 14px;
-  font-weight: 600; /* Bolder title */
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.3;
-  color: #eee; /* Slightly off-white */
+  color: #f0f0f0;
+  transition: color 0.3s ease;
+}
+
+.historyCarouselItem:hover .historyItemTitle {
+  color: white;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
 .historyEpisodeDetails {
   font-size: 12px;
-  color: #aaa; /* Lighter color for secondary details */
+  color: #b0b0b0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.historyCarouselItem:hover .historyEpisodeDetails {
+  color: #d0d0d0;
 }
 
 .historyDate {
-  font-size: 11px; /* Smaller date */
+  font-size: 11px;
   opacity: 0.6;
   line-height: 1.3;
-  margin-top: 2px; /* Small top margin */
+  margin-top: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.historyCarouselItem:hover .historyDate {
+  opacity: 0.8;
 }
 
 .arrow {
   position: absolute;
-  top: calc(45% + 10px); /* Adjust vertical centering considering title */
+  top: calc(50% - 20px);
   transform: translateY(-50%);
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: rgba(255, 255, 255, 0.7); /* Dimmer arrow */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+  color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
   opacity: 1;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   visibility: visible;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .arrow.hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: translateY(-50%) scale(0.8);
 }
 
 .arrow:hover {
-    background-color: rgba(218, 47, 104, 0.9); /* --pink color on hover */
-    color: white; /* Brighter arrow on hover */
-    transform: translateY(-50%) scale(1.1); /* Scale up on hover */
-    border-color: rgba(255, 255, 255, 0.3);
+  background: var(--pink-gradient);
+  color: white;
+  transform: translateY(-50%) scale(1.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 30px var(--glow-pink);
+}
+
+.arrow:active {
+  transform: translateY(-50%) scale(1.05);
 }
 
 .carouselLeftNav {
-  left: -10px; /* Position slightly outside */
+  left: -15px;
 }
 
 .carouselRightNav {
-  right: -10px; /* Position slightly outside */
+  right: -15px;
 }
 
-/* Responsive adjustments */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalContent {
+  background: linear-gradient(135deg, #1e1e2f 0%, #2a2a3e 100%);
+  border-radius: 20px;
+  padding: 35px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalContent h3 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modalContent p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modalBtn {
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancelBtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.confirmBtn {
+  background: var(--pink-gradient);
+  color: white;
+  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.4);
+}
+
+.confirmBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+}
+
+.confirmBtn:active {
+  transform: translateY(0);
+}
+
 @media (min-width: 768px) {
   .historyCarouselItem {
     width: 170px;
   }
-   .historyCarousel {
-    gap: 20px;
-    padding: 0 50px 15px 50px;
+  .historyCarousel {
+    gap: 25px;
+    padding: 0 50px 20px 50px;
     margin: 0;
+    padding-bottom: 0;
   }
-   .carouselLeftNav {
-    left: 0px;
+  .carouselLeftNav {
+    left: 5px;
   }
-   .carouselRightNav {
-    right: 0px;
+  .carouselRightNav {
+    right: 5px;
+  }
+  .historyTitle {
+    font-size: 30px;
   }
 }
 
 @media (min-width: 1024px) {
-    .historyCarouselItem {
-        width: 180px;
-    }
+  .historyCarouselItem {
+    width: 185px;
+  }
+  .historyTitle {
+    font-size: 32px;
+  }
 }
 
 @media (max-width: 767px) {
   .watchHistorySection {
     padding: 0 10px;
   }
+  
+  .historyHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
   .historyTitle {
-    font-size: 20px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    font-size: 22px;
+    margin-left: 5px;
+    margin-bottom: 0;
   }
-   .historyCarousel {
-    padding: 0 10px 10px 10px;
+  
+  .historyControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .filterButtons {
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  .filterBtn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .historyCarousel {
+    padding: 0 10px 15px 10px;
     margin: 0 -10px;
-    gap: 10px;
+    gap: 12px;
+    padding-bottom: 0;
   }
-   .historyCarouselItem {
-    width: 120px;
+  
+  .historyCarouselItem {
+    width: 125px;
   }
-   .historyItemTitle {
+  
+  .historyItemTitle {
     font-size: 13px;
   }
-   .historyEpisodeDetails {
+  
+  .historyEpisodeDetails {
     font-size: 11px;
-   }
-   .historyDate {
+  }
+  
+  .historyDate {
     font-size: 10px;
   }
+  
   .arrow {
-      display: none; /* Hide arrows on small screens */
+    display: none;
+  }
+  
+  .modalContent {
+    padding: 25px;
+  }
+  
+  .modalContent h3 {
+    font-size: 20px;
+  }
+  
+  .modalContent p {
+    font-size: 14px;
+  }
+  
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+  
+  .modalBtn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-/* --- Styles for Remove Button --- */
-.removeItemButton {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 0;
-    z-index: 3; /* Above overlay */
-    opacity: 0; /* Hidden by default */
-    transition: all 0.2s ease;
-    line-height: 0; /* Prevent potential layout shifts */
-}
-
-.historyCarouselItem:hover .removeItemButton {
-    opacity: 1; /* Show on item hover */
-}
-
-.removeItemButton:hover {
-    background-color: rgba(218, 47, 104, 0.9); /* --pink color */
-    color: white;
-    transform: scale(1.1);
-}
-
-.removeItemButton svg {
-    display: block; /* Ensure icon is centered */
-}
-/* --- End Remove Button Styles --- */
-
-/* Adjust badge position slightly to avoid overlap */
-.mediaTypeBadge {
-    left: 6px;
-    top: 6px;
+@media (max-width: 480px) {
+  .historyCarouselItem {
+    width: 110px;
+  }
+  
+  .historyTitle {
+    font-size: 20px;
+    gap: 8px;
+  }
+  
+  .titleIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .historyCount {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
 }

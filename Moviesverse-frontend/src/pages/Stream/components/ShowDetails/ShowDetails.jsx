@@ -48,12 +48,13 @@ const ShowDetails = ({ data, video, crew }) => {
     (f) => f?.job === "Screenplay" || f?.job === "Story" || f?.job === "Writer"
   );
   const title = data?.title || data?.name;
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <>
       <div className="show-details-container">
         {/* Main Details Section - Responsive Layout */}
-        <div className="main-details">
+        <div className="main-details" style={{display: isMobile && "none"}}>
           {/* Left Section - Show Info */}
           <div className="show-info">
             <div className="content">
@@ -314,8 +315,6 @@ const ShowDetails = ({ data, video, crew }) => {
         </div>
 
         <div className="similar-shows">
-          <h2 className="similar-shows-title">Similar {mediaType === 'tv' ? 'TV Shows' : 'Movies'}</h2>
-          {/* Placeholder for future content */}
           <div className="similar-shows-list">
             <WatchHistory notShowLine={true} />
           </div>
