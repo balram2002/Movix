@@ -9,11 +9,14 @@ import { Helmet } from 'react-helmet-async';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Eye } from 'lucide-react';
 
 function Authentication() {
 
     const { signUp, logIn } = UserAuth()
     const navigate = useNavigate();
+    const [isPassWordTextVisible, setIsPassWordTextVisible] = useState(false);
+    const [isPassWordTextVisibleLogin, setIsPassWordTextVisibleLogin] = useState(false);
 
     const [emailr, setEmailr] = useState('');
     const [passwordr, setPasswordr] = useState('');
@@ -24,6 +27,10 @@ function Authentication() {
     const handleRegisterSubmit = async (e) => {
         e.preventDefault()
         try {
+            if(emailr==='' || passwordr==='' || emailr===null || passwordr===null || !emailr.includes('@') || passwordr.length<6 || emailr.indexOf(' ')>=0 || passwordr.indexOf(' ')>=0 || emailr.endsWith('.') || emailr.startsWith('.')){
+                toast.error("Please enter valid email and password (Password must be at least 6 characters long)");
+                return;
+            }
             setUserRegistering("Creating Account...");
             await signUp(emailr, passwordr);
             setUserRegistering("Sign Up");
@@ -96,9 +103,9 @@ function Authentication() {
                             <MdEmail className='icon' />
                         </div>
                         <div className="auth-input-box animation" style={{ "--i": 2, "--j": 23 }}>
-                            <input type="password" onChange={(e) => setPassword(e.target.value)} required />
+                            <input type={isPassWordTextVisible ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} required />
                             <label>Password</label>
-                            <FaLock className='icon' />
+                            {isPassWordTextVisible ? <FaLock className='icon' onClick={() => setIsPassWordTextVisible(false)} style={{ cursor: 'pointer' }} /> : <Eye className='icon' onClick={() => setIsPassWordTextVisible(true)} style={{ cursor: 'pointer' }} />}
                             {userWrongPass === "Incorrect Password" && <span onClick={() => navigate('/forgot-password')} className='forgotclickspan'>forgot password?</span>}
                         </div>
                         <button className="btn-auth animation" style={{ "--i": 3, "--j": 24 }} type='submit'>{userLoging}</button>
@@ -131,9 +138,9 @@ function Authentication() {
                             <MdEmail className='icon' />
                         </div>
                         <div className="auth-input-box animation" style={{ "--i": 20, "--j": 3 }}>
-                            <input type="password" onChange={(e) => setPasswordr(e.target.value)} required />
+                            <input type={isPassWordTextVisibleLogin ? "text" : "password"} onChange={(e) => setPasswordr(e.target.value)} required />
                             <label>Password</label>
-                            <FaLock className='icon' />
+                            {isPassWordTextVisibleLogin ? <FaLock className='icon' onClick={() => setIsPassWordTextVisibleLogin(false)} style={{ cursor: 'pointer' }} /> : <Eye className='icon' onClick={() => setIsPassWordTextVisibleLogin(true)} style={{ cursor: 'pointer' }} />}
                         </div>
                         <button className="btn-auth animation" style={{ "--i": 21, "--j": 4 }} type='submit'>{userRegistering}</button>
                         <div className="logreg-link animation" style={{ "--i": 22, "--j": 5 }}>

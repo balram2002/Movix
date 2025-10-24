@@ -114,7 +114,9 @@ function App() {
         }
     }
     if (!data || !data.results || data.results.length < 5) {
-        return <ServerBusyScreen />;
+        if (!isStreamPage) {
+            return <ServerBusyScreen />;
+        }
     }
     return (
         <HelmetProvider>

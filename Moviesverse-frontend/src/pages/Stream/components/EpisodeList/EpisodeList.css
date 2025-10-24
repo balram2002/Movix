@@ -131,6 +131,7 @@
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
+  border-bottom: 0.7px solid white;
   padding-top: 3px;
   border-radius: 8px;
 }
@@ -180,6 +181,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--second) transparent;
   border-left: 1px solid white;
+  border-top: 1px solid white;
   padding-top: 7px;
   padding-left: 4px;
   padding-right: 4px;

@@ -80,29 +80,9 @@ export const LoadingScreen = ({ progress = 0 }) => {
             <div className="animated-bg blob2"></div>
             <div className="animated-bg blob3"></div>
 
-            <div style={{
-                textAlign: 'center',
-                color: 'white',
-                position: 'relative',
-                zIndex: 2,
-                width: '100%',
-                maxWidth: '500px',
-                background: 'rgba(255, 255, 255, 0.03)',
-                backdropFilter: 'blur(40px)',
-                WebkitBackdropFilter: 'blur(40px)',
-                borderRadius: '30px',
-                padding: '45px 35px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
-                animation: 'fadeInScale 0.6s ease-out'
-            }}>
-                <div style={{
-                    position: 'relative',
-                    width: '140px',
-                    height: '140px',
-                    margin: '0 auto 35px'
-                }}>
-                    <svg className="progress-ring" width="140" height="140">
+            <div className="loading-card">
+                <div className="progress-container">
+                    <svg className="progress-ring" width="140" height="140" viewBox="0 0 140 140">
                         <defs>
                             <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stopColor="#667eea" />
@@ -144,28 +124,12 @@ export const LoadingScreen = ({ progress = 0 }) => {
                 </div>
 
                 <div className="logo-container">
-                    <h1 style={{
-                        margin: '0 0 10px',
-                        fontSize: '42px',
-                        fontWeight: '700',
-                        background: 'linear-gradient(135deg, #667eea 0%, #da2f68 50%, #f093fb 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        letterSpacing: '2px',
-                        animation: 'gradientShift 3s ease infinite'
-                    }}>
+                    <h1 className="logo-title">
                         MOVIX
                     </h1>
                 </div>
 
-                <p style={{
-                    margin: '0 0 30px',
-                    opacity: 0.7,
-                    fontSize: '14px',
-                    color: '#e0e8f0',
-                    fontWeight: '400'
-                }}>
+                <p className="loading-subtitle">
                     Loading your entertainment experience...
                 </p>
 
@@ -184,12 +148,7 @@ export const LoadingScreen = ({ progress = 0 }) => {
                     ))}
                 </div>
 
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    marginTop: '25px'
-                }}>
+                <div className="dot-indicators">
                     {tips.map((_, index) => (
                         <div
                             key={index}
@@ -198,18 +157,71 @@ export const LoadingScreen = ({ progress = 0 }) => {
                     ))}
                 </div>
 
-                <p style={{
-                    margin: '30px 0 0',
-                    opacity: 0.5,
-                    fontSize: '11px',
-                    color: '#b0b8c8',
-                    fontWeight: '300'
-                }}>
+                <p className="creator-text">
                     Created by Balram Dhakad
                 </p>
             </div>
 
             <style>{`
+                .loading-card {
+                    text-align: center;
+                    color: white;
+                    position: relative;
+                    z-index: 2;
+                    width: 100%;
+                    max-width: 500px;
+                    background: rgba(255, 255, 255, 0.03);
+                    backdrop-filter: blur(40px);
+                    -webkit-backdrop-filter: blur(40px);
+                    border-radius: 30px;
+                    padding: 45px 35px;
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+                    animation: fadeInScale 0.6s ease-out;
+                }
+
+                .progress-container {
+                    position: relative;
+                    width: 140px;
+                    height: 140px;
+                    margin: 0 auto 35px;
+                }
+
+                .logo-title {
+                    margin: 0 0 10px;
+                    font-size: 42px;
+                    font-weight: 700;
+                    background: linear-gradient(135deg, #667eea 0%, #da2f68 50%, #f093fb 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    letter-spacing: 2px;
+                    animation: gradientShift 3s ease infinite;
+                }
+
+                .loading-subtitle {
+                    margin: 0 0 30px;
+                    opacity: 0.7;
+                    font-size: 14px;
+                    color: #e0e8f0;
+                    font-weight: 400;
+                }
+
+                .dot-indicators {
+                    display: flex;
+                    justify-content: center;
+                    gap: 8px;
+                    margin-top: 25px;
+                }
+
+                .creator-text {
+                    margin: 30px 0 0;
+                    opacity: 0.5;
+                    font-size: 11px;
+                    color: #b0b8c8;
+                    font-weight: 300;
+                }
+
                 @keyframes fadeInScale {
                     from {
                         opacity: 0;
@@ -379,12 +391,14 @@ export const LoadingScreen = ({ progress = 0 }) => {
                     background: rgba(102, 126, 234, 0.15);
                     padding: 8px;
                     border-radius: 8px;
+                    flex-shrink: 0;
                 }
 
                 .tip-text {
                     font-size: 13px;
                     color: rgba(255, 255, 255, 0.8);
                     font-weight: 400;
+                    line-height: 1.4;
                 }
 
                 .dot-indicator {
@@ -402,70 +416,176 @@ export const LoadingScreen = ({ progress = 0 }) => {
                     box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
                 }
 
-                @media (max-width: 600px) {
-                    div[style*="maxWidth: '500px'"] {
+                @media (max-width: 768px) {
+                    .loading-card {
                         padding: 35px 25px;
                         border-radius: 25px;
+                        max-width: 90%;
                     }
 
-                    div[style*="width: '140px'"] {
-                        width: 110px;
-                        height: 110px;
+                    .progress-container {
+                        width: 120px;
+                        height: 120px;
                         margin-bottom: 30px;
                     }
 
                     .progress-ring {
-                        width: 110px;
-                        height: 110px;
+                        width: 120px !important;
+                        height: 120px !important;
                     }
 
-                    .progress-ring circle {
-                        r: 48;
-                        cx: 55;
-                        cy: 55;
+                    .logo-title {
+                        font-size: 36px;
+                        letter-spacing: 1.5px;
+                    }
+
+                    .loading-subtitle {
+                        font-size: 13px;
+                        margin-bottom: 25px;
                     }
 
                     .central-icon svg {
-                        width: 38px;
-                        height: 38px;
+                        width: 42px;
+                        height: 42px;
                     }
 
-                    h1[style*="fontSize: '42px'"] {
-                        font-size: 32px;
+                    .percentage-text {
+                        font-size: 15px;
+                        bottom: -28px;
+                    }
+
+                    .tips-container {
+                        padding: 10px 16px;
+                        min-height: 48px;
                     }
 
                     .tip-text {
                         font-size: 12px;
                     }
 
-                    .tips-container {
-                        padding: 10px 15px;
-                        min-height: 45px;
+                    .tip-icon {
+                        padding: 7px;
+                    }
+
+                    .tip-icon svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+
+                    .dot-indicators {
+                        margin-top: 20px;
+                        gap: 6px;
+                    }
+
+                    .dot-indicator {
+                        width: 7px;
+                        height: 7px;
+                    }
+
+                    .dot-indicator.active {
+                        width: 20px;
+                    }
+
+                    .creator-text {
+                        margin-top: 25px;
+                        font-size: 10px;
                     }
                 }
 
-                @media (max-width: 400px) {
-                    div[style*="padding: 35px 25px"] {
-                        padding: 25px 20px;
+                @media (max-width: 480px) {
+                    .loading-card {
+                        padding: 30px 20px;
                         border-radius: 20px;
                     }
 
-                    div[style*="width: 110px"] {
-                        width: 90px;
-                        height: 90px;
+                    .progress-container {
+                        width: 100px;
+                        height: 100px;
                         margin-bottom: 25px;
                     }
 
                     .progress-ring {
+                        width: 100px !important;
+                        height: 100px !important;
+                    }
+
+                    .logo-title {
+                        font-size: 32px;
+                        margin-bottom: 8px;
+                    }
+
+                    .loading-subtitle {
+                        font-size: 12px;
+                        margin-bottom: 20px;
+                    }
+
+                    .central-icon svg {
+                        width: 36px;
+                        height: 36px;
+                    }
+
+                    .percentage-text {
+                        font-size: 14px;
+                        bottom: -26px;
+                    }
+
+                    .tips-container {
+                        padding: 10px 14px;
+                        min-height: 44px;
+                        border-radius: 12px;
+                    }
+
+                    .tip-text {
+                        font-size: 11px;
+                    }
+
+                    .tip-icon {
+                        padding: 6px;
+                    }
+
+                    .tip-icon svg {
+                        width: 13px;
+                        height: 13px;
+                    }
+
+                    .blob1, .blob2, .blob3 {
+                        filter: blur(80px);
+                        opacity: 0.25;
+                    }
+
+                    .blob1 {
+                        width: 350px;
+                        height: 350px;
+                    }
+
+                    .blob2 {
+                        width: 300px;
+                        height: 300px;
+                    }
+
+                    .blob3 {
+                        width: 250px;
+                        height: 250px;
+                    }
+                }
+
+                @media (max-width: 360px) {
+                    .loading-card {
+                        padding: 25px 18px;
+                    }
+
+                    .progress-container {
                         width: 90px;
                         height: 90px;
                     }
 
-                    .progress-ring circle {
-                        r: 38;
-                        cx: 45;
-                        cy: 45;
-                        stroke-width: 6;
+                    .progress-ring {
+                        width: 90px !important;
+                        height: 90px !important;
+                    }
+
+                    .logo-title {
+                        font-size: 28px;
                     }
 
                     .central-icon svg {
@@ -473,21 +593,8 @@ export const LoadingScreen = ({ progress = 0 }) => {
                         height: 32px;
                     }
 
-                    .percentage-text {
-                        font-size: 14px;
-                        bottom: -25px;
-                    }
-
-                    h1[style*="fontSize: 32px"] {
-                        font-size: 28px;
-                    }
-
                     .tip-text {
-                        font-size: 11px;
-                    }
-
-                    .blob1, .blob2, .blob3 {
-                        filter: blur(80px);
+                        font-size: 10.5px;
                     }
                 }
             `}</style>

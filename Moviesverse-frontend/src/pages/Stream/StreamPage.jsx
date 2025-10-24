@@ -9,6 +9,7 @@ import useFetch from '../../hooks/useFetch';
 import { Helmet } from 'react-helmet-async';
 import { ValuesContext } from '../../context/ValuesContext';
 import { UserAuth } from '../../context/AuthContext';
+import ShowDetails2 from './components/ShowDetails2/ShowDetails2';
 
 function StreamPage() {
 
@@ -120,7 +121,7 @@ function StreamPage() {
             }
           }
 
-          const userHistory = Array.isArray(history[user?.uid]) ? history[user?.uid] : [];
+          const userHistory = Array.isArray(history[user.uid]) ? history[user.uid] : [];
 
           const cleanUserHistory = userHistory.filter(item =>
             item &&
@@ -129,12 +130,6 @@ function StreamPage() {
             item.timestamp &&
             item.timestamp > sevenDaysAgo
           );
-
-          const existingItemIndex = cleanUserHistory.findIndex(item => {
-            if (item.id !== id || item.mediaType !== mediaType) return false;
-            if (mediaType === "movie") return true;
-            return String(item.season) === String(season) && String(item.episode) === String(episode);
-          });
 
           const currentEpisodeDetails = mediaType === 'tv'
             ? episodes.episodes.find(ep => String(ep.episode_number) === String(episode))
@@ -154,14 +149,12 @@ function StreamPage() {
             newItem.episodeName = currentEpisodeDetails?.name || `Episode ${episode}`;
           }
 
-          if (existingItemIndex > -1) {
-            cleanUserHistory.splice(existingItemIndex, 1);
-          }
-
           cleanUserHistory.unshift(newItem);
 
-          history[user?.uid] = cleanUserHistory;
+          history[user.uid] = cleanUserHistory;
           localStorage.setItem(historyKey, JSON.stringify(history));
+
+          console.log("Watch history saved successfully:", newItem);
 
         } catch (error) {
           console.error("Failed to save watch history:", error);
@@ -174,7 +167,7 @@ function StreamPage() {
 
     return () => clearTimeout(timerId);
 
-  }, [mediaType, id, season, episode, user?.uid, detailsData, episodes, detailsLoading, episloading]);
+  }, [mediaType, id, season, episode]);
 
   return (
     <>
@@ -217,7 +210,7 @@ function StreamPage() {
           </div>
 
           <div className="mobile-show-details">
-            <ShowDetails data={detailsData} video={video} crew={credits?.crew} />
+            <ShowDetails2 data={detailsData} video={video} crew={credits?.crew} />
           </div>
         </div>
 
