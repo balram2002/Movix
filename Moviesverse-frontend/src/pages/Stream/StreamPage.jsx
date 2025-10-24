@@ -120,7 +120,7 @@ function StreamPage() {
             }
           }
 
-          const userHistory = Array.isArray(history[user.uid]) ? history[user.uid] : [];
+          const userHistory = Array.isArray(history[user?.uid]) ? history[user?.uid] : [];
 
           const cleanUserHistory = userHistory.filter(item =>
             item &&
@@ -160,7 +160,7 @@ function StreamPage() {
 
           cleanUserHistory.unshift(newItem);
 
-          history[user.uid] = cleanUserHistory;
+          history[user?.uid] = cleanUserHistory;
           localStorage.setItem(historyKey, JSON.stringify(history));
 
         } catch (error) {
@@ -174,7 +174,7 @@ function StreamPage() {
 
     return () => clearTimeout(timerId);
 
-  }, [mediaType, id, season, episode, user.uid, detailsData, episodes, detailsLoading, episloading]);
+  }, [mediaType, id, season, episode, user?.uid, detailsData, episodes, detailsLoading, episloading]);
 
   return (
     <>
