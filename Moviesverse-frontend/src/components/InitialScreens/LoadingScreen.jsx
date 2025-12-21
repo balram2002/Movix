@@ -1,168 +1,153 @@
-import React, { useState, useEffect } from 'react';
-import { Film, Tv, PlayCircle, Star, TrendingUp, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Film, Tv, PlayCircle, Star, TrendingUp, Sparkles } from "lucide-react";
 
 export const LoadingScreen = ({ progress = 0 }) => {
-    const [loadingProgress, setLoadingProgress] = useState(0);
-    const [currentTip, setCurrentTip] = useState(0);
-    const [particles, setParticles] = useState([]);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [currentTip, setCurrentTip] = useState(0);
+  const [particles, setParticles] = useState([]);
 
-    const tips = [
-        { icon: <Film size={16} />, text: "Did you know? We have over 10,000+ movies!" },
-        { icon: <Tv size={16} />, text: "Binge-watch your favorite TV series" },
-        { icon: <Star size={16} />, text: "Check out trending content daily" },
-        { icon: <TrendingUp size={16} />, text: "New releases added every week" },
-        { icon: <Sparkles size={16} />, text: "Create your personalized watchlist" }
-    ];
+  const tips = [
+    { icon: <Film size={16} />, text: "Did you know? We have over 10,000+ movies!" },
+    { icon: <Tv size={16} />, text: "Binge-watch your favorite TV series" },
+    { icon: <Star size={16} />, text: "Check out trending content daily" },
+    { icon: <TrendingUp size={16} />, text: "New releases added every week" },
+    { icon: <Sparkles size={16} />, text: "Create your personalized watchlist" },
+  ];
 
-    useEffect(() => {
-        const progressInterval = setInterval(() => {
-            setLoadingProgress(prev => {
-                if (prev >= 100) {
-                    clearInterval(progressInterval);
-                    return 100;
-                }
-                return prev + Math.random() * 15;
-            });
-        }, 200);
+  useEffect(() => {
+    const progressInterval = setInterval(() => {
+      setLoadingProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 200);
 
-        const tipInterval = setInterval(() => {
-            setCurrentTip(prev => (prev + 1) % tips.length);
-        }, 3000);
+    const tipInterval = setInterval(() => {
+      setCurrentTip((prev) => (prev + 1) % tips.length);
+    }, 3000);
 
-        const particleArray = Array.from({ length: 20 }, (_, i) => ({
-            id: i,
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-            size: Math.random() * 4 + 2,
-            duration: Math.random() * 3 + 2,
-            delay: Math.random() * 2
-        }));
-        setParticles(particleArray);
+    const particleArray = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(particleArray);
 
-        return () => {
-            clearInterval(progressInterval);
-            clearInterval(tipInterval);
-        };
-    }, []);
+    return () => {
+      clearInterval(progressInterval);
+      clearInterval(tipInterval);
+    };
+  }, []);
 
-    return (
-        <div style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(10, 10, 20, 0.7)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-            overflow: 'hidden',
-            padding: '20px',
-            boxSizing: 'border-box'
-        }}>
-            {particles.map(particle => (
-                <div
-                    key={particle.id}
-                    className="particle"
-                    style={{
-                        left: `${particle.x}%`,
-                        top: `${particle.y}%`,
-                        width: `${particle.size}px`,
-                        height: `${particle.size}px`,
-                        animationDuration: `${particle.duration}s`,
-                        animationDelay: `${particle.delay}s`
-                    }}
-                />
-            ))}
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(10, 10, 20, 0.7)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 9999,
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        overflow: "hidden",
+        padding: "20px",
+        boxSizing: "border-box",
+      }}
+    >
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="particle"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            animationDuration: `${particle.duration}s`,
+            animationDelay: `${particle.delay}s`,
+          }}
+        />
+      ))}
 
-            <div className="animated-bg blob1"></div>
-            <div className="animated-bg blob2"></div>
-            <div className="animated-bg blob3"></div>
+      <div className="animated-bg blob1"></div>
+      <div className="animated-bg blob2"></div>
+      <div className="animated-bg blob3"></div>
 
-            <div className="loading-card">
-                <div className="progress-container">
-                    <svg className="progress-ring" width="140" height="140" viewBox="0 0 140 140">
-                        <defs>
-                            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#667eea" />
-                                <stop offset="50%" stopColor="#da2f68" />
-                                <stop offset="100%" stopColor="#f093fb" />
-                            </linearGradient>
-                        </defs>
-                        <circle
-                            cx="70"
-                            cy="70"
-                            r="60"
-                            fill="none"
-                            stroke="rgba(255, 255, 255, 0.1)"
-                            strokeWidth="8"
-                        />
-                        <circle
-                            cx="70"
-                            cy="70"
-                            r="60"
-                            fill="none"
-                            stroke="url(#progressGradient)"
-                            strokeWidth="8"
-                            strokeLinecap="round"
-                            strokeDasharray={`${2 * Math.PI * 60}`}
-                            strokeDashoffset={`${2 * Math.PI * 60 * (1 - Math.min(loadingProgress, 100) / 100)}`}
-                            style={{
-                                transition: 'stroke-dashoffset 0.3s ease',
-                                transform: 'rotate(-90deg)',
-                                transformOrigin: 'center'
-                            }}
-                        />
-                    </svg>
-                    <div className="central-icon">
-                        <PlayCircle size={50} strokeWidth={1.5} />
-                    </div>
-                    <div className="percentage-text">
-                        {Math.min(Math.round(loadingProgress), 100)}%
-                    </div>
-                </div>
+      <div className="loading-card">
+        <div className="progress-container">
+          <svg className="progress-ring" width="140" height="140" viewBox="0 0 140 140">
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#667eea" />
+                <stop offset="50%" stopColor="#da2f68" />
+                <stop offset="100%" stopColor="#f093fb" />
+              </linearGradient>
+            </defs>
+            <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255, 255, 255, 0.1)" strokeWidth="8" />
+            <circle
+              cx="70"
+              cy="70"
+              r="60"
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray={`${2 * Math.PI * 60}`}
+              strokeDashoffset={`${2 * Math.PI * 60 * (1 - Math.min(loadingProgress, 100) / 100)}`}
+              style={{
+                transition: "stroke-dashoffset 0.3s ease",
+                transform: "rotate(-90deg)",
+                transformOrigin: "center",
+              }}
+            />
+          </svg>
+          <div className="central-icon">
+            <PlayCircle size={50} strokeWidth={1.5} />
+          </div>
+          <div className="percentage-text">{Math.min(Math.round(loadingProgress), 100)}%</div>
+        </div>
 
-                <div className="logo-container">
-                    <h1 className="logo-title">
-                        MOVIX
-                    </h1>
-                </div>
+        <div className="logo-container">
+          <h1 className="logo-title">MOVIX</h1>
+        </div>
 
-                <p className="loading-subtitle">
-                    Loading your entertainment experience...
-                </p>
+        <p className="loading-subtitle">Loading your entertainment experience...</p>
 
-                <div className="tips-container">
-                    {tips.map((tip, index) => (
-                        <div
-                            key={index}
-                            className={`tip-item ${currentTip === index ? 'active' : ''}`}
-                            style={{
-                                display: currentTip === index ? 'flex' : 'none'
-                            }}
-                        >
-                            <span className="tip-icon">{tip.icon}</span>
-                            <span className="tip-text">{tip.text}</span>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="dot-indicators">
-                    {tips.map((_, index) => (
-                        <div
-                            key={index}
-                            className={`dot-indicator ${currentTip === index ? 'active' : ''}`}
-                        />
-                    ))}
-                </div>
-
-                <p className="creator-text">
-                    Created by Balram Dhakad
-                </p>
+        <div className="tips-container">
+          {tips.map((tip, index) => (
+            <div
+              key={index}
+              className={`tip-item ${currentTip === index ? "active" : ""}`}
+              style={{
+                display: currentTip === index ? "flex" : "none",
+              }}
+            >
+              <span className="tip-icon">{tip.icon}</span>
+              <span className="tip-text">{tip.text}</span>
             </div>
+          ))}
+        </div>
 
-            <style>{`
+        <div className="dot-indicators">
+          {tips.map((_, index) => (
+            <div key={index} className={`dot-indicator ${currentTip === index ? "active" : ""}`} />
+          ))}
+        </div>
+
+        <p className="creator-text">Created with ❤️ by Moviesverse Team</p>
+        <p className="creator-text">https://moviesverse.vercel.app / https://www.moviesverse.studio</p>
+      </div>
+
+      <style>{`
                 .loading-card {
                     text-align: center;
                     color: white;
@@ -598,6 +583,6 @@ export const LoadingScreen = ({ progress = 0 }) => {
                     }
                 }
             `}</style>
-        </div>
-    );
+    </div>
+  );
 };
