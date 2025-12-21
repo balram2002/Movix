@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ImageIcon } from 'lucide-react';
-import './VideoPlayer.css';
-import { ValuesContext } from '../../../../context/ValuesContext';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { ImageIcon } from "lucide-react";
+import "./VideoPlayer.css";
+import { ValuesContext } from "../../../../context/ValuesContext";
+import { useParams } from "react-router-dom";
 
 const VideoPlayer = () => {
   const { mediaType, id } = useParams();
@@ -35,27 +35,36 @@ const VideoPlayer = () => {
     return () => clearTimeout(timer);
   }, [id, seasonNum, episodeNum, endpoint, lanEndpoint, language]);
 
-  
-  const preurl = lanEndpoint === 'one' ? `https://vidify.top/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}` :
-    `https://player.autoembed.cc/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}` + '?server=2';
-  
+  const preurl =
+    lanEndpoint === "one"
+      ? `https://vidify.top/embed/${mediaType}/${id}${
+          seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""
+        }`
+      : `https://player.autoembed.cc/embed/${mediaType}/${id}${
+          seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""
+        }` + "?server=2";
+
   const getOriginalLanguageDomain = () => {
-    if (endpoint === 'ru' || endpoint === 'su') {
+    if (endpoint === "ru" || endpoint === "su") {
       return `vidsrcme.${endpoint}`;
-    }else if(endpoint === 'ru2'){
-      return `vidsrc-me.ru`;
-    }else if(endpoint === 'su2'){
-      return `vidsrc-embed.su`;
+    } else if (endpoint === "ru2") {
+      return `vidsrc-embed.ru`;
+    } else if (endpoint === "su2") {
+      return `vsrc.su`;
     }
     return `vidsrc.${endpoint}`;
-  };  
-  const url = language === "Hindi" ? preurl :
-    `https://${getOriginalLanguageDomain()}/embed/${mediaType}/${id}${seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""}`;
+  };
+  const url =
+    language === "Hindi"
+      ? preurl
+      : `https://${getOriginalLanguageDomain()}/embed/${mediaType}/${id}${
+          seasonNum && mediaType === "tv" ? "/" + seasonNum + "/" + episodeNum : ""
+        }`;
 
-    console.log("Video URL:", url);
+  console.log("Video URL:", url);
 
   return (
-    <div className={`video-player-container`} >
+    <div className={`video-player-container`}>
       {isLoading && (
         <div className="video-loader-overlay">
           <div className="video-loader-spinner"></div>
