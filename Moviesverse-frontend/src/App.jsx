@@ -28,8 +28,6 @@ import { LoadingScreen } from "./components/InitialScreens/LoadingScreen";
 import { ServerBusyScreen } from "./components/InitialScreens/ServerBusyScreen";
 import { HelmetProvider } from "react-helmet-async";
 import StreamPage from "./pages/Stream/StreamPage";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const useOnlineStatus = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -174,8 +172,6 @@ function App() {
               <ShowNavbar />
               <Footer />
             </BrowserRouter>
-            <Analytics />
-            <SpeedInsights />
           </ValuesContext.Provider>
         </AuthContextProvider>
       </ThemeProvider>
