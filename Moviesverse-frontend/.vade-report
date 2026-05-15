@@ -1,0 +1,74 @@
+# Vercel Web Analytics Implementation Report
+
+## Summary
+Successfully implemented and optimized Vercel Web Analytics for the Moviesverse frontend project. The analytics tracking was already partially implemented but had a duplication issue that has been resolved.
+
+## Changes Made
+
+### Modified Files:
+- **src/App.jsx** - Removed duplicate Analytics and SpeedInsights component imports and usage
+
+## Implementation Details
+
+### What Was Already in Place:
+The project already had:
+1. `@vercel/analytics` package (v1.6.1) installed in package.json
+2. `@vercel/speed-insights` package (v1.2.0) installed in package.json
+3. Analytics and SpeedInsights components properly implemented in `src/main.jsx` at the root level
+
+### Issue Identified and Fixed:
+The Analytics and SpeedInsights components were being rendered twice:
+1. Once in `main.jsx` (at the Redux Provider level) ✓ Correct
+2. Again in `App.jsx` (at the bottom of the component) ✗ Duplicate
+
+### Resolution:
+Removed the duplicate imports and component usage from `App.jsx`:
+- Removed `import { Analytics } from "@vercel/analytics/react"`
+- Removed `import { SpeedInsights } from "@vercel/speed-insights/react"`
+- Removed `<Analytics />` component from JSX
+- Removed `<SpeedInsights />` component from JSX
+
+### Current Implementation:
+The Analytics and SpeedInsights components are now correctly rendered only once in `src/main.jsx`:
+
+```jsx
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <Analytics />
+    <SpeedInsights />
+    <App />
+  </Provider>
+);
+```
+
+This follows Vercel's best practices for React applications using Vite, where the Analytics component should be rendered at the root level, wrapping the entire application.
+
+## Testing & Verification
+
+✅ Dependencies installed successfully with npm
+✅ Build completed successfully without errors
+✅ No new linting errors introduced by the changes
+✅ Analytics will track all routes automatically through React Router integration
+
+## How It Works
+
+When deployed to Vercel:
+1. The Analytics component automatically injects the tracking script
+2. Page views are tracked on all routes (/, /movie, /tv, /account, etc.)
+3. Route changes are automatically detected via React Router
+4. Data can be viewed in the Vercel dashboard under the Analytics tab
+5. Speed Insights will monitor Core Web Vitals
+
+## Next Steps for Deployment
+
+1. Deploy the application to Vercel
+2. Enable Web Analytics in the Vercel dashboard (Project > Analytics > Enable)
+3. After deployment, verify tracking works by checking browser Network tab for requests to `/_vercel/insights/view`
+4. View analytics data in the Vercel dashboard
+
+## Notes
+
+- The implementation follows the official Vercel documentation for React/Vite applications
+- No additional configuration is needed - the components work out of the box
+- Analytics only tracks when deployed to Vercel (not in local development by default)
+- The project uses npm as the package manager (package-lock.json)
